@@ -213,5 +213,11 @@
     "contactUs": "Contact Us",
     "faq": "FAQ's",
     "copyright": "Copyright © 2026 All Rights Reserved."
+  },
+  "notFound": {
+    "breadcrumbTitle": "Error 404",
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist. It may have been moved, or removed altogether. Perhaps you can return back to the site's homepage and see if you can find what you are looking for.",
+    "goHome": "Go to Homepage"
   }
 }
