@@ -1,8 +1,7 @@
 {
   "common": {
     "orderNow": "შეუკვეთე ახლავე",
-    "readMore": "სრულად ნახვა",
-    "logoAlt": "BiteClub-ის ლოგო"
+    "readMore": "სრულად ნახვა"
   },
   "header": {
     "searchPlaceholder": "რას ეძებთ?",

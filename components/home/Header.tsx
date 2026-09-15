@@ -1,10 +1,10 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
+import LogoMark from '@/components/shared/LogoMark';
 
 export default function Header() {
   const t = useTranslations('header');
-  const tCommon = useTranslations('common');
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function Header() {
               <div className="offcanvas__top d-flex justify-content-between align-items-center">
                 <div className="offcanvas__logo">
                   <Link href="/">
-                    <img src="/assets/img/logo/logo-biteclub.png" alt={tCommon('logoAlt')} />
+                    <LogoMark size="sm" />
                   </Link>
                 </div>
                 <div className="offcanvas__close">
@@ -95,7 +95,7 @@ export default function Header() {
           <div className="head-line" />
           <div className="header-middle-wrap">
             <Link href="/" className="main-logo">
-              <img src="/assets/img/logo/logo-biteclub.png" alt={tCommon('logoAlt')} />
+              <LogoMark size="md" />
             </Link>
             <div className="header-middle-items">
               <div className="middle-list-items">
@@ -163,7 +163,7 @@ export default function Header() {
             <div className="mega-menu-wrapper">
               <div className="header-main">
                 <Link href="/" className="logo-1">
-                  <img src="/assets/img/logo/logo-biteclub.png" alt={tCommon('logoAlt')} />
+                  <LogoMark size="sm" />
                 </Link>
                 <div className="logo-itemsss">
                   <div className="logo-hides" />
