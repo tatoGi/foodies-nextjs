@@ -16,18 +16,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   return (
-    <div className="page-wrapper">
-      <div className="preloader">
-        <div className="loader" />
-      </div>
-
-      <button id="back-top" className="back-to-top">
-        <i className="fa-regular fa-arrow-up" />
-      </button>
-
-      <div className="mouseCursor cursor-outer" />
-      <div className="mouseCursor cursor-inner" />
-
+    <>
       <Header />
 
       <div id="smooth-wrapper">
@@ -40,6 +29,6 @@ export default async function HomePage({
           <Footer />
         </div>
       </div>
-    </div>
+    </>
   );
 }

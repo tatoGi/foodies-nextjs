@@ -30,11 +30,8 @@
       },
       "menu": "Menu",
       "pages": "Pages",
-      "ourChefs": "Our Chefs",
-      "chefsDetails": "Chefs Details",
       "ourHistory": "Our History",
       "reservation": "Reservation",
-      "testimonial": "Testimonial",
       "ourGallery": "Our Gallery",
       "faqPage": "FAQ Page",
       "error404": "Error 404",
@@ -161,5 +158,156 @@
     "email": "yordomain@gmial.com",
     "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
     "copyright": "Copyright © 2026 All Rights Reserved."
+  },
+  "breadcrumb": {
+    "homeLabel": "Home Page"
+  },
+  "instagram": {
+    "imageAlt": "BiteClub Instagram photo {n}"
+  },
+  "cta": {
+    "subTitle": "Our Newsletter",
+    "title": "Get",
+    "titleAccent": "10% off",
+    "titleEnd": "Your order!",
+    "description": "Enter your email and receive a 10% discount on your next order!",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe"
+  },
+  "innerFooter": {
+    "openingHoursTitle": "Opening Hours",
+    "hoursLabel": "Hours:",
+    "hours": "9.30am – 6.30pm",
+    "hoursDays": "Monday to Friday",
+    "sundayLabel": "Sunday:",
+    "sundayValue": "Closed",
+    "informationTitle": "Information",
+    "privacyPolicy": "Privacy Policy",
+    "refundPolicy": "Refund Policy",
+    "shippingReturn": "Shipping & Return",
+    "termsOfUse": "Terms of use",
+    "discountOffer": "Discount Offer",
+    "bestSeller": "Best Seller",
+    "logoAlt": "BiteClub logo",
+    "aboutText": "We believe it has the power to do amazing things.",
+    "phone": "+1 718-904 4450",
+    "email": "yordomain@gmial.com",
+    "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "productsTitle": "Our Products",
+    "products": ["BBQ Pizza TinTin", "Burger Kingo", "Chicken Sandwich", "Chocolate Donuts", "BBQ Pizza TinTin", "French Fries"],
+    "quickLinksTitle": "Quick Links",
+    "aboutUs": "About Us",
+    "ourMenu": "Our Menu",
+    "contactUs": "Contact Us",
+    "faq": "FAQ's",
+    "copyright": "Copyright © 2026 All Rights Reserved."
+  },
+  "notFound": {
+    "breadcrumbTitle": "Error 404",
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist. It may have been moved, or removed altogether. Perhaps you can return back to the site's homepage and see if you can find what you are looking for.",
+    "goHome": "Go to Homepage"
+  },
+  "discountFood": {
+    "limitedTime": "*** FOR LIMITED TIME ONLY ***",
+    "offer50": "50% Offer",
+    "today": "Today's",
+    "specialMenuTitle": "Special",
+    "specialMenuAccent": "Food Menu",
+    "thisWeekendOnly": "This Weekend Only",
+    "only": "ONLY",
+    "price19": "$19",
+    "banner3Title": "Yummy",
+    "banner3TitleLine2": "Delicious Hot",
+    "banner3TitleLine3": "Pizza",
+    "specialMenu": "Special Menu",
+    "chesseyPizza": "Chessey Pizza",
+    "chefSpecial": "CHEF SPECIAL"
+  },
+  "about": {
+    "pageTitle": "About us",
+    "whyChooseUs": {
+      "subTitle": "Best Food Menu",
+      "title": "We're Making the",
+      "titleLine2": "Best burger for You",
+      "description": "We prioritize eco-friendly practices that protect natural resources and ensure long-term agricultural productivity for generations. Every solution we offer is designed to support farmers.",
+      "listOne": ["Natural Healthy Products", "Gourmet Mushrooms", "Argo Farming"],
+      "listTwo": ["Fertilizer Distribution", "Best Quality Standards", "Multifunctional Farming"],
+      "orderNow": "Order Now",
+      "reserveTable": "Reserve Table"
+    },
+    "foodMenu": {
+      "subTitle": "Best Food Menu",
+      "title": "Our Best Foods Menus",
+      "tabs": {
+        "burger": "Beef Burger",
+        "pizza": "Chicken Pizza",
+        "fresh": "Fresh Pasta",
+        "sushi": "Hot Sushi"
+      },
+      "items": [
+        {"title": "Spicy Chicken Roll", "description": "Burger, coke, fries, chicken nuggets", "price": "$25"},
+        {"title": "Happy Lunch Combo", "description": "Burger, coke, fries, chicken nuggets", "price": "$29"},
+        {"title": "Spicy Beef Burrito", "description": "Burger, coke, fries, chicken nuggets", "price": "$21"},
+        {"title": "Classic Chicken Tacos", "description": "Burger, coke, fries, chicken nuggets", "price": "$05"}
+      ],
+      "reserveTable": "Reserve Table"
+    },
+    "gallery": {
+      "subTitle": "Our Food Gallery",
+      "title": "Let's See our Fast Food Category",
+      "viewGallery": "View Our Gallery"
+    },
+    "discountBanner": {
+      "title": "Delicious",
+      "description": "Our culinary sanctuary, where every dish tells a story every bite is an adventure.",
+      "discountOffer": "50% Discount Offer",
+      "browseOffers": "Browse Offers",
+      "rightTitle": "Pizza"
+    },
+    "news": {
+      "subTitle": "Our Blog & News",
+      "title": "Latest Our Insights & News",
+      "posts": [
+        {"day": "25", "month": "Sep", "category": "e-Learning", "title": "Meet Success the Cale Smashing Book By Addy Osmania", "author": "Roger J. Spaulding", "comments": "Comments(5)"},
+        {"day": "27", "month": "Sep", "category": "e-Learning", "title": "Best Fast Food Recipes You Can Easily Make at Home", "author": "Roger J. Spaulding", "comments": "Comments(5)"},
+        {"day": "29", "month": "Sep", "category": "e-Learning", "title": "Fast Food Trends That Are Changing the Way We Eat", "author": "Roger J. Spaulding", "comments": "Comments(5)"}
+      ]
+    }
+  },
+  "faq": {
+    "pageTitle": "Our FAQ's",
+    "subTitle": "Our FAQ's",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {"question": "How does this work?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I order from different restaurant at the same time?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Some menus are missing on a restaurant page?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I choose which cause to support?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "How do I know my order is used properly?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Some menus are missing on a restaurant page?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Does your pizza contain peanuts or peanut oil?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Are your menu prices the same as those at the restaurant?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I choose a specific cause to support?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Are your doughs vegan or vegetarian friendly?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"}
+    ]
+  },
+  "history": {
+    "pageTitle": "Our History",
+    "top": {
+      "subTitle": "Best Food Menu",
+      "title": "Delivering Awesome Since 1960",
+      "description": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry. We’re proud of the quality food we make – and the difference we make in communities across Canada. We’ve made a lot of pies and memories over the years. Find out what goes into both!"
+    },
+    "timeline": {
+      "entries": [
+        {"year": "1960", "title": "The Beginning Time", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-01.jpg"},
+        {"year": "1980", "title": "Golden Time!", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-02.jpg"},
+        {"year": "2000", "title": "Starting the New Era", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-03.jpg"},
+        {"year": "2020", "title": "Online Order", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-04.jpg"},
+        {"year": "2023", "title": "2,500th the Branch Store", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-05.jpg"},
+        {"year": "2026", "title": "70 Years Celebrating", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-06.jpg"}
+      ]
+    }
   }
 }

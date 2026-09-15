@@ -25,6 +25,7 @@
 - Forms (`contact.html`, `reservation.html`) port as visual-only (`action="#"`), matching the home page's existing Contact/newsletter forms — no real submission wiring, per the approved spec.
 - No automated test framework. `npm run dev` + visual comparison against the source HTML file (open directly, e.g. `file:///C:/Users/pc/Desktop/tato/foodies_site/about.html`) is each task's verification gate, same as every prior task in this project.
 - Every task ends with: `./node_modules/.bin/tsc --noEmit`, `npm run build`, then commit.
+- **Amendment (found during Task 8):** every `page.tsx` in this plan is an `async` function (it awaits `params` for `setRequestLocale`). Calling the page-level `t()` directly via the synchronous `useTranslations()` from `next-intl` inside that async function throws a runtime error. Use `getTranslations` from `next-intl/server` instead, awaited: `import {getTranslations, setRequestLocale} from 'next-intl/server';` then `const t = await getTranslations('<namespace>');`. This applies to every page task that needs a page-level `t()` call for its `Breadcrumb` title (Tasks 9–11, 15–16) — **not** to ordinary (non-async, non-page) components like `Header.tsx` or any of the section components (`WhyChooseUs.tsx`, `Gallery.tsx`, etc.), which are synchronous and correctly keep using the plain `useTranslations()` from `next-intl` exactly as already written throughout this codebase. Where a later task's embedded page.tsx code block in this plan still shows `import {useTranslations} from 'next-intl'` with a bare `const t = useTranslations(...)` inside an async page component, treat that as an error to correct using the pattern above — not as instruction.
 
 ---
 
@@ -669,11 +670,12 @@ EOF
 
 **Files:**
 - Create: `foodies-nextjs/app/[locale]/not-found.tsx`
+- Create: `foodies-nextjs/app/[locale]/[...rest]/page.tsx` (added mid-task — see Step 2b's amendment)
 - Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
 
 **Interfaces:**
 - Consumes: `Header` (Task 1, `showMegaMenu`), `Breadcrumb` (Task 2), `Instagram`/`Cta`/`InnerFooter` (Task 3).
-- Produces: the Next.js special `not-found.tsx` file — automatically rendered for any unmatched route under `[locale]`, and also what the header nav's "Error 404" link (`href="/404"`, already wired in `Header.tsx`) hits, since no literal `/404` page route exists to shadow it.
+- Produces: the Next.js special `not-found.tsx` file, triggered via an explicit `notFound()` call from the `[...rest]` catch-all route (Step 2b) — this is what actually makes it render for any unmatched route under `[locale]`, and also what the header nav's "Error 404" link (`href="/404"`, already wired in `Header.tsx`) hits, since no literal `/404` page route exists to shadow it.
 
 **Reference source:** `../404.html` lines 502–537 (`error-section`).
 
@@ -766,6 +768,22 @@ export default function NotFound() {
 
 Note: `notFound.tsx` doesn't receive `params`/`locale` the way `page.tsx` does — `useTranslations`/`Link` still work because they read the active locale from the `NextIntlClientProvider`/routing context already set up in `layout.tsx`. If TypeScript or next-intl complains about missing locale context here, check `foodies-nextjs/app/[locale]/layout.tsx` for how `notFound()` (the function call, not this file) is already invoked there for invalid locales — this file is the render target for that path, not a new locale boundary.
 
+- [ ] **Step 2b: Add the catch-all route that actually triggers it**
+
+**Amendment (found during Task 4's own implementation, verified via Context7 against both Next.js's and next-intl's docs):** `not-found.tsx` alone does NOT automatically render for genuinely unmatched routes in current Next.js — it only renders when `notFound()` is explicitly called within a route segment. (Next.js does offer a `global-not-found.tsx` for the true catch-all case, but it's experimental, requires an `experimental.globalNotFound` config flag, and bypasses the root layout entirely — no access to next-intl's locale context, wrong fit here.) next-intl's own docs give the standard, non-experimental fix: a catch-all page inside the `[locale]` segment that explicitly calls `notFound()`.
+
+Create `foodies-nextjs/app/[locale]/[...rest]/page.tsx`:
+
+```tsx
+import {notFound} from 'next/navigation';
+
+export default function CatchAllPage() {
+  notFound();
+}
+```
+
+This stays inside `[locale]`, so the existing `NextIntlClientProvider`/routing context is intact when `not-found.tsx` renders — no layout bypass, no experimental flag. Both target scenarios now work: a genuinely broken URL (`/ka/this-does-not-exist`) matches this catch-all and triggers `notFound()`; the header's `/404` link matches it too, for the same reason.
+
 - [ ] **Step 3: Verify**
 
 `npm run dev`, visit a genuinely broken URL (e.g. `http://localhost:3000/ka/this-does-not-exist`) — confirm this page renders. Then click the header's "Error 404" nav link (under Pages) — confirm it renders the same page (via `/404`, which also has no real route). Check both `/ka` and `/en` produce correctly localized text. Confirm `tsc --noEmit` and `npm run build` pass.
@@ -773,7 +791,7 @@ Note: `notFound.tsx` doesn't receive `params`/`locale` the way `page.tsx` does �
 - [ ] **Step 4: Commit**
 
 ```bash
-git add app/[locale]/not-found.tsx messages/en.json messages/ka.json
+git add app/[locale]/not-found.tsx "app/[locale]/[...rest]/page.tsx" messages/en.json messages/ka.json
 git commit -m "$(cat <<'EOF'
 Add not-found.tsx (serves both broken URLs and the header's Error 404 link)
 
@@ -801,16 +819,108 @@ The user reviewed the curated page list and explicitly rejected `testimonial.htm
 **Interfaces:**
 - Produces: `export default function WhyChooseUs()`, `export default function DiscountFood()`, `export default function FoodMenu3()`. Consumed by Task 8's `app/[locale]/about/page.tsx`.
 
-- [ ] **Step 1: Recover DiscountFood from git history**
+- [ ] **Step 1: Recover DiscountFood**
 
-This component was already built once (for the home page), then deleted when the home page was trimmed to match `index.html` exactly — its content actually belongs to `about.html` (`discount-food-section`, `../about.html` lines 577–655), not the home page. Recover it instead of re-porting from scratch:
+**Amendment:** the original `git show fca4cfc^:...` recovery command only works from inside the *parent* `foodies_site` repo — `fca4cfc` doesn't exist in `foodies-nextjs`'s own history (it's a standalone repo now, git-init'd fresh after the home-page migration merged). Do not `cd` out of this worktree to chase that commit. The controller already retrieved the file's content directly — create it verbatim:
 
-```bash
-cd "C:\Users\pc\Desktop\tato\foodies_site"
-git show fca4cfc^:foodies-nextjs/components/home/DiscountFood.tsx > foodies-nextjs/components/about/DiscountFood.tsx
+Create `foodies-nextjs/components/about/DiscountFood.tsx`:
+
+```tsx
+import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/navigation';
+
+export default function DiscountFood() {
+  const t = useTranslations('discountFood');
+  const tCommon = useTranslations('common');
+
+  return (
+    <section className="discount-food-section fix section-padding pt-0">
+      <div className="container">
+        <div className="row g-3">
+          <div className="col-xl-8">
+            <div
+              className="discount-food-banner-1 bg-cover wow fadeInUp"
+              data-wow-delay=".3s"
+              style={{backgroundImage: "url('/assets/img/home-1/food-banner-1.jpg')"}}
+            >
+              <div className="sticker-image">
+                <img src="/assets/img/home-1/sticker.png" alt="" />
+              </div>
+              <div className="content-box">
+                <div className="content">
+                  <span>{t('limitedTime')}</span>
+                  <h2 className="title">{t('offer50')}</h2>
+                </div>
+                <Link href="/shop-details" className="theme-btn small-btn">
+                  {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+                </Link>
+              </div>
+            </div>
+            <div className="row g-3">
+              <div className="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
+                <div className="discount-food-banner-2 bg-cover" style={{backgroundImage: "url('/assets/img/home-1/food-banner-2.jpg')"}}>
+                  <div className="content">
+                    <span className="sub-text">{t('today')}</span>
+                    <h2>
+                      {t('specialMenuTitle')} <br />
+                      <span>{t('specialMenuAccent')}</span>
+                    </h2>
+                    <p>{t('thisWeekendOnly')}</p>
+                  </div>
+                  <div className="food-image">
+                    <img src="/assets/img/home-1/food-menu2.png" alt="" />
+                    <div className="discount-box">
+                      <img src="/assets/img/home-1/discount-box.png" alt="" />
+                      <div className="cont">
+                        <p>{t('only')}</p>
+                        <span>{t('price19')}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6 wow fadeInUp" data-wow-delay=".7s">
+                <div className="discount-food-banner-3">
+                  <img src="/assets/img/home-1/food-banner-3.jpg" alt="" />
+                  <h2 className="title">
+                    {t('banner3Title')} <br /> {t('banner3TitleLine2')} <br /> {t('banner3TitleLine3')}
+                  </h2>
+                  <div className="shape1">
+                    <img src="/assets/img/home-1/shape1.png" alt="" />
+                  </div>
+                  <div className="shape2">
+                    <img src="/assets/img/home-1/shape2.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-xl-4 wow fadeInUp" data-wow-delay=".9s">
+            <div className="discount-food-banner-4 bg-cover" style={{backgroundImage: "url('/assets/img/home-1/food-banner-4.jpg')"}}>
+              <div className="content">
+                <span className="menu-text">{t('specialMenu')}</span>
+                <h2>{t('chesseyPizza')}</h2>
+                <h3>{t('chefSpecial')}</h3>
+                <Link href="/shop-details" className="theme-btn small-btn">
+                  {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+                </Link>
+              </div>
+              <div className="thumb">
+                <img src="/assets/img/home-1/pizza-discount.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="dis-shape">
+          <img src="/assets/img/home-1/shape-5.png" alt="" />
+        </div>
+      </div>
+    </section>
+  );
+}
 ```
 
-Open the recovered file and verify it compiles as-is (it uses `useTranslations('discountFood')` and `@/i18n/navigation`'s `Link` — both already valid from this location, no import path changes needed since imports use the `@/` alias). Compare its JSX against `../about.html` lines 577–655 to confirm it's still an accurate port (the source hasn't changed since it was built).
+This is the exact, already-verified port of `../about.html` lines 577–655 — no further comparison against source needed.
 
 - [ ] **Step 2: Recover the `discountFood` namespace**
 
@@ -954,8 +1064,7 @@ Add an `about.pageTitle` key (used for the breadcrumb) to both message files, e.
 Create `foodies-nextjs/app/[locale]/about/page.tsx`, assembling sections in the exact order they appear in `../about.html`:
 
 ```tsx
-import {useTranslations} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import Header from '@/components/home/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Instagram from '@/components/inner/Instagram';
@@ -972,7 +1081,7 @@ import News2 from '@/components/about/News2';
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
-  const t = useTranslations('about');
+  const t = await getTranslations('about');
 
   return (
     <>
@@ -997,7 +1106,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
 }
 ```
 
-(This order matches the section survey minus the dropped testimonial-section-3 — see Task 5: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Calling `useTranslations` directly inside this async function body is safe and matches existing precedent — `components/home/Header.tsx` already does the same thing without a `'use client'` directive, confirmed in this codebase.)
+(This order matches the section survey minus the dropped testimonial-section-3 — see Task 5: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Use `getTranslations` (awaited, from `next-intl/server`) here, not the sync `useTranslations` — see the Global Constraints amendment on this: the sync API throws at runtime inside an `async` page component, confirmed by Task 8's own implementation. `Header.tsx`'s use of sync `useTranslations` remains correct and unaffected — it's a synchronous, non-async component.)
 
 - [ ] **Step 3: Verify**
 
