@@ -286,5 +286,22 @@
         {"day": "29", "month": "Sep", "category": "e-Learning", "title": "Fast Food Trends That Are Changing the Way We Eat", "author": "Roger J. Spaulding", "comments": "Comments(5)"}
       ]
     }
+  },
+  "faq": {
+    "pageTitle": "Our FAQ's",
+    "subTitle": "Our FAQ's",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {"question": "How does this work?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I order from different restaurant at the same time?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Some menus are missing on a restaurant page?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I choose which cause to support?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "How do I know my order is used properly?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Some menus are missing on a restaurant page?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Does your pizza contain peanuts or peanut oil?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Are your menu prices the same as those at the restaurant?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Can I choose a specific cause to support?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"},
+      {"question": "Are your doughs vegan or vegetarian friendly?", "answer": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable"}
+    ]
   }
 }
