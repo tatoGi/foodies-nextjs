@@ -119,11 +119,7 @@ export default function Header() {
                     </div>
                     <LocaleSwitcher />
                   </div>
-                  <select className="single-select price-list w-100">
-                    <option>USD</option>
-                    <option>DLR</option>
-                    <option>UDX</option>
-                  </select>
+                  <span style={{color: 'var(--white)', fontWeight: 600}}>GEL</span>
                 </div>
               </div>
               <div className="head-form-items">
