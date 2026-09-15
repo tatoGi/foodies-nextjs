@@ -1,0 +1,178 @@
+{
+  "common": {
+    "orderNow": "Order Now",
+    "readMore": "Read More",
+    "logoAlt": "Foodies logo"
+  },
+  "header": {
+    "searchPlaceholder": "What are you looking for?",
+    "followUs": "Follow us:",
+    "promo": "FREE delivery & 40% Discount for next 3 orders! Place your 1st order in.",
+    "aboutUs": "About Us",
+    "faq": "FAQ",
+    "myAccount": "My account",
+    "orderTracking": "Order Tracking",
+    "orderWithin15": "Order now and get it within 15 min.!",
+    "contact": "Contact",
+    "forOrder": "For Order",
+    "bestSeller": "% Best Seller",
+    "sale": "SALE",
+    "orderPhone": "(234) 109-6666",
+    "nav": {
+      "home": "Home",
+      "homeDemos": {
+        "fastFood": "Fast Food",
+        "pizzaRestaurant": "Pizza Restaurant",
+        "foodDelivery": "Food Delivery",
+        "burgerRestaurant": "Burger Restaurant",
+        "iceCreamShop": "Ice Cream Shop",
+        "iceCreamStore": "Ice Cream Store",
+        "restaurant": "Restaurant",
+        "coffeeAndTea": "Coffee and Tea",
+        "viewPage": "View page"
+      },
+      "menu": "Menu",
+      "pages": "Pages",
+      "ourChefs": "Our Chefs",
+      "chefsDetails": "Chefs Details",
+      "ourHistory": "Our History",
+      "reservation": "Reservation",
+      "testimonial": "Testimonial",
+      "ourGallery": "Our Gallery",
+      "faqPage": "FAQ Page",
+      "error404": "Error 404",
+      "about": "About",
+      "shop": "Shop",
+      "shopGrid": "Shop Grid",
+      "shopList": "Shop List",
+      "shopGridSidebar": "Shop Grid Sidebar",
+      "shopListSidebar": "Shop List Sidebar",
+      "shopDetails": "Shop Details",
+      "shopCart": "Shop Cart",
+      "wishlist": "Wishlist",
+      "checkout": "Checkout",
+      "blog": "Blog",
+      "blogGrid": "Blog Grid",
+      "blogStandard": "Blog Standard",
+      "blogDetails": "Blog Details",
+      "contact": "Contact"
+    }
+  },
+  "hero": {
+    "sub": "Medium 3-topping* Pizza",
+    "description": "HAM, GREEN PEPPERS, PINEAPPLE, SMOKED BACON",
+    "slides": [
+      {"title": "Yummy Food And", "titleAccent": "Pizza"},
+      {"title": "Tasty Food &", "titleAccent": "Pizza"},
+      {"title": "Hot Food &", "titleAccent": "Pizza"}
+    ]
+  },
+  "shopCategory": {
+    "subTitle": "Food Category",
+    "title": "Our Delicious Fast Foods",
+    "description": "Get your orders delivered quickly with reliable shipping partners and real-time order tracking. Easy and transparent returns with clear policies.",
+    "itemDescription": "Find top-rated dinnerware, flatware and barware at Foodies.",
+    "price": "$19",
+    "items": [
+      {"title": "Double Cheese Pizza"},
+      {"title": "Crispy Chicken Burger"},
+      {"title": "Pepperoni Burger"},
+      {"title": "Classic Beef Pizza"},
+      {"title": "BBQ Chicken Wings"},
+      {"title": "Crispy Classic Onion"}
+    ]
+  },
+  "foodMenu": {
+    "subTitle": "Best Food Menu",
+    "title": "Our Best Foods Menus",
+    "tabs": {
+      "burger": "Beef Burger",
+      "pizza": "Chicken Pizza",
+      "fresh": "Fresh Pasta",
+      "sushi": "Hot Sushi",
+      "juice": "Drink & Juice"
+    },
+    "itemDescription": "Burger, coke, fries, chicken nuggets",
+    "price": "$29",
+    "items": [
+      {"title": "Cheesy Beef Nachos"},
+      {"title": "Grilled Chicken Sub"},
+      {"title": "Cheesy Garlic Cream"},
+      {"title": "Spicy Beef Burrito"},
+      {"title": "Happy Lunch Combo"},
+      {"title": "Spicy Chicken Nuggets"},
+      {"title": "Deluxe Club Sandwich"},
+      {"title": "Crunchy Fish Burger"},
+      {"title": "Classic Chicken Tacos"},
+      {"title": "Crispy Onion Rings"}
+    ]
+  },
+  "comboBanner": {
+    "subTitle": "Special Combo Offer",
+    "title": "The Best Quality for",
+    "titleAccent": "Combo Burger",
+    "description": "Foodies is a unique and independent quick service brand.",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds"
+  },
+  "bestDelivery": {
+    "subTitle": "Best Delivery",
+    "title": "Choose what you want, select a pick up time",
+    "description": "We're very busy every day, so we recommend calling ahead before you arrive so we can guarantee your seat.",
+    "earnPointsSubTitle": "Earn The Points",
+    "earnPointsTitle": "Earn points every time you order online",
+    "infoText": "We have global customers for our farm-grown products."
+  },
+  "contact": {
+    "subTitle": "Contact Us",
+    "title": "Contact for Order",
+    "description": "Here you'll find the freshest, highest-quality ingredients, carefully selected for you.",
+    "supportCenter": "24/7 Support center",
+    "phone": "+1 718-904-4450",
+    "headquarterLabel": "Headquarter -",
+    "headquarterAddress": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "emailUsLabel": "Email Us -",
+    "emailPrimary": "hellofodies@gmail.com",
+    "emailSecondary": "fodies@gmail.com"
+  },
+  "news": {
+    "subTitle": "Our Blog & News",
+    "title": "Latest Our Insights & News",
+    "author": "John Smith",
+    "comments": "Comments (3)",
+    "posts": [
+      {"day": "20", "month": "JUN", "title": "In Fast Food Really Getting Healthier? What You Need Know"},
+      {"day": "25", "month": "JUN", "title": "Best Fast Food Recipes You Can Easily Make at Home"},
+      {"day": "28", "month": "JUN", "title": "Fast Food Trends That Are Changing the Way We Eat"}
+    ]
+  },
+  "footer": {
+    "newsletter": "NEWSLETTER",
+    "newsletterText": "Sign up to our mailing list to benefit from new discounts and campaigns",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "openingHoursTitle": "Opening Hours",
+    "openingHours": [
+      {"day": "Monday", "hours": "10.00am - 05.00pm"},
+      {"day": "Tuesday", "hours": "10.20am - 05.30pm"},
+      {"day": "Wednesday", "hours": "10.30am - 05.50pm"},
+      {"day": "Thursday", "hours": "11.00am - 07.10pm"},
+      {"day": "Friday", "hours": "Closed"}
+    ],
+    "productsTitle": "Our Products",
+    "products": ["BBQ Pizza TinTin", "Burger Kingo", "Chicken Sandwich", "Chocolate Donuts", "BBQ Pizza TinTin", "French Fries"],
+    "recentPostsTitle": "Recent Posts",
+    "recentPosts": [
+      {"date": "12 June, 2026", "title": "Top Fast Food Items Everyone Loves to Eat"},
+      {"date": "12 June, 2026", "title": "Best Street Food to Try This Weekend"},
+      {"date": "12 June, 2026", "title": "Why Fast Food Is Popular Around the World"}
+    ],
+    "contactTitle": "Contact Us",
+    "contactText": "At Foodies we provide fresh garden products for you. Contact us for your order.",
+    "email": "yordomain@gmial.com",
+    "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
+    "copyright": "Copyright © 2026 All Rights Reserved."
+  }
+}
