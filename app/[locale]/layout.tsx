@@ -72,7 +72,20 @@ export default async function LocaleLayout({
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider>
-          {children}
+          <div className="page-wrapper">
+            <div className="preloader">
+              <div className="loader" />
+            </div>
+
+            <button id="back-top" className="back-to-top">
+              <i className="fa-regular fa-arrow-up" />
+            </button>
+
+            <div className="mouseCursor cursor-outer" />
+            <div className="mouseCursor cursor-inner" />
+
+            {children}
+          </div>
         </NextIntlClientProvider>
         {jsSrcs.map((src) => (
           <Script key={src} src={src} strategy="afterInteractive" />
