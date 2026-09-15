@@ -1557,9 +1557,17 @@
   /* ================================
        Preloader Js Start
     ================================ */
-    $windowOn.on('load', function() {
+    function hidePreloader() {
         $(".preloader").fadeOut(600);
-    });
+    }
+    if (document.readyState === 'complete') {
+        // The window "load" event already fired before this script ran
+        // (it loads after React hydration via next/script), so the
+        // listener below would never fire — hide immediately instead.
+        hidePreloader();
+    } else {
+        $windowOn.on('load', hidePreloader);
+    }
 
   
   })(jQuery); // End jQuery
