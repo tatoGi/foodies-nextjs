@@ -263,6 +263,27 @@
         {"title": "Classic Chicken Tacos", "description": "Burger, coke, fries, chicken nuggets", "price": "$05"}
       ],
       "reserveTable": "Reserve Table"
+    },
+    "gallery": {
+      "subTitle": "Our Food Gallery",
+      "title": "Let's See our Fast Food Category",
+      "viewGallery": "View Our Gallery"
+    },
+    "discountBanner": {
+      "title": "Delicious",
+      "description": "Our culinary sanctuary, where every dish tells a story every bite is an adventure.",
+      "discountOffer": "50% Discount Offer",
+      "browseOffers": "Browse Offers",
+      "rightTitle": "Pizza"
+    },
+    "news": {
+      "subTitle": "Our Blog & News",
+      "title": "Latest Our Insights & News",
+      "posts": [
+        {"day": "25", "month": "Sep", "category": "e-Learning", "title": "Meet Success the Cale Smashing Book By Addy Osmania", "author": "Roger J. Spaulding", "comments": "Comments(5)"},
+        {"day": "27", "month": "Sep", "category": "e-Learning", "title": "Best Fast Food Recipes You Can Easily Make at Home", "author": "Roger J. Spaulding", "comments": "Comments(5)"},
+        {"day": "29", "month": "Sep", "category": "e-Learning", "title": "Fast Food Trends That Are Changing the Way We Eat", "author": "Roger J. Spaulding", "comments": "Comments(5)"}
+      ]
     }
   }
 }
