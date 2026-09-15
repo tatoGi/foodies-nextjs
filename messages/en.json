@@ -219,5 +219,50 @@
     "title": "Page not found",
     "description": "The page you are looking for does not exist. It may have been moved, or removed altogether. Perhaps you can return back to the site's homepage and see if you can find what you are looking for.",
     "goHome": "Go to Homepage"
+  },
+  "discountFood": {
+    "limitedTime": "*** FOR LIMITED TIME ONLY ***",
+    "offer50": "50% Offer",
+    "today": "Today's",
+    "specialMenuTitle": "Special",
+    "specialMenuAccent": "Food Menu",
+    "thisWeekendOnly": "This Weekend Only",
+    "only": "ONLY",
+    "price19": "$19",
+    "banner3Title": "Yummy",
+    "banner3TitleLine2": "Delicious Hot",
+    "banner3TitleLine3": "Pizza",
+    "specialMenu": "Special Menu",
+    "chesseyPizza": "Chessey Pizza",
+    "chefSpecial": "CHEF SPECIAL"
+  },
+  "about": {
+    "whyChooseUs": {
+      "subTitle": "Best Food Menu",
+      "title": "We're Making the",
+      "titleLine2": "Best burger for You",
+      "description": "We prioritize eco-friendly practices that protect natural resources and ensure long-term agricultural productivity for generations. Every solution we offer is designed to support farmers.",
+      "listOne": ["Natural Healthy Products", "Gourmet Mushrooms", "Argo Farming"],
+      "listTwo": ["Fertilizer Distribution", "Best Quality Standards", "Multifunctional Farming"],
+      "orderNow": "Order Now",
+      "reserveTable": "Reserve Table"
+    },
+    "foodMenu": {
+      "subTitle": "Best Food Menu",
+      "title": "Our Best Foods Menus",
+      "tabs": {
+        "burger": "Beef Burger",
+        "pizza": "Chicken Pizza",
+        "fresh": "Fresh Pasta",
+        "sushi": "Hot Sushi"
+      },
+      "items": [
+        {"title": "Spicy Chicken Roll", "description": "Burger, coke, fries, chicken nuggets", "price": "$25"},
+        {"title": "Happy Lunch Combo", "description": "Burger, coke, fries, chicken nuggets", "price": "$29"},
+        {"title": "Spicy Beef Burrito", "description": "Burger, coke, fries, chicken nuggets", "price": "$21"},
+        {"title": "Classic Chicken Tacos", "description": "Burger, coke, fries, chicken nuggets", "price": "$05"}
+      ],
+      "reserveTable": "Reserve Table"
+    }
   }
 }
