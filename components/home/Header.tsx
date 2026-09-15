@@ -25,6 +25,9 @@ export default function Header() {
                   </button>
                 </div>
               </div>
+              <div style={{margin: '20px 0'}}>
+                <LocaleSwitcher />
+              </div>
               <div className="mobile-menu fix" />
               <div className="shop-icon-right">
                 <Link href="/contact" className="shop-icon">
