@@ -25,6 +25,7 @@
 - Forms (`contact.html`, `reservation.html`) port as visual-only (`action="#"`), matching the home page's existing Contact/newsletter forms — no real submission wiring, per the approved spec.
 - No automated test framework. `npm run dev` + visual comparison against the source HTML file (open directly, e.g. `file:///C:/Users/pc/Desktop/tato/foodies_site/about.html`) is each task's verification gate, same as every prior task in this project.
 - Every task ends with: `./node_modules/.bin/tsc --noEmit`, `npm run build`, then commit.
+- **Amendment (found during Task 8):** every `page.tsx` in this plan is an `async` function (it awaits `params` for `setRequestLocale`). Calling the page-level `t()` directly via the synchronous `useTranslations()` from `next-intl` inside that async function throws a runtime error. Use `getTranslations` from `next-intl/server` instead, awaited: `import {getTranslations, setRequestLocale} from 'next-intl/server';` then `const t = await getTranslations('<namespace>');`. This applies to every page task that needs a page-level `t()` call for its `Breadcrumb` title (Tasks 9–11, 15–16) — **not** to ordinary (non-async, non-page) components like `Header.tsx` or any of the section components (`WhyChooseUs.tsx`, `Gallery.tsx`, etc.), which are synchronous and correctly keep using the plain `useTranslations()` from `next-intl` exactly as already written throughout this codebase. Where a later task's embedded page.tsx code block in this plan still shows `import {useTranslations} from 'next-intl'` with a bare `const t = useTranslations(...)` inside an async page component, treat that as an error to correct using the pattern above — not as instruction.
 
 ---
 
@@ -1063,8 +1064,7 @@ Add an `about.pageTitle` key (used for the breadcrumb) to both message files, e.
 Create `foodies-nextjs/app/[locale]/about/page.tsx`, assembling sections in the exact order they appear in `../about.html`:
 
 ```tsx
-import {useTranslations} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import Header from '@/components/home/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Instagram from '@/components/inner/Instagram';
@@ -1081,7 +1081,7 @@ import News2 from '@/components/about/News2';
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
-  const t = useTranslations('about');
+  const t = await getTranslations('about');
 
   return (
     <>
@@ -1106,7 +1106,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
 }
 ```
 
-(This order matches the section survey minus the dropped testimonial-section-3 — see Task 5: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Calling `useTranslations` directly inside this async function body is safe and matches existing precedent — `components/home/Header.tsx` already does the same thing without a `'use client'` directive, confirmed in this codebase.)
+(This order matches the section survey minus the dropped testimonial-section-3 — see Task 5: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Use `getTranslations` (awaited, from `next-intl/server`) here, not the sync `useTranslations` — see the Global Constraints amendment on this: the sync API throws at runtime inside an `async` page component, confirmed by Task 8's own implementation. `Header.tsx`'s use of sync `useTranslations` remains correct and unaffected — it's a synchronous, non-async component.)
 
 - [ ] **Step 3: Verify**
 
