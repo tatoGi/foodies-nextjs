@@ -205,19 +205,7 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                               </ul>
                             </li>
                           )}
-                          <li className="has-dropdown active d-xl-none">
-                            <a href="javascript:void(0)" className="border-none">{t('nav.home')}</a>
-                            <ul className="submenu">
-                              <li><Link href="/">{t('nav.homeDemos.fastFood')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.pizzaRestaurant')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.foodDelivery')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.burgerRestaurant')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.iceCreamShop')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.iceCreamStore')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.restaurant')}</Link></li>
-                              <li><Link href="/">{t('nav.homeDemos.coffeeAndTea')}</Link></li>
-                            </ul>
-                          </li>
+                          <li><Link href="/">{t('nav.home')}</Link></li>
                           <li><Link href="/menu">{t('nav.menu')}</Link></li>
                           <li><Link href="/about">{t('nav.about')}</Link></li>
                           <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
