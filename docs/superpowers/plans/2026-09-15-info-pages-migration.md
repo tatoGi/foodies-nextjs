@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Port 10 static HTML pages (about, faq, history, contact, team, team-details, testimonial, gallery, reservation, 404) into the Next.js app at `foodies-nextjs/`, bilingual (ka/en), reusing the home page's established patterns.
+**Goal:** Port 6 static HTML pages (about, faq, history, contact, gallery, reservation) plus a 404/not-found boundary into the Next.js app at `foodies-nextjs/`, bilingual (ka/en), reusing the home page's established patterns. `team.html`, `team-details.html`, and `testimonial.html` were in the original spec's 10-page group but are explicitly out of scope — the user reviewed the curated list and rejected them as not relevant to the real BiteClub project (fake demo team roster and testimonials, not real content).
 
 **Architecture:** One route per page under `app/[locale]/<slug>/page.tsx`. Four new shared components (`Breadcrumb`, `InnerFooter`, `Cta`, `Instagram`) used by all 10 pages, plus a `Header` prop change (`showMegaMenu`) since these pages' header differs from the home page's. Per-page components live under `components/<page>/`. Two components are reused/recovered rather than rebuilt: `BestDelivery` (byte-identical to the home page's) and `DiscountFood` (recovered from git history — it was built for the home page, then removed when the home page was trimmed to match `index.html` exactly; its real home is `about.html`).
 
@@ -20,24 +20,26 @@
   - `breadcrumb` — shared trail label, used by all 10 pages' `Breadcrumb` instances.
   - `innerFooter`, `cta`, `instagram` — the three new shared components.
   - `notFound` — the 404 / not-found page.
-  - `about` (nested: `about.whyChooseUs`, `about.foodMenu`, `about.gallery`, `about.discountBanner`, `about.news`), `discountFood` (top-level, recovered — see Task 6), `testimonial` (top-level, shared between `about.html`'s and `testimonial.html`'s use of the reusable `TestimonialSlider`).
-  - `faq`, `history`, `contactPage` (not `contact` — that name is already used by the home page's `Contact` section with different fields), `teamPage` (not `team` — avoids future collision), `teamDetails`, `testimonialPage` (the two testimonial.html sections that aren't the shared slider), `galleryPage`, `reservation`.
+  - `about` (nested: `about.whyChooseUs`, `about.foodMenu`, `about.gallery`, `about.discountBanner`, `about.news`), `discountFood` (top-level, recovered — see Task 6).
+  - `faq`, `history`, `contactPage` (not `contact` — that name is already used by the home page's `Contact` section with different fields), `galleryPage`, `reservation`.
 - Forms (`contact.html`, `reservation.html`) port as visual-only (`action="#"`), matching the home page's existing Contact/newsletter forms — no real submission wiring, per the approved spec.
 - No automated test framework. `npm run dev` + visual comparison against the source HTML file (open directly, e.g. `file:///C:/Users/pc/Desktop/tato/foodies_site/about.html`) is each task's verification gate, same as every prior task in this project.
 - Every task ends with: `./node_modules/.bin/tsc --noEmit`, `npm run build`, then commit.
 
 ---
 
-## Task 1: Header mega-menu prop + shared page chrome in layout
+## Task 1: Header mega-menu prop + shared page chrome + nav restructure
 
 **Files:**
 - Modify: `foodies-nextjs/components/home/Header.tsx`
 - Modify: `foodies-nextjs/app/[locale]/layout.tsx`
 - Modify: `foodies-nextjs/app/[locale]/page.tsx`
+- Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
 
 **Interfaces:**
 - Produces: `Header` accepts an optional `showMegaMenu?: boolean` prop (default `false`). Every task in this plan that renders `<Header />` renders it as `<Header showMegaMenu />`.
 - Produces: the preloader, back-to-top button, and mouse-cursor elements move from the home page's `page.tsx` into the shared `layout.tsx`, so every page gets them automatically — no page task in this plan needs to render them itself.
+- Produces: the nav's top-level items now include `/about`, `/gallery`, `/reservation` (alongside the existing `/menu` and `/contact`); the "Pages" dropdown is trimmed to History/FAQ/404 only. `/team`, `/team-details`, `/testimonial` links are removed entirely (see Task 5 — those pages are out of scope).
 
 **Context:** The home page's `Header.tsx` deliberately excludes an 8-tile "mega menu" dropdown under the nav's "Home" item, because `index.html` doesn't have it (a correction made during the home-page migration). But all 10 pages in this plan **do** have it — verified byte-identical (aside from the breadcrumb title) between `about.html` and `faq.html`'s header blocks. Rather than duplicating ~300 lines of otherwise-identical header markup into a second component, add a prop that conditionally renders the one differing block.
 
@@ -167,16 +169,73 @@ return (
 
 **Every later task in this plan** (Task 4's `not-found.tsx`, and every page task from Task 8 onward) follows this same shape: a top-level fragment (`<>...</>`) containing `<Header .../>` then `<div id="smooth-wrapper"><div id="smooth-content">...</div></div>` — **never** its own `page-wrapper`/preloader/back-top/cursor, since `layout.tsx` now provides those once for every route. Where this plan's later task examples still show `<div className="page-wrapper">` wrapping their content, treat that as an error to correct, not as instruction — use the fragment shape above instead.
 
-- [ ] **Step 3: Verify**
+- [ ] **Step 3: Restructure the nav — promote curated pages, trim the "Pages" dropdown**
 
-`npm run dev`, open `/ka`: confirm the home page renders exactly as before this task — preloader flashes briefly then disappears, back-to-top button and custom cursor still work, header still has no mega-menu (since `page.tsx` still calls `<Header />` with no prop). This task doesn't yet render `<Header showMegaMenu />` anywhere; that happens in later tasks. Confirm `tsc --noEmit` and `npm run build` pass.
+The user reviewed the full 10-page candidate list and curated it down to 6 real pages (about, faq, history, contact, gallery, reservation — team/team-details/testimonial are explicitly out of scope, not fake demo content on the real site) — see this plan's Goal section. They also asked for the header's generic "Pages" dropdown (a leftover grouping from the vendor template) to have "a real shape" instead of dumping every inner page into one dropdown: **About, Gallery, Reservation, and Contact become top-level nav items** (alongside the existing `Menu`); **History and FAQ stay in the trimmed "Pages" dropdown**, alongside the "Error 404" link every page needs.
 
-- [ ] **Step 4: Commit**
+In `foodies-nextjs/components/home/Header.tsx`, find the nav `<ul>` inside `<nav id="mobile-menu">` (this single list drives both the desktop nav and — via meanmenu's clone — the mobile offcanvas menu, so one edit covers both). Replace this block:
+
+```tsx
+<li className="has-dropdown">
+  <a href="javascript:void(0)">
+    {t('nav.pages')}
+    <i className="fa-solid fa-chevron-down" />
+  </a>
+  <ul className="submenu">
+    <li className="has-dropdown">
+      <a href="javascript:void(0)">
+        {t('nav.ourChefs')}
+        <i className="fas fa-angle-right" />
+      </a>
+      <ul className="submenu">
+        <li><Link href="/team">{t('nav.ourChefs')}</Link></li>
+        <li><Link href="/team-details">{t('nav.chefsDetails')}</Link></li>
+      </ul>
+    </li>
+    <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
+    <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
+    <li><Link href="/testimonial">{t('nav.testimonial')}</Link></li>
+    <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
+    <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
+    <li><Link href="/404">{t('nav.error404')}</Link></li>
+  </ul>
+</li>
+<li><Link href="/about">{t('nav.about')}</Link></li>
+```
+
+with:
+
+```tsx
+<li><Link href="/about">{t('nav.about')}</Link></li>
+<li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
+<li><Link href="/reservation">{t('nav.reservation')}</Link></li>
+<li className="has-dropdown">
+  <a href="javascript:void(0)">
+    {t('nav.pages')}
+    <i className="fa-solid fa-chevron-down" />
+  </a>
+  <ul className="submenu">
+    <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
+    <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
+    <li><Link href="/404">{t('nav.error404')}</Link></li>
+  </ul>
+</li>
+```
+
+(`Contact` is untouched — it's already its own top-level `<li>` later in the same list, at `<li><Link href="/contact">{t('nav.contact')}</Link></li>`.)
+
+Then remove the 3 now-orphaned translation keys — `header.nav.ourChefs`, `header.nav.chefsDetails`, `header.nav.testimonial` — from both `foodies-nextjs/messages/en.json` and `foodies-nextjs/messages/ka.json` (they're nested under `header.nav`, alongside `header.nav.pages`, `header.nav.ourHistory`, etc.). Confirm no other file references them (`grep -rn "ourChefs\|chefsDetails\|nav.testimonial" foodies-nextjs/components foodies-nextjs/app` should return nothing) before deleting.
+
+- [ ] **Step 4: Verify**
+
+`npm run dev`, open `/ka`: confirm the home page renders exactly as before this task — preloader flashes briefly then disappears, back-to-top button and custom cursor still work, header still has no mega-menu (since `page.tsx` still calls `<Header />` with no prop). Confirm the nav now shows About, Gallery, Reservation as top-level items and the "Pages" dropdown only contains History/FAQ Page/Error 404 (Gallery and Reservation routes don't exist until Tasks 15–16, so their links 404 via `not-found.tsx` for now — that's expected at this point in the plan). Confirm `tsc --noEmit` and `npm run build` pass.
+
+- [ ] **Step 5: Commit**
 
 ```bash
-git add components/home/Header.tsx app/[locale]/layout.tsx app/[locale]/page.tsx
+git add components/home/Header.tsx app/[locale]/layout.tsx app/[locale]/page.tsx messages/en.json messages/ka.json
 git commit -m "$(cat <<'EOF'
-Add showMegaMenu prop to Header; move preloader/back-to-top/cursor into shared layout
+Add showMegaMenu prop to Header; move preloader/back-to-top/cursor into shared layout; restructure nav for the curated 6-page set
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
 EOF
@@ -725,61 +784,9 @@ EOF
 
 ---
 
-## Task 5: Reusable TestimonialSlider component
+## Task 5: REMOVED — out of scope
 
-**Files:**
-- Create: `foodies-nextjs/components/shared/TestimonialSlider.tsx`
-- Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
-
-**Interfaces:**
-- Produces: `export default function TestimonialSlider({withBackground}: {withBackground?: boolean})`. Used by Task 6 (`about.html`'s `testimonial-section-3`) and Task 12 (`testimonial.html`'s `testimonial-section-3`).
-
-**Context:** `about.html`'s `testimonial-section-3` (lines 1059–1210) and `testimonial.html`'s `testimonial-section-3` (lines 609–760) were diff-verified to have identical testimonial-card content — the only differences are presentational modifier classes: `testimonial.html`'s version adds `bg-cover` + an inline `background-image` style on the `<section>`, `testi-bg` on each card, and `arrow-hover-bg` on the nav arrow buttons. One component, one boolean prop, covers both.
-
-**Reference source:** `../about.html` lines 1059–1210 (read this range — it's the simpler of the two, without the extra modifier classes).
-
-- [ ] **Step 1: Add the `testimonial` namespace**
-
-Read `../about.html` lines 1059–1210 yourself to extract the actual testimonial card content (names, roles, quotes, ratings) — there are 2 or more `testimonial-card-item` cards in a swiper slider; port every visible string. Add a `testimonial` top-level namespace to both `foodies-nextjs/messages/en.json` and `foodies-nextjs/messages/ka.json` with a `subTitle`, `title`, and a `t.raw()`-style array of card objects (`{name, role, quote}` or however the source's fields break down — match what you actually find, don't invent fields the source doesn't have).
-
-- [ ] **Step 2: Build the component**
-
-Create `foodies-nextjs/components/shared/TestimonialSlider.tsx` porting `../about.html` lines 1059–1210 into JSX using the standard conversion rules from Global Constraints. Signature:
-
-```tsx
-import {useTranslations} from 'next-intl';
-
-export default function TestimonialSlider({withBackground = false}: {withBackground?: boolean}) {
-  const t = useTranslations('testimonial');
-  const cards = t.raw('cards') as {name: string; role: string; quote: string}[]; // adjust field names to match what Step 1 actually found
-  const sectionClassName = withBackground
-    ? 'testimonial-section-3 section-padding fix bg-cover'
-    : 'testimonial-section-3 section-padding fix';
-  const sectionStyle = withBackground
-    ? {backgroundImage: "url('/assets/img/home-2/testimonial-bg-2.jpg')"}
-    : undefined;
-
-  // ... port the rest of the section body, applying `testi-bg` to each
-  // `.testimonial-card-item` only when withBackground is true (className={withBackground ? 'testimonial-card-item testi-bg' : 'testimonial-card-item'}),
-  // and `arrow-hover-bg` to the two nav-arrow buttons the same way.
-}
-```
-
-- [ ] **Step 3: Verify**
-
-`tsc --noEmit` passes. Not rendered anywhere yet — verified visually in Tasks 6 and 12.
-
-- [ ] **Step 4: Commit**
-
-```bash
-git add components/shared/TestimonialSlider.tsx messages/en.json messages/ka.json
-git commit -m "$(cat <<'EOF'
-Add reusable TestimonialSlider (shared between about and testimonial pages)
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
+The user reviewed the curated page list and explicitly rejected `testimonial.html` as a standalone page ("we don't want this at all", alongside `team.html`/`team-details.html` — see Tasks 12–14, also removed). Since the only consumer of a shared `TestimonialSlider` would have been the About page's own `testimonial-section-3` content, and the user's rejection of testimonial content is treated as covering that embedded section too (not just the standalone page), this task and the About page's use of it are both dropped. Task 6/7/8 (About page) do not include a testimonial section. No files are created by this task; skip it.
 
 ---
 
@@ -936,7 +943,7 @@ EOF
 - Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
 
 **Interfaces:**
-- Consumes: `Header` (Task 1), `Breadcrumb` (Task 2), `Instagram`/`Cta`/`InnerFooter` (Task 3), `TestimonialSlider` (Task 5), `WhyChooseUs`/`DiscountFood`/`FoodMenu3` (Task 6), `Gallery`/`DiscountBanner`/`News2` (Task 7), and `BestDelivery` from `@/components/home/BestDelivery` (reused directly — confirmed byte-identical content to the home page's version via whitespace-normalized diff against `../index.html`'s `best-delivery-section`, no new component needed).
+- Consumes: `Header` (Task 1), `Breadcrumb` (Task 2), `Instagram`/`Cta`/`InnerFooter` (Task 3), `WhyChooseUs`/`DiscountFood`/`FoodMenu3` (Task 6), `Gallery`/`DiscountBanner`/`News2` (Task 7), and `BestDelivery` from `@/components/home/BestDelivery` (reused directly — confirmed byte-identical content to the home page's version via whitespace-normalized diff against `../index.html`'s `best-delivery-section`, no new component needed). No testimonial section — dropped per Task 5.
 
 - [ ] **Step 1: Add the page-title translation**
 
@@ -954,7 +961,6 @@ import Breadcrumb from '@/components/shared/Breadcrumb';
 import Instagram from '@/components/inner/Instagram';
 import Cta from '@/components/inner/Cta';
 import InnerFooter from '@/components/inner/InnerFooter';
-import TestimonialSlider from '@/components/shared/TestimonialSlider';
 import WhyChooseUs from '@/components/about/WhyChooseUs';
 import DiscountFood from '@/components/about/DiscountFood';
 import FoodMenu3 from '@/components/about/FoodMenu3';
@@ -980,7 +986,6 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
           <Gallery />
           <BestDelivery />
           <DiscountBanner />
-          <TestimonialSlider />
           <News2 />
           <Instagram />
           <Cta />
@@ -992,7 +997,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
 }
 ```
 
-(This order matches the section survey: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → testimonial-section-3 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Calling `useTranslations` directly inside this async function body is safe and matches existing precedent — `components/home/Header.tsx` already does the same thing without a `'use client'` directive, confirmed in this codebase.)
+(This order matches the section survey minus the dropped testimonial-section-3 — see Task 5: why-choose-us-section-4 → discount-food-section → food-menu-section-3 → gallery-section → best-delivery-section → discount-banner-section-4 → news-section-two → instagram-section → cta-section-4 → footer-section-4. Calling `useTranslations` directly inside this async function body is safe and matches existing precedent — `components/home/Header.tsx` already does the same thing without a `'use client'` directive, confirmed in this codebase.)
 
 - [ ] **Step 3: Verify**
 
@@ -1139,127 +1144,9 @@ EOF
 
 ---
 
-## Task 12: Team page
+## Tasks 12–14: REMOVED — out of scope
 
-**Files:**
-- Create: `foodies-nextjs/components/team/TeamGrid.tsx`
-- Create: `foodies-nextjs/app/[locale]/team/page.tsx`
-- Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
-
-**Interfaces:**
-- Consumes: `Header`, `Breadcrumb`, `Instagram`, `Cta`, `InnerFooter` (Tasks 1–3).
-- Produces: the `/team` route.
-
-**Reference source:** `../team.html` lines 502–769 (`team-section-two`, one section — an 8-member grid: Jonathan Bean, Mike Fermalin, Shikhon Islam, Sarah Morgan, and 4 more through Sarah Devid, all sharing the role "Burger Chiefs"; verify all 8 names/order yourself against the source).
-
-- [ ] **Step 1: Build TeamGrid**
-
-Port into `foodies-nextjs/components/team/TeamGrid.tsx`, driving the 8 cards from a `t.raw('members')` array (`{name: string; role: string; image: string}[]`, image filenames `home-2/team-0N.jpg`). Each card's name links to `team-details.html` → `<Link href="/team-details">`. The social icons (`href="#"`) stay plain `<a>`. Add to `teamPage.members` (and section title/sub-title to `teamPage`) in both message files.
-
-- [ ] **Step 2: Build the page**
-
-Create `foodies-nextjs/app/[locale]/team/page.tsx` following Task 8's structure. Add `teamPage.pageTitle` (e.g. "Our Chefs") to both message files.
-
-- [ ] **Step 3: Verify**
-
-`npm run dev`, compare `/ka/team` and `/en/team` against `../team.html`. `tsc --noEmit` and `npm run build` pass.
-
-- [ ] **Step 4: Commit**
-
-```bash
-git add components/team/TeamGrid.tsx app/[locale]/team/page.tsx messages/en.json messages/ka.json
-git commit -m "$(cat <<'EOF'
-Add Team page
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
-
----
-
-## Task 13: Team-details page
-
-**Files:**
-- Create: `foodies-nextjs/components/team-details/TeamDetailsContent.tsx`
-- Create: `foodies-nextjs/app/[locale]/team-details/page.tsx`
-- Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
-
-**Interfaces:**
-- Consumes: `Header`, `Breadcrumb`, `Instagram`, `Cta`, `InnerFooter` (Tasks 1–3).
-- Produces: the `/team-details` route.
-
-**Context:** Confirmed against source — this is a **single static demo page for one fixed person** (Willam Carter, CEO/Founder), not a per-team-member dynamic route. Build it as a plain static page, matching the source exactly; do not invent dynamic routing (`/team-details/[slug]`) that the source doesn't have.
-
-**Reference source:** `../team-details.html` lines 502–612 (`team-details-section`).
-
-- [ ] **Step 1: Build TeamDetailsContent**
-
-Read the full range yourself. Port: the profile image, name/title ("Willam Carter", "CEO, Founder"), bio paragraph, two skill progress bars (75%/80%, with their labels — `.progress-value` width driven by inline style or a CSS custom property matching the percentage, check how progress bars are styled elsewhere in `main.css` if one exists, otherwise inline `style={{width: '75%'}}` on `.progress-value`), contact list (phone/address/email), "About Me" section (two paragraphs), and "Few Reasons for Expert" two-column checklist (6 items). Add all copy to `teamDetails` in both message files.
-
-- [ ] **Step 2: Build the page**
-
-Create `foodies-nextjs/app/[locale]/team-details/page.tsx` following Task 8's structure. Add `teamDetails.pageTitle` (e.g. "Chefs Details") to both message files.
-
-- [ ] **Step 3: Verify**
-
-`npm run dev`, compare `/ka/team-details` and `/en/team-details` against `../team-details.html`, including that the two progress bars render at their correct widths. `tsc --noEmit` and `npm run build` pass.
-
-- [ ] **Step 4: Commit**
-
-```bash
-git add components/team-details/ app/[locale]/team-details/page.tsx messages/en.json messages/ka.json
-git commit -m "$(cat <<'EOF'
-Add Team-details page
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
-
----
-
-## Task 14: Testimonial page
-
-**Files:**
-- Create: `foodies-nextjs/components/testimonial/TestimonialHero.tsx`
-- Create: `foodies-nextjs/components/testimonial/TestimonialGrid.tsx`
-- Create: `foodies-nextjs/app/[locale]/testimonial/page.tsx`
-- Modify: `foodies-nextjs/messages/en.json`, `foodies-nextjs/messages/ka.json`
-
-**Interfaces:**
-- Consumes: `Header`, `Breadcrumb`, `Instagram`, `Cta`, `InnerFooter` (Tasks 1–3), `TestimonialSlider` (Task 5, rendered here with `withBackground` — see Step 3).
-- Produces: the `/testimonial` route.
-
-**Context:** This page has **three** sections: `testimonial-section` (lines 502–609), `testimonial-section-3` (lines 609–760 — the shared slider from Task 5), and `testimonial-section-two` (lines 760–833). Read each range yourself before building.
-
-- [ ] **Step 1: Build TestimonialHero**
-
-Read `../testimonial.html` lines 502–609 (`testimonial-section`). Port into `foodies-nextjs/components/testimonial/TestimonialHero.tsx`. Add copy to `testimonialPage.hero` in both message files.
-
-- [ ] **Step 2: Build TestimonialGrid**
-
-Read `../testimonial.html` lines 760–833 (`testimonial-section-two`). Port into `foodies-nextjs/components/testimonial/TestimonialGrid.tsx`. Add copy to `testimonialPage.grid` in both message files.
-
-- [ ] **Step 3: Build the page**
-
-Create `foodies-nextjs/app/[locale]/testimonial/page.tsx` following Task 8's structure, rendering `<TestimonialHero />`, then `<TestimonialSlider withBackground />` (the `bg-cover`/`testi-bg`/`arrow-hover-bg` variant, matching this page's source — see Task 5), then `<TestimonialGrid />`. Add `testimonialPage.pageTitle` (e.g. "Testimonials") to both message files.
-
-- [ ] **Step 4: Verify**
-
-`npm run dev`, compare `/ka/testimonial` and `/en/testimonial` against `../testimonial.html`, including that `TestimonialSlider` here shows its background-image variant (distinguishing it visually from how it'll look on `/about`, which uses the plain variant from Task 8). `tsc --noEmit` and `npm run build` pass.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add components/testimonial/ app/[locale]/testimonial/page.tsx messages/en.json messages/ka.json
-git commit -m "$(cat <<'EOF'
-Add Testimonial page
-
-Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
-EOF
-)"
-```
+`team.html` (Task 12), `team-details.html` (Task 13), and `testimonial.html` (Task 14) were in the original 10-page spec but are dropped per the user's curation decision (see this plan's Goal section and Task 5) — fake demo team roster and testimonials aren't real content for the BiteClub project. No `/team`, `/team-details`, or `/testimonial` routes are built. `Header.tsx`'s nav no longer links to any of them (Task 1). Any old link to these paths (e.g. from external bookmarks) resolves through `not-found.tsx` (Task 4) like any other unmatched route — no special handling needed.
 
 ---
 
@@ -1363,7 +1250,7 @@ EOF
 node -e "JSON.parse(require('fs').readFileSync('messages/ka.json','utf8')); JSON.parse(require('fs').readFileSync('messages/en.json','utf8')); console.log('valid JSON')"
 ```
 
-Then write a short one-off script (or reuse the pattern from the home-page migration) to confirm every leaf key path present in `en.json` also exists in `ka.json` and vice versa — no drift between the two catalogs after 16 tasks' worth of edits.
+Then write a short one-off script (or reuse the pattern from the home-page migration) to confirm every leaf key path present in `en.json` also exists in `ka.json` and vice versa — no drift between the two catalogs after this plan's edits. Confirm the orphaned `header.nav.ourChefs`/`chefsDetails`/`testimonial` keys removed in Task 1 are actually gone from both files, not just unused.
 
 - [ ] **Step 2: Full build + route check**
 
@@ -1371,11 +1258,11 @@ Then write a short one-off script (or reuse the pattern from the home-page migra
 npm run build
 ```
 
-Confirm the build output lists all 10 new routes (`/about`, `/faq`, `/history`, `/contact`, `/team`, `/team-details`, `/testimonial`, `/gallery`, `/reservation`) plus the existing `/` for both `ka` and `en`, all prerendered as static (SSG), and `not-found` handling present.
+Confirm the build output lists all 6 new routes (`/about`, `/faq`, `/history`, `/contact`, `/gallery`, `/reservation`) plus the existing `/` for both `ka` and `en`, all prerendered as static (SSG), and `not-found` handling present. No `/team`, `/team-details`, or `/testimonial` routes should exist (Tasks 12–14 were dropped).
 
 - [ ] **Step 3: Nav link audit**
 
-Open `/ka`, exercise every nav link that now has a real destination (About Us, FAQ, Our History, Contact, Our Chefs → chef card → Chefs Details, Testimonial, Our Gallery, Reservation, Error 404) and confirm none 404 unexpectedly and each lands on the correct page. Menu/Shop/Blog/Team-adjacent links that are still genuinely out of scope (menu, shop, blog pages) are expected to still 404 via `not-found.tsx` — confirm that page still renders correctly for those, not a raw error.
+Open `/ka`, exercise every nav link that now has a real destination: top-level About, Gallery, Reservation, Contact, Menu (still expected to 404 via `not-found.tsx` — out of scope for this plan) plus the trimmed "Pages" dropdown's History, FAQ Page, and Error 404. Confirm none of the removed team/team-details/testimonial links remain anywhere in the header (grep the rendered HTML or the component source for `/team`, `/team-details`, `/testimonial` — none should be found). Shop/Blog dropdown links are still genuinely out of scope and expected to 404 via `not-found.tsx` — confirm that page still renders correctly for those, not a raw error.
 
 - [ ] **Step 4: Mobile check**
 

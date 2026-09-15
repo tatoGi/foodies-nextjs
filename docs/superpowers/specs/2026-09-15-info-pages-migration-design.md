@@ -1,5 +1,18 @@
 # BiteClub Info Pages → Next.js — Design
 
+> **Amendment (2026-09-15, post-review):** After this spec was approved, the
+> user reviewed the full 10-page candidate list and explicitly cut `team.html`,
+> `team-details.html`, and `testimonial.html` — fake vendor-template demo
+> content (a made-up team roster and testimonials), not real content for the
+> BiteClub project. The implementation plan
+> (`docs/superpowers/plans/2026-09-15-info-pages-migration.md`) targets the
+> remaining **6 pages** (about, faq, history, contact, gallery, reservation)
+> plus the 404/not-found boundary. The plan also restructures the header nav
+> per the user's request: About/Gallery/Reservation/Contact are top-level
+> items; only History/FAQ/404 remain in the "Pages" dropdown. Everything below
+> this note describes the original 10-page/unchanged-nav design — the plan is
+> the authoritative, current scope.
+
 ## Context
 
 The home page (`/ka`, `/en`) is live in `foodies-nextjs/`, built from the
