@@ -173,5 +173,45 @@
   },
   "breadcrumb": {
     "homeLabel": "Home Page"
+  },
+  "instagram": {
+    "imageAlt": "BiteClub Instagram photo {n}"
+  },
+  "cta": {
+    "subTitle": "Our Newsletter",
+    "title": "Get",
+    "titleAccent": "10% off",
+    "titleEnd": "Your order!",
+    "description": "Enter your email and receive a 10% discount on your next order!",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe"
+  },
+  "innerFooter": {
+    "openingHoursTitle": "Opening Hours",
+    "hoursLabel": "Hours:",
+    "hours": "9.30am – 6.30pm",
+    "hoursDays": "Monday to Friday",
+    "sundayLabel": "Sunday:",
+    "sundayValue": "Closed",
+    "informationTitle": "Information",
+    "privacyPolicy": "Privacy Policy",
+    "refundPolicy": "Refund Policy",
+    "shippingReturn": "Shipping & Return",
+    "termsOfUse": "Terms of use",
+    "discountOffer": "Discount Offer",
+    "bestSeller": "Best Seller",
+    "logoAlt": "BiteClub logo",
+    "aboutText": "We believe it has the power to do amazing things.",
+    "phone": "+1 718-904 4450",
+    "email": "yordomain@gmial.com",
+    "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "productsTitle": "Our Products",
+    "products": ["BBQ Pizza TinTin", "Burger Kingo", "Chicken Sandwich", "Chocolate Donuts", "BBQ Pizza TinTin", "French Fries"],
+    "quickLinksTitle": "Quick Links",
+    "aboutUs": "About Us",
+    "ourMenu": "Our Menu",
+    "contactUs": "Contact Us",
+    "faq": "FAQ's",
+    "copyright": "Copyright © 2026 All Rights Reserved."
   }
 }

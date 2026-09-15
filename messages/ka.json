@@ -173,5 +173,45 @@
   },
   "breadcrumb": {
     "homeLabel": "მთავარი გვერდი"
+  },
+  "instagram": {
+    "imageAlt": "BiteClub-ის Instagram ფოტო {n}"
+  },
+  "cta": {
+    "subTitle": "ჩვენი სიახლეები",
+    "title": "მიიღეთ",
+    "titleAccent": "10% ფასდაკლება",
+    "titleEnd": "თქვენს შეკვეთაზე!",
+    "description": "შეიყვანეთ თქვენი ელფოსტა და მიიღეთ 10% ფასდაკლება შემდეგ შეკვეთაზე!",
+    "emailPlaceholder": "შეიყვანეთ ელფოსტა",
+    "subscribe": "გამოწერა"
+  },
+  "innerFooter": {
+    "openingHoursTitle": "სამუშაო საათები",
+    "hoursLabel": "საათები:",
+    "hours": "9:30 - 18:30",
+    "hoursDays": "ორშაბათი-პარასკევი",
+    "sundayLabel": "კვირა:",
+    "sundayValue": "დახურულია",
+    "informationTitle": "ინფორმაცია",
+    "privacyPolicy": "კონფიდენციალურობის პოლიტიკა",
+    "refundPolicy": "დაბრუნების პოლიტიკა",
+    "shippingReturn": "მიწოდება და დაბრუნება",
+    "termsOfUse": "მოხმარების პირობები",
+    "discountOffer": "ფასდაკლების შეთავაზება",
+    "bestSeller": "პოპულარული",
+    "logoAlt": "BiteClub-ის ლოგო",
+    "aboutText": "გვჯერა, რომ ამას შეუძლია საოცარი საქმეების გაკეთება.",
+    "phone": "+1 718-904 4450",
+    "email": "yordomain@gmial.com",
+    "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "productsTitle": "ჩვენი პროდუქტები",
+    "products": ["BBQ პიცა თინთინი", "ბურგერ კინგო", "ქათმის სენდვიჩი", "შოკოლადის დონატები", "BBQ პიცა თინთინი", "კარტოფილი ფრი"],
+    "quickLinksTitle": "სწრაფი ბმულები",
+    "aboutUs": "ჩვენს შესახებ",
+    "ourMenu": "ჩვენი მენიუ",
+    "contactUs": "დაგვიკავშირდით",
+    "faq": "ხშირად დასმული კითხვები",
+    "copyright": "საავტორო უფლებები © 2026. დაცულია ყველა უფლება."
   }
 }
