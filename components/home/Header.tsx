@@ -234,9 +234,6 @@ export default function Header() {
                   </div>
                 </div>
                 <div className="header-right d-flex justify-content-end align-items-center">
-                  <p className="seller-text">
-                    {t('bestSeller')} <b>{t('sale')}</b>
-                  </p>
                   <div className="header__hamburger my-auto d-xl-none">
                     <div className="sidebar__toggle">
                       <span />
