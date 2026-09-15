@@ -2,7 +2,7 @@
   "common": {
     "orderNow": "Order Now",
     "readMore": "Read More",
-    "logoAlt": "Foodies logo"
+    "logoAlt": "BiteClub logo"
   },
   "header": {
     "searchPlaceholder": "What are you looking for?",
@@ -71,7 +71,7 @@
     "subTitle": "Food Category",
     "title": "Our Delicious Fast Foods",
     "description": "Get your orders delivered quickly with reliable shipping partners and real-time order tracking. Easy and transparent returns with clear policies.",
-    "itemDescription": "Find top-rated dinnerware, flatware and barware at Foodies.",
+    "itemDescription": "Find top-rated dinnerware, flatware and barware at BiteClub.",
     "price": "$19",
     "items": [
       {"title": "Double Cheese Pizza"},
@@ -111,7 +111,7 @@
     "subTitle": "Special Combo Offer",
     "title": "The Best Quality for",
     "titleAccent": "Combo Burger",
-    "description": "Foodies is a unique and independent quick service brand.",
+    "description": "BiteClub is a unique and independent quick service brand.",
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",
@@ -170,7 +170,7 @@
       {"date": "12 June, 2026", "title": "Why Fast Food Is Popular Around the World"}
     ],
     "contactTitle": "Contact Us",
-    "contactText": "At Foodies we provide fresh garden products for you. Contact us for your order.",
+    "contactText": "At BiteClub we provide fresh garden products for you. Contact us for your order.",
     "email": "yordomain@gmial.com",
     "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
     "copyright": "Copyright © 2026 All Rights Reserved."

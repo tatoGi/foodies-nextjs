@@ -6,8 +6,8 @@ import {routing} from '@/i18n/routing';
 import {notFound} from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'Foodies – Multipurpose Restaurant & Fast Food',
-  description: 'Foodies – Multipurpose Restaurant & Fast Food HTML Template',
+  title: 'BiteClub – Multipurpose Restaurant & Fast Food',
+  description: 'BiteClub – Multipurpose Restaurant & Fast Food HTML Template',
   icons: {icon: '/assets/img/favicon.svg'}
 };
 
@@ -70,7 +70,7 @@ export default async function LocaleLayout({
           <link key={href} rel="stylesheet" href={href} />
         ))}
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider>
           {children}
         </NextIntlClientProvider>
@@ -81,6 +81,7 @@ export default async function LocaleLayout({
           src="/assets/js/distortion-img.js"
           type="module"
           strategy="afterInteractive"
+          crossOrigin="anonymous"
         />
       </body>
     </html>
