@@ -5055,20 +5055,20 @@ span {
 05. Sections
 ---------------------------------------*/
 .hero-1 {
-  padding: 150px 0;
+  padding: 70px 0;
   position: relative;
   margin: 20px;
   border-radius: 20px;
-  margin-top: 270px;
+  margin-top: 90px;
 }
 @media (max-width: 1199px) {
   .hero-1 {
-    margin-top: 170px;
+    margin-top: 70px;
   }
 }
 @media (max-width: 575px) {
   .hero-1 {
-    margin-top: 130px;
+    margin-top: 50px;
   }
 }
 .hero-1 .swiper-dot {
