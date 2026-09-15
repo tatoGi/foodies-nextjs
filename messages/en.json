@@ -309,5 +309,52 @@
         {"year": "2026", "title": "70 Years Celebrating", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-06.jpg"}
       ]
     }
+  },
+  "contactPage": {
+    "pageTitle": "Contact Us",
+    "locations": [
+      {
+        "icon": "/assets/img/inner/contact-flag-1.png",
+        "title": "South Africa",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-2.png",
+        "title": "USA",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-3.png",
+        "title": "German",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      }
+    ],
+    "map": {
+      "subTitle": "Our Contact",
+      "title": "Contac With Us",
+      "description": "Getting started is easy! Simply reach out to us through our contact form or give us a call, and we’ll schedule.",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Your email",
+      "phonePlaceholder": "Phone number",
+      "selectSubjectPlaceholder": "Select Subject",
+      "subjectPlaceholder": "Your subject",
+      "messagePlaceholder": "Your message...",
+      "submitLabel": "Submit Now"
+    }
   }
 }

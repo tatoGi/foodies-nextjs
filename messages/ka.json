@@ -309,5 +309,52 @@
         {"year": "2026", "title": "70 წლის იუბილე", "text": "დრო სწრაფად გადის, როცა საყვარელ საქმეს აკეთებ. ჩვენ ეს კარგად ვიცით, რადგან 1967 წლიდან ვამზადებთ საუკეთესო პიცას. წლების განმავლობაში 750-ზე მეტ რესტორნამდე გავიზარდეთ ქვეყნის მასშტაბით და გავხდით სანდო ბრენდი და ლიდერი კვების ინდუსტრიაში.", "image": "/assets/img/inner/history-06.jpg"}
       ]
     }
+  },
+  "contactPage": {
+    "pageTitle": "დაგვიკავშირდით",
+    "locations": [
+      {
+        "icon": "/assets/img/inner/contact-flag-1.png",
+        "title": "სამხრეთ აფრიკა",
+        "findUsLabel": "გვიპოვეთ:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "მოგვწერეთ:",
+        "email": "support@foddies.org",
+        "callUsLabel": "დაგვირეკეთ:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-2.png",
+        "title": "აშშ",
+        "findUsLabel": "გვიპოვეთ:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "მოგვწერეთ:",
+        "email": "support@foddies.org",
+        "callUsLabel": "დაგვირეკეთ:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-3.png",
+        "title": "გერმანია",
+        "findUsLabel": "გვიპოვეთ:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "მოგვწერეთ:",
+        "email": "support@foddies.org",
+        "callUsLabel": "დაგვირეკეთ:",
+        "phone": "+43 563 5333 423"
+      }
+    ],
+    "map": {
+      "subTitle": "ჩვენი კონტაქტი",
+      "title": "დაგვიკავშირდით",
+      "description": "დაწყება მარტივია! უბრალოდ დაგვიკავშირდით საკონტაქტო ფორმის საშუალებით ან დაგვირეკეთ და ჩვენ ყველაფერს დავგეგმავთ.",
+      "namePlaceholder": "სახელი",
+      "emailPlaceholder": "შეიყვანეთ ელფოსტა",
+      "phonePlaceholder": "ტელეფონის ნომერი",
+      "selectSubjectPlaceholder": "აირჩიეთ თემა",
+      "subjectPlaceholder": "თქვენი თემა",
+      "messagePlaceholder": "თქვენი შეტყობინება...",
+      "submitLabel": "გაგზავნა"
+    }
   }
 }
