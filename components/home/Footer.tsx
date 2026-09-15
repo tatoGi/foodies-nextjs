@@ -1,9 +1,9 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import LogoMark from '@/components/shared/LogoMark';
 
 export default function Footer() {
   const t = useTranslations('footer');
+  const tCommon = useTranslations('common');
   const openingHours = t.raw('openingHours') as {day: string; hours: string}[];
   const products = t.raw('products') as string[];
   const recentPosts = t.raw('recentPosts') as {date: string; title: string}[];
@@ -34,7 +34,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top-wrapper">
           <Link href="/" className="footer-logo wow fadeInUp" data-wow-delay=".5s">
-            <LogoMark size="md" />
+            <img src="/assets/img/logo/logo-biteclub.png" alt={tCommon('logoAlt')} />
           </Link>
           <div className="content wow fadeInUp" data-wow-delay=".5s">
             <span>{t('newsletter')}</span>
