@@ -170,5 +170,8 @@
     "email": "yordomain@gmial.com",
     "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
     "copyright": "Copyright © 2026 All Rights Reserved."
+  },
+  "breadcrumb": {
+    "homeLabel": "Home Page"
   }
 }
