@@ -1,8 +1,7 @@
 {
   "common": {
     "orderNow": "Order Now",
-    "readMore": "Read More",
-    "logoAlt": "BiteClub logo"
+    "readMore": "Read More"
   },
   "header": {
     "searchPlaceholder": "What are you looking for?",
