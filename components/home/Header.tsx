@@ -3,7 +3,7 @@ import {Link} from '@/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import LogoMark from '@/components/shared/LogoMark';
 
-export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} = {}) {
+export default function Header() {
   const t = useTranslations('header');
 
   return (
@@ -161,47 +161,6 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                     <div className="main-menu">
                       <nav id="mobile-menu">
                         <ul>
-                          {showMegaMenu && (
-                            <li className="has-dropdown active menu-thumb">
-                              <a href="javascript:void(0)">
-                                {t('nav.home')}
-                                <i className="fa-solid fa-chevron-down" />
-                              </a>
-                              <ul className="submenu has-homemenu">
-                                <li>
-                                  <div className="homemenu-items">
-                                    <div className="row row-cols-xl-4 row-cols-md-2 row-cols-2">
-                                      {[
-                                        {img: 'home-1.jpg', label: t('nav.homeDemos.fastFood')},
-                                        {img: 'home-2.jpg', label: t('nav.homeDemos.pizzaRestaurant')},
-                                        {img: 'home-3.jpg', label: t('nav.homeDemos.foodDelivery')},
-                                        {img: 'home-4.jpg', label: t('nav.homeDemos.burgerRestaurant')},
-                                        {img: 'home-5.jpg', label: t('nav.homeDemos.iceCreamShop')},
-                                        {img: 'home-6.jpg', label: t('nav.homeDemos.iceCreamStore')},
-                                        {img: 'home-7.jpg', label: t('nav.homeDemos.restaurant')},
-                                        {img: 'home-8.jpg', label: t('nav.homeDemos.coffeeAndTea')}
-                                      ].map((demo) => (
-                                        <div className="col homemenu" key={demo.img}>
-                                          <div className="homemenu-thumb mb-15">
-                                            <img src={`/assets/img/header/${demo.img}`} alt={demo.label} />
-                                            <div className="demo-button">
-                                              <Link href="/" className="theme-btn">
-                                                {t('nav.homeDemos.viewPage')}
-                                                <i className="fa-solid fa-arrow-up-right" />
-                                              </Link>
-                                            </div>
-                                          </div>
-                                          <div className="homemenu-content text-center">
-                                            <Link href="/" className="homemenu-title">{demo.label}</Link>
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </li>
-                              </ul>
-                            </li>
-                          )}
                           <li className="has-dropdown active d-xl-none">
                             <a href="javascript:void(0)" className="border-none">{t('nav.home')}</a>
                             <ul className="submenu">
@@ -216,20 +175,31 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                             </ul>
                           </li>
                           <li><Link href="/menu">{t('nav.menu')}</Link></li>
-                          <li><Link href="/about">{t('nav.about')}</Link></li>
-                          <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
-                          <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
                           <li className="has-dropdown">
                             <a href="javascript:void(0)">
                               {t('nav.pages')}
                               <i className="fa-solid fa-chevron-down" />
                             </a>
                             <ul className="submenu">
+                              <li className="has-dropdown">
+                                <a href="javascript:void(0)">
+                                  {t('nav.ourChefs')}
+                                  <i className="fas fa-angle-right" />
+                                </a>
+                                <ul className="submenu">
+                                  <li><Link href="/team">{t('nav.ourChefs')}</Link></li>
+                                  <li><Link href="/team-details">{t('nav.chefsDetails')}</Link></li>
+                                </ul>
+                              </li>
                               <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
+                              <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
+                              <li><Link href="/testimonial">{t('nav.testimonial')}</Link></li>
+                              <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
                               <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
                               <li><Link href="/404">{t('nav.error404')}</Link></li>
                             </ul>
                           </li>
+                          <li><Link href="/about">{t('nav.about')}</Link></li>
                           <li>
                             <a href="javascript:void(0)">
                               {t('nav.shop')}
