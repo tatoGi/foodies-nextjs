@@ -106,16 +106,6 @@
       {"title": "Crispy Onion Rings"}
     ]
   },
-  "comboBanner": {
-    "subTitle": "Special Combo Offer",
-    "title": "The Best Quality for",
-    "titleAccent": "Combo Burger",
-    "description": "BiteClub is a unique and independent quick service brand.",
-    "days": "Days",
-    "hours": "Hours",
-    "minutes": "Minutes",
-    "seconds": "Seconds"
-  },
   "bestDelivery": {
     "subTitle": "Best Delivery",
     "title": "Choose what you want, select a pick up time",

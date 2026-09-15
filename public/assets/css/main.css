@@ -5163,7 +5163,7 @@ span {
 }
 .hero-1 .hero-content .hero-sub {
   display: inline-block;
-  font-size: 38px;
+  font-size: 24px;
   font-weight: 400;
   color: #00BF57;
   font-family: "Bylast", sans-serif;
@@ -5174,15 +5174,31 @@ span {
 }
 @media (max-width: 991px) {
   .hero-1 .hero-content .hero-sub {
-    font-size: 18px;
+    font-size: 15px;
   }
 }
 .hero-1 .hero-content .hero-title {
   color: var(--white);
+  font-size: 64px;
   line-height: 110%;
   text-transform: uppercase;
   letter-spacing: -0.05em;
   margin-top: 25px;
+}
+@media (max-width: 1600px) {
+  .hero-1 .hero-content .hero-title {
+    font-size: 52px;
+  }
+}
+@media (max-width: 1399px) {
+  .hero-1 .hero-content .hero-title {
+    font-size: 42px;
+  }
+}
+@media (max-width: 575px) {
+  .hero-1 .hero-content .hero-title {
+    font-size: 32px;
+  }
 }
 .hero-1 .hero-content .hero-title span {
   color: var(--theme);

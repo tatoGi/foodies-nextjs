@@ -3,8 +3,6 @@ import Header from '@/components/home/Header';
 import Hero from '@/components/home/Hero';
 import ShopCategory from '@/components/home/ShopCategory';
 import FoodMenu from '@/components/home/FoodMenu';
-import ComboBanner from '@/components/home/ComboBanner';
-import BestDelivery from '@/components/home/BestDelivery';
 import Contact from '@/components/home/Contact';
 import News from '@/components/home/News';
 import Footer from '@/components/home/Footer';
@@ -37,8 +35,6 @@ export default async function HomePage({
           <Hero />
           <ShopCategory />
           <FoodMenu />
-          <ComboBanner />
-          <BestDelivery />
           <Contact />
           <News />
           <Footer />
