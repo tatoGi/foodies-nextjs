@@ -5055,20 +5055,20 @@ span {
 05. Sections
 ---------------------------------------*/
 .hero-1 {
-  padding: 70px 0;
+  padding: 50px 0;
   position: relative;
   margin: 20px;
   border-radius: 20px;
-  margin-top: 90px;
+  margin-top: 290px;
 }
 @media (max-width: 1199px) {
   .hero-1 {
-    margin-top: 70px;
+    margin-top: 190px;
   }
 }
 @media (max-width: 575px) {
   .hero-1 {
-    margin-top: 50px;
+    margin-top: 150px;
   }
 }
 .hero-1 .swiper-dot {
@@ -5238,6 +5238,12 @@ span {
   transform-origin: top right;
   -webkit-transition: all 700ms ease-in-out;
   transition: all 700ms ease-in-out;
+}
+.hero-1 .hero-image img {
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
 }
 @media (max-width: 1199px) {
   .hero-1 .hero-image img {
