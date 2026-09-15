@@ -113,13 +113,7 @@ export default function Header() {
                 </ul>
                 <div className="middle-right">
                   <Link href="/contact" className="link-text">{t('contact')}</Link>
-                  <div className="flag-wrap">
-                    <div className="flag">
-                      <img src="/assets/img/flag.png" alt="" />
-                    </div>
-                    <LocaleSwitcher />
-                  </div>
-                  <span style={{color: 'var(--white)', fontWeight: 600}}>GEL</span>
+                  <LocaleSwitcher />
                 </div>
               </div>
               <div className="head-form-items">
