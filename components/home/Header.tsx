@@ -33,14 +33,6 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                 <Link href="/contact" className="shop-icon">
                   <i className="fa-regular fa-user" />
                 </Link>
-                <Link href="/wishlist" className="shop-icon">
-                  <i className="fa-regular fa-heart" />
-                  <span>5</span>
-                </Link>
-                <Link href="/shop-cart" className="shop-icon">
-                  <i className="fa-regular fa-bag-shopping" />
-                  <span>2</span>
-                </Link>
               </div>
               <form action="#">
                 <input type="text" placeholder={t('searchPlaceholder')} />
@@ -105,8 +97,6 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                 <ul className="middle-list">
                   <li><Link href="/about">{t('aboutUs')}</Link></li>
                   <li><Link href="/faq">{t('faq')}</Link></li>
-                  <li><Link href="/shop-details">{t('myAccount')}</Link></li>
-                  <li><Link href="/shop-cart">{t('orderTracking')}</Link></li>
                   <li>
                     <span>
                       <img src="/assets/img/logo/vec.png" alt="" />
@@ -127,14 +117,6 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                 <div className="shop-icon-right">
                   <Link href="/contact" className="shop-icon">
                     <i className="fa-regular fa-user" />
-                  </Link>
-                  <Link href="/wishlist" className="shop-icon">
-                    <i className="fa-regular fa-heart" />
-                    <span>5</span>
-                  </Link>
-                  <Link href="/shop-cart" className="shop-icon">
-                    <i className="fa-regular fa-bag-shopping" />
-                    <span>2</span>
                   </Link>
                   <div className="order-info">
                     <div className="icon">
@@ -219,33 +201,6 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                               <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
                               <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
                               <li><Link href="/404">{t('nav.error404')}</Link></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              {t('nav.shop')}
-                              <i className="fa-solid fa-chevron-down" />
-                            </a>
-                            <ul className="submenu">
-                              <li><Link href="/shop">{t('nav.shopGrid')}</Link></li>
-                              <li><Link href="/shop-list">{t('nav.shopList')}</Link></li>
-                              <li><Link href="/shop-grid-sidebar">{t('nav.shopGridSidebar')}</Link></li>
-                              <li><Link href="/shop-list-sidebar">{t('nav.shopListSidebar')}</Link></li>
-                              <li><Link href="/shop-details">{t('nav.shopDetails')}</Link></li>
-                              <li><Link href="/shop-cart">{t('nav.shopCart')}</Link></li>
-                              <li><Link href="/wishlist">{t('nav.wishlist')}</Link></li>
-                              <li><Link href="/checkout">{t('nav.checkout')}</Link></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)">
-                              {t('nav.blog')}
-                              <i className="fa-solid fa-chevron-down" />
-                            </a>
-                            <ul className="submenu">
-                              <li><Link href="/news-grid">{t('nav.blogGrid')}</Link></li>
-                              <li><Link href="/news">{t('nav.blogStandard')}</Link></li>
-                              <li><Link href="/news-details">{t('nav.blogDetails')}</Link></li>
                             </ul>
                           </li>
                           <li><Link href="/contact">{t('nav.contact')}</Link></li>
