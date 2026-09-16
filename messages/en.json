@@ -356,5 +356,9 @@
       "messagePlaceholder": "Your message...",
       "submitLabel": "Submit Now"
     }
+  },
+  "galleryPage": {
+    "pageTitle": "Our Gallery",
+    "imageAlt": "BiteClub gallery photo {n}"
   }
 }

@@ -356,5 +356,9 @@
       "messagePlaceholder": "თქვენი შეტყობინება...",
       "submitLabel": "გაგზავნა"
     }
+  },
+  "galleryPage": {
+    "pageTitle": "ჩვენი გალერეა",
+    "imageAlt": "BiteClub-ის გალერეის ფოტო {n}"
   }
 }
