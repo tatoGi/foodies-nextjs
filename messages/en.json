@@ -360,5 +360,30 @@
   "galleryPage": {
     "pageTitle": "Our Gallery",
     "imageAlt": "BiteClub gallery photo {n}"
+  },
+  "reservationPage": {
+    "pageTitle": "Reservation",
+    "feature": {
+      "items": [
+        {"icon": "/assets/img/home-1/icon-1.svg", "title": "TESTY & SPICY", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-2.svg", "title": "QUALITY FOODS", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-3.svg", "title": "ORIGINAL RECIPES", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-4.svg", "title": "FAST DELIVERY", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."}
+      ]
+    },
+    "comboOffer": {
+      "subTitle": "Special Combo Offer",
+      "title": "Have any Dinner Plan Today? Reserve Table",
+      "description": "Make online reservations, read restaurant reviews from dinners, and earn points towards free meals. OpenTable is a real time online reservation.",
+      "supportLabel": "24/7 Support center",
+      "supportPhone": "+1 718-904-4450",
+      "formTitle": "booking table",
+      "formDescription": "Please fill the form below accurately to enable us serve you better!.. welcome!",
+      "namePlaceholder": "Full name *",
+      "emailPlaceholder": "Your email",
+      "peopleOptions": ["01 People", "02 People", "03 People", "04 People"],
+      "timeSelectPlaceholder": "Select Time",
+      "submitLabel": "Reserve Table"
+    }
   }
 }
