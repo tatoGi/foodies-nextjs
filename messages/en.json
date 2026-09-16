@@ -309,5 +309,81 @@
         {"year": "2026", "title": "70 Years Celebrating", "text": "Time flies when you do what you love. We know because we’ve been making great pizza since 1967. Along the way, we’ve grown to more than 750 restaurants from coast to coast, becoming a trusted brand and leader in the foodservice industry.", "image": "/assets/img/inner/history-06.jpg"}
       ]
     }
+  },
+  "contactPage": {
+    "pageTitle": "Contact Us",
+    "locations": [
+      {
+        "icon": "/assets/img/inner/contact-flag-1.png",
+        "title": "South Africa",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-2.png",
+        "title": "USA",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      },
+      {
+        "icon": "/assets/img/inner/contact-flag-3.png",
+        "title": "German",
+        "findUsLabel": "Find Us:",
+        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "mailUsLabel": "Mail Us:",
+        "email": "support@foddies.org",
+        "callUsLabel": "Call Us:",
+        "phone": "+43 563 5333 423"
+      }
+    ],
+    "map": {
+      "subTitle": "Our Contact",
+      "title": "Contac With Us",
+      "description": "Getting started is easy! Simply reach out to us through our contact form or give us a call, and we’ll schedule.",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Your email",
+      "phonePlaceholder": "Phone number",
+      "selectSubjectPlaceholder": "Select Subject",
+      "subjectPlaceholder": "Your subject",
+      "messagePlaceholder": "Your message...",
+      "submitLabel": "Submit Now"
+    }
+  },
+  "galleryPage": {
+    "pageTitle": "Our Gallery",
+    "imageAlt": "BiteClub gallery photo {n}"
+  },
+  "reservationPage": {
+    "pageTitle": "Reservation",
+    "feature": {
+      "items": [
+        {"icon": "/assets/img/home-1/icon-1.svg", "title": "TESTY & SPICY", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-2.svg", "title": "QUALITY FOODS", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-3.svg", "title": "ORIGINAL RECIPES", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."},
+        {"icon": "/assets/img/home-1/icon-4.svg", "title": "FAST DELIVERY", "description": "Temperate ocean-bass sea chub unicorn treefish eulachon tidewater goby."}
+      ]
+    },
+    "comboOffer": {
+      "subTitle": "Special Combo Offer",
+      "title": "Have any Dinner Plan Today? Reserve Table",
+      "description": "Make online reservations, read restaurant reviews from dinners, and earn points towards free meals. OpenTable is a real time online reservation.",
+      "supportLabel": "24/7 Support center",
+      "supportPhone": "+1 718-904-4450",
+      "formTitle": "booking table",
+      "formDescription": "Please fill the form below accurately to enable us serve you better!.. welcome!",
+      "namePlaceholder": "Full name *",
+      "emailPlaceholder": "Your email",
+      "peopleOptions": ["01 People", "02 People", "03 People", "04 People"],
+      "timeSelectPlaceholder": "Select Time",
+      "submitLabel": "Reserve Table"
+    }
   }
 }
