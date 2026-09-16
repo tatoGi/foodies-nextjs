@@ -365,5 +365,50 @@
       "timeSelectPlaceholder": "Select Time",
       "submitLabel": "Reserve Table"
     }
+  },
+  "menuPage": {
+    "pageTitle": "Our Menu",
+    "bestSelling": {
+      "subTitle": "Best Food Menu",
+      "title": "Our Best Selling Food",
+      "items": [
+        {"image": "/assets/img/home-4/food-1.png", "name": "Khinkali (meat)", "description": "Meat khinkali boiled with traditional spices", "price": "12 ₾"},
+        {"image": "/assets/img/home-4/food-2.png", "name": "Khachapuri Adjaruli", "description": "Boat-shaped khachapuri with cheese and egg, baked our way", "price": "18 ₾"},
+        {"image": "/assets/img/home-4/food-3.png", "name": "Mtsvadi (pork)", "description": "Fire-grilled pork skewers with traditional marinade", "price": "22 ₾"},
+        {"image": "/assets/img/home-4/food-31.png", "name": "Lobio in a Clay Pot", "description": "Beans slow-cooked over fire in a clay pot", "price": "14 ₾"},
+        {"image": "/assets/img/home-4/food-32.png", "name": "Eggplant with Walnut", "description": "Fried eggplant with walnut paste", "price": "11 ₾"},
+        {"image": "/assets/img/home-4/food-4.png", "name": "Chakapuli", "description": "Lamb stewed with herbs, a spring recipe", "price": "24 ₾"},
+        {"image": "/assets/img/home-4/food-5.png", "name": "Kubdari", "description": "Svanetian bread baked with meat and spices", "price": "16 ₾"},
+        {"image": "/assets/img/home-4/food-6.png", "name": "Khachapuri Imeruli", "description": "Classic Imeretian khachapuri with cheese", "price": "15 ₾"},
+        {"image": "/assets/img/home-4/food-66.png", "name": "Churchkhela", "description": "Traditional Georgian dessert", "price": "6 ₾"},
+        {"image": "/assets/img/home-4/food-67.png", "name": "Tarkhuna", "description": "Natural tarragon lemonade", "price": "5 ₾"}
+      ]
+    },
+    "banner": {
+      "subText": "Special Menu",
+      "title": "Special Offer",
+      "text": "Try our Khachapuri Adjaruli — cheese and egg baked our way"
+    },
+    "bestFoodMenu": {
+      "subTitle": "Best Food Menu",
+      "title": "Our Best Foods Menu",
+      "left": [
+        {"image": "/assets/img/home-2/best-menu-1.png", "name": "Khinkali (meat)", "price": "12 ₾"},
+        {"image": "/assets/img/home-2/best-menu-2.png", "name": "Mtsvadi (pork)", "price": "22 ₾"},
+        {"image": "/assets/img/home-2/best-menu-3.png", "name": "Eggplant with Walnut", "price": "11 ₾"}
+      ],
+      "right": [
+        {"image": "/assets/img/home-2/best-menu-4.png", "name": "Chakapuli", "price": "24 ₾"},
+        {"image": "/assets/img/home-2/best-menu-5.png", "name": "Kubdari", "price": "16 ₾"},
+        {"image": "/assets/img/home-2/best-menu-6.png", "name": "Khachapuri Imeruli", "price": "15 ₾"}
+      ],
+      "featured": {
+        "name": "Khachapuri Adjaruli",
+        "tagline": "Cheese & Egg, Baked Our Way",
+        "priceCurrent": "18 ₾",
+        "priceOriginal": "21 ₾"
+      },
+      "bottomText": "BiteClub is a unique Georgian café serving hearty home-style dishes and fresh, traditional recipes made with love."
+    }
   }
 }

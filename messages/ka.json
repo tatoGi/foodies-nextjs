@@ -365,5 +365,50 @@
       "timeSelectPlaceholder": "აირჩიეთ დრო",
       "submitLabel": "დაჯავშნეთ მაგიდა"
     }
+  },
+  "menuPage": {
+    "pageTitle": "მენიუ",
+    "bestSelling": {
+      "subTitle": "საუკეთესო მენიუ",
+      "title": "ჩვენი ყველაზე გაყიდვადი კერძები",
+      "items": [
+        {"image": "/assets/img/home-4/food-1.png", "name": "ხინკალი (ხორცის)", "description": "ხაჭაპური-სტილის სუნელებით მოხარშული ხორცის ხინკალი", "price": "12 ₾"},
+        {"image": "/assets/img/home-4/food-2.png", "name": "ხაჭაპური აჭარული", "description": "ყველით და კვერცხით, ჩვენებურად გამომცხვარი", "price": "18 ₾"},
+        {"image": "/assets/img/home-4/food-3.png", "name": "მწვადი (ღორის)", "description": "ცეცხლზე შემწვარი, ტრადიციული მარინადით", "price": "22 ₾"},
+        {"image": "/assets/img/home-4/food-31.png", "name": "ლობიო ქვევრში", "description": "ლობიო ცეცხლზე მოხარშული თიხის ქვაბში", "price": "14 ₾"},
+        {"image": "/assets/img/home-4/food-32.png", "name": "ბადრიჯანი ნიგვზით", "description": "შემწვარი ბადრიჯანი ნიგვზის პასტით", "price": "11 ₾"},
+        {"image": "/assets/img/home-4/food-4.png", "name": "ჩაქაფული", "description": "ცხვრის ხორცი მწვანილებით გაზაფხულის რეცეპტით", "price": "24 ₾"},
+        {"image": "/assets/img/home-4/food-5.png", "name": "კუბდარი", "description": "ხორცით და სუნელებით გამომცხვარი სვანური პური", "price": "16 ₾"},
+        {"image": "/assets/img/home-4/food-6.png", "name": "ხაჭაპური იმერული", "description": "კლასიკური იმერული ყველით", "price": "15 ₾"},
+        {"image": "/assets/img/home-4/food-66.png", "name": "ჩურჩხელა", "description": "ტრადიციული ქართული დესერტი", "price": "6 ₾"},
+        {"image": "/assets/img/home-4/food-67.png", "name": "ტარხუნა", "description": "ბუნებრივი ტარხუნის ლიმონათი", "price": "5 ₾"}
+      ]
+    },
+    "banner": {
+      "subText": "სპეციალური მენიუ",
+      "title": "სპეციალური შეთავაზება",
+      "text": "სცადეთ ხაჭაპური აჭარული — ყველით და კვერცხით, ჩვენებურად გამომცხვარი"
+    },
+    "bestFoodMenu": {
+      "subTitle": "საუკეთესო მენიუ",
+      "title": "ჩვენი საუკეთესო კერძების მენიუ",
+      "left": [
+        {"image": "/assets/img/home-2/best-menu-1.png", "name": "ხინკალი (ხორცის)", "price": "12 ₾"},
+        {"image": "/assets/img/home-2/best-menu-2.png", "name": "მწვადი (ღორის)", "price": "22 ₾"},
+        {"image": "/assets/img/home-2/best-menu-3.png", "name": "ბადრიჯანი ნიგვზით", "price": "11 ₾"}
+      ],
+      "right": [
+        {"image": "/assets/img/home-2/best-menu-4.png", "name": "ჩაქაფული", "price": "24 ₾"},
+        {"image": "/assets/img/home-2/best-menu-5.png", "name": "კუბდარი", "price": "16 ₾"},
+        {"image": "/assets/img/home-2/best-menu-6.png", "name": "ხაჭაპური იმერული", "price": "15 ₾"}
+      ],
+      "featured": {
+        "name": "ხაჭაპური აჭარული",
+        "tagline": "ყველით და კვერცხით, ჩვენებურად",
+        "priceCurrent": "18 ₾",
+        "priceOriginal": "21 ₾"
+      },
+      "bottomText": "BiteClub არის უნიკალური ქართული კაფე, სადაც საოჯახო კერძებსა და ტრადიციულ რეცეპტებს სიყვარულით ვამზადებთ."
+    }
   }
 }
