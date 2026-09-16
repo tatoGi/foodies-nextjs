@@ -142,7 +142,7 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                     </div>
                     <div className="info-cont">
                       <p>{t('forOrder')}</p>
-                      <a href="tel:2341096666">{t('orderPhone')}</a>
+                      <a href="tel:+995577422942">{t('orderPhone')}</a>
                     </div>
                   </div>
                 </div>

@@ -14,7 +14,7 @@
     "orderWithin15": "შეუკვეთეთ ახლავე და მიიღეთ 15 წუთში!",
     "contact": "კონტაქტი",
     "forOrder": "შეკვეთისთვის",
-    "orderPhone": "(234) 109-6666",
+    "orderPhone": "577 42 29 42",
     "nav": {
       "home": "მთავარი",
       "homeDemos": {
@@ -114,12 +114,12 @@
     "title": "დაგვირეკეთ შეკვეთისთვის",
     "description": "ჩვენთან იპოვით ყველაზე ახალ და მაღალი ხარისხის ინგრედიენტებს, საგულდაგულოდ შერჩეულს თქვენთვის.",
     "supportCenter": "24/7 მხარდაჭერის ცენტრი",
-    "phone": "+1 718-904-4450",
+    "phone": "577 42 29 42",
     "headquarterLabel": "სათაო ოფისი -",
-    "headquarterAddress": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "headquarterAddress": "ჭყონდიდელი #56, თბილისი, საქართველო",
     "emailUsLabel": "მოგვწერეთ -",
-    "emailPrimary": "hellofodies@gmail.com",
-    "emailSecondary": "fodies@gmail.com"
+    "emailPrimary": "homespaceinfo1@gmail.com",
+    "emailSecondary": "homespaceinfo1@gmail.com"
   },
   "news": {
     "subTitle": "ჩვენი ბლოგი და სიახლეები",
@@ -155,8 +155,8 @@
     ],
     "contactTitle": "დაგვიკავშირდით",
     "contactText": "BiteClub-ში ჩვენ გთავაზობთ ახალ, ბუნებრივ პროდუქტებს. დაგვიკავშირდით შეკვეთისთვის.",
-    "email": "yordomain@gmial.com",
-    "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
+    "email": "homespaceinfo1@gmail.com",
+    "address": "ჭყონდიდელი #56, თბილისი, საქართველო",
     "copyright": "საავტორო უფლებები © 2026. დაცულია ყველა უფლება."
   },
   "breadcrumb": {
@@ -190,9 +190,9 @@
     "bestSeller": "პოპულარული",
     "logoAlt": "BiteClub-ის ლოგო",
     "aboutText": "გვჯერა, რომ ამას შეუძლია საოცარი საქმეების გაკეთება.",
-    "phone": "+1 718-904 4450",
-    "email": "yordomain@gmial.com",
-    "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "phone": "577 42 29 42",
+    "email": "homespaceinfo1@gmail.com",
+    "address": "ჭყონდიდელი #56, თბილისი, საქართველო",
     "productsTitle": "ჩვენი პროდუქტები",
     "products": ["BBQ პიცა თინთინი", "ბურგერ კინგო", "ქათმის სენდვიჩი", "შოკოლადის დონატები", "BBQ პიცა თინთინი", "კარტოფილი ფრი"],
     "quickLinksTitle": "სწრაფი ბმულები",
@@ -315,33 +315,13 @@
     "locations": [
       {
         "icon": "/assets/img/inner/contact-flag-1.png",
-        "title": "სამხრეთ აფრიკა",
+        "title": "თბილისი, საქართველო",
         "findUsLabel": "გვიპოვეთ:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "address": "ჭყონდიდელი #56, თბილისი, საქართველო",
         "mailUsLabel": "მოგვწერეთ:",
-        "email": "support@foddies.org",
+        "email": "homespaceinfo1@gmail.com",
         "callUsLabel": "დაგვირეკეთ:",
-        "phone": "+43 563 5333 423"
-      },
-      {
-        "icon": "/assets/img/inner/contact-flag-2.png",
-        "title": "აშშ",
-        "findUsLabel": "გვიპოვეთ:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
-        "mailUsLabel": "მოგვწერეთ:",
-        "email": "support@foddies.org",
-        "callUsLabel": "დაგვირეკეთ:",
-        "phone": "+43 563 5333 423"
-      },
-      {
-        "icon": "/assets/img/inner/contact-flag-3.png",
-        "title": "გერმანია",
-        "findUsLabel": "გვიპოვეთ:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
-        "mailUsLabel": "მოგვწერეთ:",
-        "email": "support@foddies.org",
-        "callUsLabel": "დაგვირეკეთ:",
-        "phone": "+43 563 5333 423"
+        "phone": "577 42 29 42"
       }
     ],
     "map": {
@@ -376,7 +356,7 @@
       "title": "გაქვთ სადილის გეგმა დღეს? დაჯავშნეთ მაგიდა",
       "description": "შეადგინეთ ონლაინ ჯავშანი, წაიკითხეთ სტუმრების შეფასებები და დააგროვეთ ქულები უფასო კერძებისთვის. ეს არის რეალურ დროში მომუშავე ონლაინ ჯავშნის სისტემა.",
       "supportLabel": "24/7 მხარდაჭერის ცენტრი",
-      "supportPhone": "+1 718-904-4450",
+      "supportPhone": "577 42 29 42",
       "formTitle": "მაგიდის დაჯავშნა",
       "formDescription": "გთხოვთ ზუსტად შეავსოთ ქვემოთ მოცემული ფორმა, რათა უკეთესად შეგემსახუროთ!.. კეთილი იყოს თქვენი მობრძანება!",
       "namePlaceholder": "სრული სახელი *",

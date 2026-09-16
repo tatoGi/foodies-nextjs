@@ -14,7 +14,7 @@
     "orderWithin15": "Order now and get it within 15 min.!",
     "contact": "Contact",
     "forOrder": "For Order",
-    "orderPhone": "(234) 109-6666",
+    "orderPhone": "577 42 29 42",
     "nav": {
       "home": "Home",
       "homeDemos": {
@@ -114,12 +114,12 @@
     "title": "Contact for Order",
     "description": "Here you'll find the freshest, highest-quality ingredients, carefully selected for you.",
     "supportCenter": "24/7 Support center",
-    "phone": "+1 718-904-4450",
+    "phone": "577 42 29 42",
     "headquarterLabel": "Headquarter -",
-    "headquarterAddress": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "headquarterAddress": "56 Chqondideli St, Tbilisi, Georgia",
     "emailUsLabel": "Email Us -",
-    "emailPrimary": "hellofodies@gmail.com",
-    "emailSecondary": "fodies@gmail.com"
+    "emailPrimary": "homespaceinfo1@gmail.com",
+    "emailSecondary": "homespaceinfo1@gmail.com"
   },
   "news": {
     "subTitle": "Our Blog & News",
@@ -155,8 +155,8 @@
     ],
     "contactTitle": "Contact Us",
     "contactText": "At BiteClub we provide fresh garden products for you. Contact us for your order.",
-    "email": "yordomain@gmial.com",
-    "address": "2702 Memory Lane Chicago, IL 60605 New York, USA",
+    "email": "homespaceinfo1@gmail.com",
+    "address": "56 Chqondideli St, Tbilisi, Georgia",
     "copyright": "Copyright © 2026 All Rights Reserved."
   },
   "breadcrumb": {
@@ -190,9 +190,9 @@
     "bestSeller": "Best Seller",
     "logoAlt": "BiteClub logo",
     "aboutText": "We believe it has the power to do amazing things.",
-    "phone": "+1 718-904 4450",
-    "email": "yordomain@gmial.com",
-    "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+    "phone": "577 42 29 42",
+    "email": "homespaceinfo1@gmail.com",
+    "address": "56 Chqondideli St, Tbilisi, Georgia",
     "productsTitle": "Our Products",
     "products": ["BBQ Pizza TinTin", "Burger Kingo", "Chicken Sandwich", "Chocolate Donuts", "BBQ Pizza TinTin", "French Fries"],
     "quickLinksTitle": "Quick Links",
@@ -315,33 +315,13 @@
     "locations": [
       {
         "icon": "/assets/img/inner/contact-flag-1.png",
-        "title": "South Africa",
+        "title": "Tbilisi, Georgia",
         "findUsLabel": "Find Us:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
+        "address": "56 Chqondideli St, Tbilisi, Georgia",
         "mailUsLabel": "Mail Us:",
-        "email": "support@foddies.org",
+        "email": "homespaceinfo1@gmail.com",
         "callUsLabel": "Call Us:",
-        "phone": "+43 563 5333 423"
-      },
-      {
-        "icon": "/assets/img/inner/contact-flag-2.png",
-        "title": "USA",
-        "findUsLabel": "Find Us:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
-        "mailUsLabel": "Mail Us:",
-        "email": "support@foddies.org",
-        "callUsLabel": "Call Us:",
-        "phone": "+43 563 5333 423"
-      },
-      {
-        "icon": "/assets/img/inner/contact-flag-3.png",
-        "title": "German",
-        "findUsLabel": "Find Us:",
-        "address": "575 Main Street, D-block, 2nd floor, South Africa",
-        "mailUsLabel": "Mail Us:",
-        "email": "support@foddies.org",
-        "callUsLabel": "Call Us:",
-        "phone": "+43 563 5333 423"
+        "phone": "577 42 29 42"
       }
     ],
     "map": {
@@ -376,7 +356,7 @@
       "title": "Have any Dinner Plan Today? Reserve Table",
       "description": "Make online reservations, read restaurant reviews from dinners, and earn points towards free meals. OpenTable is a real time online reservation.",
       "supportLabel": "24/7 Support center",
-      "supportPhone": "+1 718-904-4450",
+      "supportPhone": "577 42 29 42",
       "formTitle": "booking table",
       "formDescription": "Please fill the form below accurately to enable us serve you better!.. welcome!",
       "namePlaceholder": "Full name *",
