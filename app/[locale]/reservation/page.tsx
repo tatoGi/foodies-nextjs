@@ -15,7 +15,7 @@ export default async function ReservationPage({params}: {params: Promise<{locale
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />

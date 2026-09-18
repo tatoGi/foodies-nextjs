@@ -13,7 +13,7 @@ export default async function FaqPage({params}: {params: Promise<{locale: string
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />

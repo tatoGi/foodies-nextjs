@@ -15,7 +15,7 @@ export default async function MenuPage({params}: {params: Promise<{locale: strin
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />

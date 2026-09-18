@@ -14,7 +14,7 @@ export default async function ContactPage({params}: {params: Promise<{locale: st
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />

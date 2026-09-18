@@ -17,17 +17,6 @@
     "orderPhone": "577 42 29 42",
     "nav": {
       "home": "მთავარი",
-      "homeDemos": {
-        "fastFood": "სწრაფი კვება",
-        "pizzaRestaurant": "პიცერია",
-        "foodDelivery": "საკვების მიწოდება",
-        "burgerRestaurant": "ბურგერების რესტორანი",
-        "iceCreamShop": "ნაყინის მაღაზია",
-        "iceCreamStore": "ნაყინის სახლი",
-        "restaurant": "რესტორანი",
-        "coffeeAndTea": "ყავა და ჩაი",
-        "viewPage": "გვერდის ნახვა"
-      },
       "menu": "მენიუ",
       "pages": "გვერდები",
       "ourHistory": "ჩვენი ისტორია",

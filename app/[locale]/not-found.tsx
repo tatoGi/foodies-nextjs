@@ -11,7 +11,7 @@ export default function NotFound() {
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('breadcrumbTitle')} currentLabel={t('breadcrumbTitle')} />

@@ -17,17 +17,6 @@
     "orderPhone": "577 42 29 42",
     "nav": {
       "home": "Home",
-      "homeDemos": {
-        "fastFood": "Fast Food",
-        "pizzaRestaurant": "Pizza Restaurant",
-        "foodDelivery": "Food Delivery",
-        "burgerRestaurant": "Burger Restaurant",
-        "iceCreamShop": "Ice Cream Shop",
-        "iceCreamStore": "Ice Cream Store",
-        "restaurant": "Restaurant",
-        "coffeeAndTea": "Coffee and Tea",
-        "viewPage": "View page"
-      },
       "menu": "Menu",
       "pages": "Pages",
       "ourHistory": "Our History",

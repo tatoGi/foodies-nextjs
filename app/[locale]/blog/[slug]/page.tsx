@@ -34,7 +34,7 @@ export default async function BlogDetailsPage({
 
   return (
     <>
-      <Header showMegaMenu />
+      <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={post.title} currentLabel={post.title} />
