@@ -193,17 +193,8 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                           <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
                           <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
                           <li><Link href="/blog">{t('nav.blog')}</Link></li>
-                          <li className="has-dropdown">
-                            <a href="javascript:void(0)">
-                              {t('nav.pages')}
-                              <i className="fa-solid fa-chevron-down" />
-                            </a>
-                            <ul className="submenu">
-                              <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
-                              <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
-                              <li><Link href="/404">{t('nav.error404')}</Link></li>
-                            </ul>
-                          </li>
+                          <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
+                          <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
                           <li><Link href="/contact">{t('nav.contact')}</Link></li>
                         </ul>
                       </nav>
