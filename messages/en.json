@@ -410,5 +410,105 @@
       },
       "bottomText": "BiteClub is a unique Georgian café serving hearty home-style dishes and fresh, traditional recipes made with love."
     }
+  },
+  "blogPage": {
+    "pageTitle": "Blog",
+    "authorName": "BiteClub Team",
+    "searchTitle": "Search",
+    "searchPlaceholder": "Search here",
+    "categoriesTitle": "All Categories",
+    "categories": [
+      {"name": "Kitchen", "count": "(04)"},
+      {"name": "News", "count": "(06)"},
+      {"name": "Events", "count": "(03)"},
+      {"name": "Recipes", "count": "(05)"}
+    ],
+    "recentPostTitle": "Recent Post",
+    "tagsTitle": "Tags",
+    "tags": ["Khinkali", "Georgian Cuisine", "Menu", "Weekend", "Spring", "Recipes", "Events", "Café"],
+    "paginationNext": "next",
+    "byLabel": "By",
+    "commentsHeading": "{count} Comments",
+    "shareLabel": "Share:",
+    "replyLabel": "Reply",
+    "leaveCommentTitle": "Leave a Comments",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Your Email",
+    "messagePlaceholder": "Write Message",
+    "submitLabel": "Leave A Comment",
+    "posts": [
+    {
+      "slug": "khinkali-history",
+      "image": "/assets/img/inner/news/blog-post-1.jpg",
+      "detailImage": "/assets/img/inner/news/blog-details-01.jpg",
+      "secondaryImage": "/assets/img/inner/news/blog-details-02.jpg",
+      "recentThumb": "/assets/img/inner/news/post-01.jpg",
+      "date": "3 March, 2026",
+      "commentsLabel": "2 Comments",
+      "category": "Kitchen",
+      "title": "The History of Khinkali in Georgia",
+      "excerpt": "Khinkali, Georgia's iconic soup dumpling, traces its roots to the mountain regions of Khevsureti and Pshavi, where shepherds needed a hearty, portable meal. At BiteClub, we still hand-fold every khinkali the traditional way, using a recipe passed down through generations.",
+      "body": [
+        "Khinkali first appeared in the highlands of eastern Georgia — Khevsureti, Pshavi and Tusheti — sometime in the 7th or 8th century. Shepherds and warriors needed a filling, easy-to-carry meal that could survive long days in the mountains, and the soup-filled dumpling was the answer: simple ingredients, sealed inside a thick dough wrapper twisted into a topknot.",
+        "Over the centuries the recipe spread down from the mountains into the valleys and cities, picking up regional variations along the way. Some regions favor a peppery beef and pork filling, others prefer pure lamb, and in summer, cheese or mushroom khinkali became popular meat-free alternatives.",
+        "At BiteClub, we honor that mountain tradition. Every khinkali on our menu is hand-folded to order, filled with a well-seasoned meat mixture and a spoonful of rich broth that bursts with the first bite. We serve them the traditional way too — no fork required, just your hands, a generous dusting of black pepper, and plenty of napkins."
+      ],
+      "pullQuote": "A proper khinkali should never be cut with a knife — pick it up by the topknot, take a bite, and let the broth do the talking.",
+      "closingParagraph": "Whether you're trying khinkali for the first time or you grew up eating them at your grandmother's table, we hope our version brings a little bit of the Georgian mountains to your plate.",
+      "tags": ["Khinkali", "Georgian Cuisine", "Recipe"],
+      "comments": [
+        {"name": "Nino", "date": "March 5, 2026", "text": "This is exactly how my grandmother described khinkali from Khevsureti. Loved the history!"},
+        {"name": "Levan", "date": "March 6, 2026", "text": "Tried the khinkali here last week — the broth was perfect. Great article too."}
+      ]
+    },
+    {
+      "slug": "spring-menu",
+      "image": "/assets/img/inner/news/blog-post-2.jpg",
+      "detailImage": "/assets/img/inner/news/blog-details-01.jpg",
+      "secondaryImage": "/assets/img/inner/news/blog-details-02.jpg",
+      "recentThumb": "/assets/img/inner/news/post-02.jpg",
+      "date": "14 April, 2026",
+      "commentsLabel": "2 Comments",
+      "category": "News",
+      "title": "Our New Spring Menu",
+      "excerpt": "Spring has arrived and so has a refreshed BiteClub menu, built around the season's first greens, herbs and vegetables. From a bright new chakapuli to a lighter lobio, here's what's new on the table.",
+      "body": [
+        "Every spring, our kitchen team starts planning the new menu around what's actually growing — fresh tarragon, young garlic, spring onions, and the first tender greens from local farms around Tbilisi. This year is no different, and we've built a handful of new dishes entirely around those ingredients.",
+        "The star of the new menu is our Chakapuli, made with lamb, plenty of fresh tarragon, green plums and white wine — a dish that traditionally marks the start of spring in Georgian homes. We've also lightened up our Lobio, adding fresh herbs and a touch of walnut for extra depth without the heaviness of a winter stew.",
+        "For something cooler, try our new seasonal salad with young greens, radish and a simple sour-plum dressing — it pairs perfectly with warm mchadi straight from the pan. As always, everything is made fresh daily, so the menu will keep evolving as the season goes on."
+      ],
+      "pullQuote": "Spring in Georgia has a flavor of its own — tarragon, green garlic and the first sour plums of the year. We wanted our new menu to taste like exactly that.",
+      "closingParagraph": "Come try the new dishes while the season lasts — we'll be rotating a few items out as summer produce starts to arrive.",
+      "tags": ["Menu", "Spring", "Chakapuli", "Seasonal"],
+      "comments": [
+        {"name": "Mariam", "date": "April 15, 2026", "text": "The new chakapuli is amazing, so fresh and full of tarragon flavor."},
+        {"name": "David", "date": "April 16, 2026", "text": "Loved the lighter lobio, perfect for spring. Can't wait to try more new dishes."}
+      ]
+    },
+    {
+      "slug": "visit-this-weekend",
+      "image": "/assets/img/inner/news/blog-post-3.jpg",
+      "detailImage": "/assets/img/inner/news/blog-details-01.jpg",
+      "secondaryImage": "/assets/img/inner/news/blog-details-02.jpg",
+      "recentThumb": "/assets/img/inner/news/post-03.jpg",
+      "date": "9 May, 2026",
+      "commentsLabel": "2 Comments",
+      "category": "Events",
+      "title": "5 Reasons to Visit BiteClub This Weekend",
+      "excerpt": "Looking for a place to relax this weekend? From our weekend specials to live music nights, here are five reasons to grab a table at BiteClub before Sunday.",
+      "body": [
+        "1. Weekend specials. Every Saturday and Sunday we put a couple of limited dishes on the menu that you won't find during the week — think slow-cooked stews and seasonal specials our chefs have been testing all week. 2. A relaxed atmosphere. Our dining room and terrace are built for lingering — good for a long lunch with friends or a slow dinner that turns into dessert and coffee.",
+        "3. Fresh, local ingredients. We work with farms around Tbilisi to source vegetables, herbs and dairy, so what's on your plate changes a little with the seasons — and it always tastes like it was made that morning. 4. Something for everyone at the table. Whether someone wants classic khinkali, a lighter salad, or a proper Georgian feast, our menu covers enough ground that nobody has to compromise.",
+        "5. It's the perfect reset before Monday. A good meal, a comfortable seat, and no rush to leave — sometimes that's exactly what a weekend is for. Bring your family, your friends, or just come alone with a book; we'll take care of the rest."
+      ],
+      "pullQuote": "The best weekends start with a table, good food, and no reason to check the time.",
+      "closingParagraph": "We'd love to see you this weekend — no need for a special occasion, just come hungry.",
+      "tags": ["Weekend", "Atmosphere", "Events", "Restaurant"],
+      "comments": [
+        {"name": "Ana", "date": "May 10, 2026", "text": "Went this weekend and the atmosphere was exactly as described — will be back."},
+        {"name": "Giorgi", "date": "May 11, 2026", "text": "Great list, the weekend specials convinced me to book a table."}
+      ]
+    }
+    ]
   }
 }

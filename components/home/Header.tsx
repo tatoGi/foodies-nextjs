@@ -192,6 +192,7 @@ export default function Header({showMegaMenu = false}: {showMegaMenu?: boolean} 
                           <li><Link href="/about">{t('nav.about')}</Link></li>
                           <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
                           <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
+                          <li><Link href="/blog">{t('nav.blog')}</Link></li>
                           <li className="has-dropdown">
                             <a href="javascript:void(0)">
                               {t('nav.pages')}
