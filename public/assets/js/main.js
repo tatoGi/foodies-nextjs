@@ -4,17 +4,46 @@
     const $documentOn = $(document);
     const $windowOn = $(window);
   
-    $documentOn.ready( function() {
-        
+    function foodiesDestroy() {
+        try {
+            if (window.ScrollSmoother) {
+                const active = ScrollSmoother.get();
+                if (active) {
+                    active.kill();
+                }
+            }
+        } catch (e) {}
+
+        if (window.ScrollTrigger) {
+            ScrollTrigger.getAll().forEach(function (trigger) {
+                trigger.kill();
+            });
+        }
+
+        document.querySelectorAll('.swiper').forEach(function (el) {
+            if (el.swiper && typeof el.swiper.destroy === 'function') {
+                el.swiper.destroy(true, true);
+            }
+        });
+
+        $('#mobile-menu').css('display', '');
+        $('.offcanvas__info').removeClass('info-open');
+        $('.offcanvas__overlay').removeClass('overlay-open');
+        $('body').css({height: '', overflow: ''});
+        $windowOn.off('scroll');
+        $documentOn.off('click');
+        $('#back-top').off('click');
+    }
+
+    function foodiesBoot() {
+        foodiesDestroy();
+
         /* ================================
        Mobile Menu Js Start
     ================================ */
-    
-      $('#mobile-menu').meanmenu({
-        meanMenuContainer: '.mobile-menu',
-        meanScreenWidth: "1199",
-        meanExpand: ['<i class="far fa-plus"></i>'],
-    });
+
+      // The drawer links are rendered by React. meanMenu rewrites that
+      // markup and loses it on the next client navigation.
 
 
      $documentOn.on("click", ".mean-expand", function () {
@@ -31,23 +60,7 @@
         Sidebar Toggle & Sticky Item Logic
         ================================ */
 
-        // Open offcanvas
-        $(".sidebar__toggle").on("click", function () {
-        $(".offcanvas__info").addClass("info-open");
-        $(".offcanvas__overlay").addClass("overlay-open");
-
-        // Hide sticky item
-        $(".sidebar-sticky-item").fadeOut().removeClass("active");
-        });
-
-        // Close offcanvas
-        $(".offcanvas__close, .offcanvas__overlay").on("click", function () {
-        $(".offcanvas__info").removeClass("info-open");
-        $(".offcanvas__overlay").removeClass("overlay-open");
-
-        // Show sticky item
-        $(".sidebar-sticky-item").fadeIn().addClass("active");
-        });
+        // The burger drawer is opened and closed in React (Header).
 
         /* ================================
         Body Overlay Js Start
@@ -1512,9 +1525,11 @@
         function init() {
             initClipAnimation();
         }
+    }
 
-  
-    }); // End Document Ready Function
+    window.foodiesDestroy = foodiesDestroy;
+    window.foodiesBoot = foodiesBoot;
+    $documentOn.ready(foodiesBoot);
 
     /* ================================
       Price Ranage Js Start

@@ -1,19 +1,22 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 
-type SideItem = {image: string; name: string; price: string};
+type SideItem = {image: string; name: string; price: string; available?: boolean};
 
-export default function BestFoodMenu() {
+export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
   const t = useTranslations('menuPage.bestFoodMenu');
   const tCommon = useTranslations('common');
-  const leftItems = t.raw('left') as SideItem[];
-  const rightItems = t.raw('right') as SideItem[];
+  const fallbackLeft = t.raw('left') as SideItem[];
+  const fallbackRight = t.raw('right') as SideItem[];
   const featured = t.raw('featured') as {name: string; tagline: string; priceCurrent: string; priceOriginal: string};
+  const live = items && items.length > 0 ? items : null;
+  const leftItems = live ? live.filter((_, index) => index % 2 === 0) : fallbackLeft;
+  const rightItems = live ? live.filter((_, index) => index % 2 === 1) : fallbackRight;
 
   const renderSideList = (items: SideItem[]) => (
     <ul className="best-food-menu-list-two">
       {items.map((item) => (
-        <li key={item.name}>
+        <li key={`${item.name}-${item.price}`} style={item.available === false ? {opacity: 0.45} : undefined}>
           <div className="thumb">
             <img src={item.image} alt={item.name} />
           </div>

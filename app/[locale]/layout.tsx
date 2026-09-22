@@ -4,6 +4,7 @@ import {hasLocale, NextIntlClientProvider} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import {routing} from '@/i18n/routing';
 import {notFound} from 'next/navigation';
+import TemplateRuntime from '@/components/shared/TemplateRuntime';
 
 export const metadata: Metadata = {
   title: 'BiteClub – Multipurpose Restaurant & Fast Food',
@@ -85,6 +86,7 @@ export default async function LocaleLayout({
             <div className="mouseCursor cursor-inner" />
 
             {children}
+            <TemplateRuntime />
           </div>
         </NextIntlClientProvider>
         {jsSrcs.map((src) => (

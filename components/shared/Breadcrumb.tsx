@@ -1,11 +1,24 @@
-import {useTranslations} from 'next-intl';
+import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
+import {getSiteChrome} from '@/lib/cms';
 
-export default function Breadcrumb({title, currentLabel}: {title: string; currentLabel: string}) {
-  const t = useTranslations('breadcrumb');
+export default async function Breadcrumb({title, currentLabel}: {title: string; currentLabel: string}) {
+  const t = await getTranslations('breadcrumb');
+  const chrome = await getSiteChrome();
+  const image = chrome.breadcrumbImage
+    ? `linear-gradient(rgba(28, 23, 20, 0.55), rgba(28, 23, 20, 0.55)), url("${chrome.breadcrumbImage}")`
+    : undefined;
 
   return (
-    <div className="breadcrumb-wrapper hero-ptb image-distortion p-relative z-index-1" data-background="/assets/img/breadcrumb-bg.jpg">
+    <div
+      className="breadcrumb-wrapper hero-ptb image-distortion p-relative z-index-1"
+      style={{
+        backgroundColor: chrome.breadcrumbColor,
+        backgroundImage: image,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
       <div className="shape-1 d-none d-xl-block">
         <img src="/assets/img/shape-1.png" alt="" />
       </div>

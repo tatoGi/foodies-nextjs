@@ -3,10 +3,23 @@ import {Link} from '@/i18n/navigation';
 
 const CARD_STYLES = ['style-2', 'style-3', '', '', 'style-3', 'style-2'];
 
-export default function ShopCategory() {
+export type ShopProduct = {
+  title: string;
+  slug: string;
+  price: string;
+  image: string | null;
+};
+
+export default function ShopCategory({products}: {products?: ShopProduct[] | null}) {
   const t = useTranslations('shopCategory');
   const tCommon = useTranslations('common');
-  const items = t.raw('items') as {title: string}[];
+  const fallback = (t.raw('items') as {title: string}[]).map((item) => ({
+    title: item.title,
+    slug: '',
+    price: t('price'),
+    image: null as string | null
+  }));
+  const items = products && products.length > 0 ? products : fallback;
 
   return (
     <section className="shop-category-section fix section-padding">
@@ -32,8 +45,8 @@ export default function ShopCategory() {
       <div className="swiper shop-category-slider">
         <div className="swiper-wrapper">
           {items.map((item, i) => (
-            <div className="swiper-slide wow fadeInUp" key={item.title}>
-              <div className={`shop-category-items ${CARD_STYLES[i]}`.trim()}>
+            <div className="swiper-slide wow fadeInUp" key={item.slug || item.title}>
+              <div className={`shop-category-items ${CARD_STYLES[i % CARD_STYLES.length]}`.trim()}>
                 <div className="line-shape">
                   <img src="/assets/img/home-1/line-shape.png" alt="" />
                 </div>
@@ -49,7 +62,7 @@ export default function ShopCategory() {
                   </svg>
                 </div>
                 <div className="thumb">
-                  <img src={`/assets/img/home-1/shop-category-${i + 1}.png`} alt={item.title} />
+                  <img src={item.image ?? `/assets/img/home-1/shop-category-${(i % 6) + 1}.png`} alt={item.title} />
                 </div>
                 <div className="content">
                   <div className="star">
@@ -60,14 +73,16 @@ export default function ShopCategory() {
                     <i className="fa-light fa-star" />
                   </div>
                   <h3 className="title">
-                    <Link href="/shop-details">{item.title}</Link>
+                    {item.slug ? <Link href={`/products/${item.slug}`}>{item.title}</Link> : item.title}
                   </h3>
                   <p>{t('itemDescription')}</p>
                   <div className="pricing-item">
-                    <span className="price">{t('price')}</span>
-                    <Link href="/shop-details" className="theme-btn small-btn">
-                      {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
-                    </Link>
+                    <span className="price">{item.price}</span>
+                    {item.slug ? (
+                      <Link href={`/products/${item.slug}`} className="theme-btn small-btn">
+                        {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               </div>

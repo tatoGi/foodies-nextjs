@@ -7,11 +7,15 @@ import InnerFooter from '@/components/inner/InnerFooter';
 import BestSellingFood from '@/components/menu/BestSellingFood';
 import SpecialMenuBanner from '@/components/menu/SpecialMenuBanner';
 import BestFoodMenu from '@/components/menu/BestFoodMenu';
+import BakeryMenu from '@/components/menu/BakeryMenu';
+import {getMenu} from '@/lib/cms';
 
 export default async function MenuPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
   const t = await getTranslations('menuPage');
+  const menu = await getMenu(locale);
+  const live = menu && menu.some((category) => category.products.length > 0) ? menu : null;
 
   return (
     <>
@@ -19,9 +23,9 @@ export default async function MenuPage({params}: {params: Promise<{locale: strin
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />
-          <BestSellingFood />
+          {live ? <BakeryMenu categories={live} /> : <BestSellingFood />}
           <SpecialMenuBanner />
-          <BestFoodMenu />
+          {live ? null : <BestFoodMenu />}
           <Instagram />
           <Cta />
           <InnerFooter />

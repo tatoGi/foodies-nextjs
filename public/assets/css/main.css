@@ -3251,6 +3251,9 @@ span {
   position: relative;
   z-index: 9;
   margin-top: 270px;
+  background-color: #1c1714;
+  background-size: cover;
+  background-position: center;
 }
 @media (max-width: 1199px) {
   .breadcrumb-wrapper {
@@ -21035,4 +21038,24 @@ span {
   position: absolute;
   top: 0;
   right: 125px;
+}
+
+@media (max-width: 1199px) {
+  .header-1 .main-menu {
+    display: none;
+  }
+}
+
+.offcanvas__info .mean-nav {
+  margin-top: 0;
+  background: transparent;
+}
+
+.offcanvas__info .mean-nav ul {
+  display: block;
+}
+
+.offcanvas__info .mean-nav ul li a {
+  color: #fff;
+  text-transform: none;
 }/*# sourceMappingURL=main.css.map */

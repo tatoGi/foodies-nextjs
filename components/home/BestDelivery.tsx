@@ -27,7 +27,7 @@ export default function BestDelivery() {
                 <div className="delivery-image float-bob-x">
                   <img src="/assets/img/home-1/delivery-image.png" alt="" />
                 </div>
-                <Link href="/shop-details" className="theme-btn small-btn">
+                <Link href="/menu" className="theme-btn small-btn">
                   {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
                 </Link>
               </div>

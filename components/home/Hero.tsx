@@ -43,7 +43,7 @@ export default function Hero() {
                         </h1>
                         <p>{t('description')}</p>
                         <div className="hero-btn">
-                          <Link href="/shop-details" className="theme-btn">
+                          <Link href="/menu" className="theme-btn">
                             {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
                           </Link>
                         </div>

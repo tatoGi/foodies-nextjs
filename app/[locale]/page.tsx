@@ -6,6 +6,7 @@ import FoodMenu from '@/components/home/FoodMenu';
 import Contact from '@/components/home/Contact';
 import News from '@/components/home/News';
 import Footer from '@/components/home/Footer';
+import {getMenu} from '@/lib/cms';
 
 export default async function HomePage({
   params
@@ -14,6 +15,15 @@ export default async function HomePage({
 }) {
   const {locale} = await params;
   setRequestLocale(locale);
+  const menu = await getMenu(locale);
+  const products = (menu ?? []).flatMap((category) =>
+    category.products.map((product) => ({
+      title: product.title,
+      slug: product.slug,
+      price: product.price,
+      image: product.image
+    }))
+  );
 
   return (
     <>
@@ -22,7 +32,7 @@ export default async function HomePage({
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <Hero />
-          <ShopCategory />
+          <ShopCategory products={products} />
           <FoodMenu />
           <Contact />
           <News />

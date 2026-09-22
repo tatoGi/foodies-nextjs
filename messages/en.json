@@ -378,6 +378,16 @@
       "title": "Special Offer",
       "text": "Try our Khachapuri Adjaruli — cheese and egg baked our way"
     },
+    "productPage": {
+      "back": "Back to menu"
+    },
+    "liveMenu": {
+      "subTitle": "Bakery menu",
+      "title": "Categories and products",
+      "ingredients": "Ingredients",
+      "addons": "Add-ons",
+      "soldOut": "Sold out"
+    },
     "bestFoodMenu": {
       "subTitle": "Best Food Menu",
       "title": "Our Best Foods Menu",

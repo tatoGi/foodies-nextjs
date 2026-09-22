@@ -23,7 +23,7 @@ export default function DiscountFood() {
                   <span>{t('limitedTime')}</span>
                   <h2 className="title">{t('offer50')}</h2>
                 </div>
-                <Link href="/shop-details" className="theme-btn small-btn">
+                <Link href="/menu" className="theme-btn small-btn">
                   {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
                 </Link>
               </div>
@@ -73,7 +73,7 @@ export default function DiscountFood() {
                 <span className="menu-text">{t('specialMenu')}</span>
                 <h2>{t('chesseyPizza')}</h2>
                 <h3>{t('chefSpecial')}</h3>
-                <Link href="/shop-details" className="theme-btn small-btn">
+                <Link href="/menu" className="theme-btn small-btn">
                   {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
                 </Link>
               </div>

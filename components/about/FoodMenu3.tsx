@@ -59,7 +59,7 @@ export default function FoodMenu3() {
                           </div>
                         ))}
                         <div className="food-button">
-                          <Link href="/shop-details" className="theme-btn small-btn">
+                          <Link href="/menu" className="theme-btn small-btn">
                             {t('reserveTable')} <i className="fa-regular fa-arrow-up-right" />
                           </Link>
                         </div>

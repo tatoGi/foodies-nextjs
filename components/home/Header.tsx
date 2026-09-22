@@ -1,16 +1,38 @@
+'use client';
+
+import {useEffect, useState} from 'react';
 import {useTranslations} from 'next-intl';
-import {Link} from '@/i18n/navigation';
+import {Link, usePathname} from '@/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import LogoMark from '@/components/shared/LogoMark';
 
 export default function Header() {
   const t = useTranslations('header');
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  const nav = [
+    {href: '/', label: t('nav.home')},
+    {href: '/menu', label: t('nav.menu')},
+    {href: '/about', label: t('nav.about')},
+    {href: '/gallery', label: t('nav.ourGallery')},
+    {href: '/reservation', label: t('nav.reservation')},
+    {href: '/blog', label: t('nav.blog')},
+    {href: '/history', label: t('nav.ourHistory')},
+    {href: '/faq', label: t('nav.faqPage')},
+    {href: '/contact', label: t('nav.contact')}
+  ] as const;
 
   return (
     <>
       {/* Offcanvas Area Start */}
       <div className="fix-area">
-        <div className="offcanvas__info">
+        <div className={`offcanvas__info${menuOpen ? ' info-open' : ''}`}>
           <div className="offcanvas__wrapper">
             <div className="offcanvas__content">
               <div className="offcanvas__top d-flex justify-content-between align-items-center">
@@ -20,7 +42,7 @@ export default function Header() {
                   </Link>
                 </div>
                 <div className="offcanvas__close">
-                  <button>
+                  <button type="button" onClick={closeMenu}>
                     <i className="fa-thin fa-times" />
                   </button>
                 </div>
@@ -28,7 +50,17 @@ export default function Header() {
               <div style={{margin: '20px 0'}}>
                 <LocaleSwitcher />
               </div>
-              <div className="mobile-menu fix" />
+              <div className="mobile-menu fix mean-container">
+                <nav className="mean-nav">
+                  <ul>
+                    {nav.map((item) => (
+                      <li key={item.href}>
+                        <Link href={item.href} onClick={closeMenu}>{item.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
               <div className="shop-icon-right">
                 <Link href="/contact" className="shop-icon">
                   <i className="fa-regular fa-user" />
@@ -53,7 +85,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="offcanvas__overlay" />
+      <div className={`offcanvas__overlay${menuOpen ? ' overlay-open' : ''}`} onClick={closeMenu} />
 
       {/* Header Section Start */}
       <header className="header-section">
@@ -146,15 +178,11 @@ export default function Header() {
                     <div className="main-menu">
                       <nav id="mobile-menu">
                         <ul>
-                          <li><Link href="/">{t('nav.home')}</Link></li>
-                          <li><Link href="/menu">{t('nav.menu')}</Link></li>
-                          <li><Link href="/about">{t('nav.about')}</Link></li>
-                          <li><Link href="/gallery">{t('nav.ourGallery')}</Link></li>
-                          <li><Link href="/reservation">{t('nav.reservation')}</Link></li>
-                          <li><Link href="/blog">{t('nav.blog')}</Link></li>
-                          <li><Link href="/history">{t('nav.ourHistory')}</Link></li>
-                          <li><Link href="/faq">{t('nav.faqPage')}</Link></li>
-                          <li><Link href="/contact">{t('nav.contact')}</Link></li>
+                          {nav.map((item) => (
+                            <li key={item.href}>
+                              <Link href={item.href}>{item.label}</Link>
+                            </li>
+                          ))}
                         </ul>
                       </nav>
                     </div>
@@ -162,7 +190,7 @@ export default function Header() {
                 </div>
                 <div className="header-right d-flex justify-content-end align-items-center">
                   <div className="header__hamburger my-auto d-xl-none">
-                    <div className="sidebar__toggle">
+                    <div className="sidebar__toggle" onClick={() => setMenuOpen(true)} role="button" tabIndex={0}>
                       <span />
                       <span />
                       <span />
