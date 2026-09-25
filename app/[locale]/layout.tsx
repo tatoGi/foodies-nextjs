@@ -7,6 +7,7 @@ import {notFound} from 'next/navigation';
 import TemplateRuntime from '@/components/shared/TemplateRuntime';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
   title: 'BiteClub – Multipurpose Restaurant & Fast Food',
   description: 'BiteClub – Multipurpose Restaurant & Fast Food HTML Template',
   icons: {icon: '/assets/img/favicon.svg'}

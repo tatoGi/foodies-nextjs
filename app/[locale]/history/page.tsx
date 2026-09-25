@@ -1,4 +1,6 @@
+import type {Metadata} from 'next';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
+import CmsPageView, {cmsMetadata, resolveCmsPage} from '@/components/cms/CmsPageView';
 import Header from '@/components/home/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Instagram from '@/components/inner/Instagram';
@@ -7,9 +9,18 @@ import InnerFooter from '@/components/inner/InnerFooter';
 import HistoryTop from '@/components/history/HistoryTop';
 import HistoryTimeline from '@/components/history/HistoryTimeline';
 
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  const {locale} = await params;
+  return (await cmsMetadata(locale, 'history')) ?? {};
+}
+
 export default async function HistoryPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
+  const cmsPage = await resolveCmsPage(locale, 'history');
+  if (cmsPage) {
+    return <CmsPageView page={cmsPage} />;
+  }
   const t = await getTranslations('history');
 
   return (

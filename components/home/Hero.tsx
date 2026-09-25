@@ -1,9 +1,56 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import type {HeroSlide} from '@/lib/cms';
 
 const SLIDE_IMAGES = ['hero-image-3.png', 'hero-image.png', 'hero-image-2.png'];
 
-export default function Hero() {
+function LiveHero({slides}: {slides: HeroSlide[]}) {
+  const tCommon = useTranslations('common');
+
+  return (
+    <section
+      className="hero-section fix hero-1 bg-cover"
+      style={{backgroundImage: "url('/assets/img/home-1/hero-bg.jpg')"}}
+    >
+      <div className="swiper hero-slider">
+        <div className="swiper-wrapper">
+          {slides.map((slide, index) => (
+            <div className="swiper-slide" key={`${slide.title}-${index}`}>
+              <div className="hero-slider-items">
+                <div className="container">
+                  <div className="row g-4 align-items-center">
+                    <div className="col-lg-6">
+                      <div className="hero-content">
+                        {slide.eyebrow ? <span className="hero-sub">{slide.eyebrow}</span> : null}
+                        <h1 className="hero-title tz-split-1 hero_title">{slide.title}</h1>
+                        {slide.description ? <p>{slide.description}</p> : null}
+                        <div className="hero-btn">
+                          <Link href={slide.href || '/menu'} className="theme-btn">
+                            {slide.button || tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-6">
+                      <div className="hero-image">
+                        <img src={slide.image ?? `/assets/img/home-1/${SLIDE_IMAGES[index % SLIDE_IMAGES.length]}`} alt={slide.title} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="swiper-dot">
+        <div className="dot" />
+      </div>
+    </section>
+  );
+}
+
+function StaticHero() {
   const t = useTranslations('hero');
   const tCommon = useTranslations('common');
   const slides = t.raw('slides') as {title: string; titleAccent: string}[];
@@ -66,4 +113,12 @@ export default function Hero() {
       </div>
     </section>
   );
+}
+
+export default function Hero({slides}: {slides?: HeroSlide[] | null}) {
+  if (slides && slides.length > 0) {
+    return <LiveHero slides={slides} />;
+  }
+
+  return <StaticHero />;
 }

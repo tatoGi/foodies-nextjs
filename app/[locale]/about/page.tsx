@@ -1,4 +1,6 @@
+import type {Metadata} from 'next';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
+import CmsPageView, {cmsMetadata, resolveCmsPage} from '@/components/cms/CmsPageView';
 import Header from '@/components/home/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import Instagram from '@/components/inner/Instagram';
@@ -12,9 +14,18 @@ import BestDelivery from '@/components/home/BestDelivery';
 import DiscountBanner from '@/components/about/DiscountBanner';
 import News2 from '@/components/about/News2';
 
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+  const {locale} = await params;
+  return (await cmsMetadata(locale, 'about')) ?? {};
+}
+
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
+  const cmsPage = await resolveCmsPage(locale, 'about');
+  if (cmsPage) {
+    return <CmsPageView page={cmsPage} />;
+  }
   const t = await getTranslations('about');
 
   return (

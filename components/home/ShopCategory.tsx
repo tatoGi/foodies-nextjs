@@ -8,12 +8,13 @@ export type ShopProduct = {
   slug: string;
   price: string;
   image: string | null;
+  excerpt?: string | null;
 };
 
 export default function ShopCategory({products}: {products?: ShopProduct[] | null}) {
   const t = useTranslations('shopCategory');
   const tCommon = useTranslations('common');
-  const fallback = (t.raw('items') as {title: string}[]).map((item) => ({
+  const fallback = (t.raw('items') as {title: string}[]).map((item): ShopProduct => ({
     title: item.title,
     slug: '',
     price: t('price'),
@@ -75,7 +76,7 @@ export default function ShopCategory({products}: {products?: ShopProduct[] | nul
                   <h3 className="title">
                     {item.slug ? <Link href={`/products/${item.slug}`}>{item.title}</Link> : item.title}
                   </h3>
-                  <p>{t('itemDescription')}</p>
+                  <p>{item.excerpt || t('itemDescription')}</p>
                   <div className="pricing-item">
                     <span className="price">{item.price}</span>
                     {item.slug ? (
