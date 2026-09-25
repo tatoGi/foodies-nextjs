@@ -1,9 +1,10 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {image, text, type BlockData} from '@/lib/blockData';
 
 type SideItem = {image: string; name: string; price: string; available?: boolean};
 
-export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
+export default function BestFoodMenu({items, data}: {items?: SideItem[] | null; data?: BlockData}) {
   const t = useTranslations('menuPage.bestFoodMenu');
   const tCommon = useTranslations('common');
   const fallbackLeft = t.raw('left') as SideItem[];
@@ -12,6 +13,8 @@ export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
   const live = items && items.length > 0 ? items : null;
   const leftItems = live ? live.filter((_, index) => index % 2 === 0) : fallbackLeft;
   const rightItems = live ? live.filter((_, index) => index % 2 === 1) : fallbackRight;
+  const buttonText = text(data, 'button_text', tCommon('orderNow'));
+  const buttonLink = text(data, 'button_link', '/contact');
 
   const renderSideList = (items: SideItem[]) => (
     <ul className="best-food-menu-list-two">
@@ -45,8 +48,8 @@ export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
       </div>
       <div className="container">
         <div className="section-title text-center mb-0">
-          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{t('subTitle')}</span>
-          <h2 className="tx-title sec_title  tz-itm-title tz-itm-anim">{t('title')}</h2>
+          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{text(data, 'sub_title', t('subTitle'))}</span>
+          <h2 className="tx-title sec_title  tz-itm-title tz-itm-anim">{text(data, 'title', t('title'))}</h2>
           <div className="sec-line mt-3">
             <img src="/assets/img/home-1/sec-line.png" alt="" />
           </div>
@@ -58,17 +61,17 @@ export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
           <div className="col-xl-6 cols-item-3 wow fadeInUp" data-wow-delay=".5s">
             <div
               className="best-food-menu-wrap-two bg-cover"
-              style={{backgroundImage: "url('/assets/img/home-2/food-menu-bg.jpg')"}}
+              style={{backgroundImage: `url('${image(data, 'background_image', '/assets/img/home-2/food-menu-bg.jpg')}')`}}
             >
               <div className="content">
-                <h2 className="title">{featured.name}</h2>
-                <p className="text">{featured.tagline}</p>
+                <h2 className="title">{text(data, 'featured_name', featured.name)}</h2>
+                <p className="text">{text(data, 'featured_tagline', featured.tagline)}</p>
                 <div className="price-items">
-                  <span>{featured.priceCurrent}</span>
-                  <p>{featured.priceOriginal}</p>
+                  <span>{text(data, 'featured_price', featured.priceCurrent)}</span>
+                  <p>{text(data, 'featured_old_price', featured.priceOriginal)}</p>
                 </div>
-                <Link href="/contact" className="theme-btn small-btn">
-                  {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+                <Link href={buttonLink} className="theme-btn small-btn">
+                  {buttonText} <i className="fa-solid fa-basket-shopping" />
                 </Link>
               </div>
               <div className="rice-image">
@@ -87,9 +90,9 @@ export default function BestFoodMenu({items}: {items?: SideItem[] | null}) {
           </div>
         </div>
         <div className="bottom-text wow fadeInUp" data-wow-delay=".9s">
-          <p>{t('bottomText')}</p>
-          <Link href="/contact" className="theme-btn small-btn">
-            {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+          <p>{text(data, 'bottom_text', t('bottomText'))}</p>
+          <Link href={buttonLink} className="theme-btn small-btn">
+            {buttonText} <i className="fa-solid fa-basket-shopping" />
           </Link>
         </div>
       </div>

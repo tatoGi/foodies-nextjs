@@ -1,6 +1,7 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 import type {CmsCategory} from '@/lib/cms';
+import {text, type BlockData} from '@/lib/blockData';
 
 const PLACEHOLDER_IMAGES = [
   '/assets/img/home-1/food-menu-1.png',
@@ -9,7 +10,7 @@ const PLACEHOLDER_IMAGES = [
   '/assets/img/home-1/food-menu-4.png'
 ];
 
-export default function BakeryMenu({categories}: {categories: CmsCategory[]}) {
+export default function BakeryMenu({categories, data}: {categories: CmsCategory[]; data?: BlockData}) {
   const t = useTranslations('menuPage.liveMenu');
   const tCommon = useTranslations('common');
   let imageIndex = 0;
@@ -18,8 +19,8 @@ export default function BakeryMenu({categories}: {categories: CmsCategory[]}) {
     <section className="food-menu-section section-padding">
       <div className="container">
         <div className="section-title text-center mb-0">
-          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{t('subTitle')}</span>
-          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{t('title')}</h2>
+          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{text(data, 'sub_title', t('subTitle'))}</span>
+          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{text(data, 'title', t('title'))}</h2>
           <div className="sec-line mt-3 mb-4">
             <img src="/assets/img/home-1/sec-line.png" alt="" />
           </div>

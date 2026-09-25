@@ -1,7 +1,8 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {image, text, type BlockData} from '@/lib/blockData';
 
-export default function SpecialMenuBanner() {
+export default function SpecialMenuBanner({data}: {data?: BlockData}) {
   const t = useTranslations('menuPage.banner');
   const tCommon = useTranslations('common');
 
@@ -16,18 +17,18 @@ export default function SpecialMenuBanner() {
       <div className="container">
         <div
           className="special-menu-banner-wrapper-two bg-cover"
-          style={{backgroundImage: "url('/assets/img/home-2/offer-bg.jpg')"}}
+          style={{backgroundImage: `url('${image(data, 'background_image', '/assets/img/home-2/offer-bg.jpg')}')`}}
         >
           <div className="content">
-            <span className="sub-text">{t('subText')}</span>
-            <h2 className="split-title">{t('title')}</h2>
-            <p>{t('text')}</p>
+            <span className="sub-text">{text(data, 'sub_text', t('subText'))}</span>
+            <h2 className="split-title">{text(data, 'title', t('title'))}</h2>
+            <p>{text(data, 'text', t('text'))}</p>
           </div>
           <div className="pizza-image">
-            <img src="/assets/img/home-2/pizza-image.png" alt="" className="tilt_scale" />
+            <img src={image(data, 'image', '/assets/img/home-2/pizza-image.png')} alt="" className="tilt_scale" />
           </div>
-          <Link href="/contact" className="theme-btn small-btn">
-            {tCommon('orderNow')} <i className="fa-solid fa-basket-shopping" />
+          <Link href={text(data, 'button_link', '/contact')} className="theme-btn small-btn">
+            {text(data, 'button_text', tCommon('orderNow'))} <i className="fa-solid fa-basket-shopping" />
           </Link>
           <div className="vec-shape float-bob-x">
             <img src="/assets/img/home-2/vec.png" alt="" />
