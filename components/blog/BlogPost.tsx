@@ -1,30 +1,11 @@
 import {useTranslations} from 'next-intl';
+import type {BlogArticle, BlogCard} from '@/lib/blog';
 import BlogSidebar from './BlogSidebar';
 
-type Comment = {name: string; date: string; text: string};
-
-type Post = {
-  slug: string;
-  detailImage: string;
-  secondaryImage: string;
-  date: string;
-  category: string;
-  title: string;
-  body: string[];
-  pullQuote: string;
-  closingParagraph: string;
-  tags: string[];
-  comments: Comment[];
-};
-
-export default function BlogPost({slug}: {slug: string}) {
+export default function BlogPost({post, recent}: {post: BlogArticle; recent: BlogCard[]}) {
   const tBlog = useTranslations('blogPage');
-  const posts = tBlog.raw('posts') as Post[];
-  const post = posts.find((p) => p.slug === slug);
-
-  if (!post) {
-    return null;
-  }
+  // CMS posts have no comment system yet, so comments and the comment form show only for the static demo posts.
+  const comments = post.comments;
 
   return (
     <section className="news-standard-section section-padding">
@@ -56,21 +37,25 @@ export default function BlogPost({slug}: {slug: string}) {
                     {post.body.map((paragraph, index) => (
                       <p className="mb-3" key={index}>{paragraph}</p>
                     ))}
-                    <div className="hilight-text mt-4 mb-4">
-                      <p>{post.pullQuote}</p>
-                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 20.3698H7.71428L2.57139 30.5546H10.2857L15.4286 20.3698V5.09247H0V20.3698Z" fill="#FFC222" />
-                        <path d="M20.5703 5.09247V20.3698H28.2846L23.1417 30.5546H30.856L35.9989 20.3698V5.09247H20.5703Z" fill="#FFC222" />
-                      </svg>
-                    </div>
-                    <div className="row g-4">
-                      <div className="col-lg-12">
-                        <div className="details-image">
-                          <img src={post.secondaryImage} alt={post.title} />
+                    {post.pullQuote ? (
+                      <div className="hilight-text mt-4 mb-4">
+                        <p>{post.pullQuote}</p>
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 20.3698H7.71428L2.57139 30.5546H10.2857L15.4286 20.3698V5.09247H0V20.3698Z" fill="#FFC222" />
+                          <path d="M20.5703 5.09247V20.3698H28.2846L23.1417 30.5546H30.856L35.9989 20.3698V5.09247H20.5703Z" fill="#FFC222" />
+                        </svg>
+                      </div>
+                    ) : null}
+                    {post.secondaryImage ? (
+                      <div className="row g-4">
+                        <div className="col-lg-12">
+                          <div className="details-image">
+                            <img src={post.secondaryImage} alt={post.title} />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <p className="pt-5">{post.closingParagraph}</p>
+                    ) : null}
+                    {post.closingParagraph ? <p className="pt-5">{post.closingParagraph}</p> : null}
                   </div>
                 </div>
                 <div className="row tag-share-wrap mt-4 mb-5">
@@ -90,12 +75,14 @@ export default function BlogPost({slug}: {slug: string}) {
                     </div>
                   </div>
                 </div>
+                {comments ? (
+                <>
                 <div className="comments-area">
                   <div className="comments-heading">
-                    <h3>{tBlog('commentsHeading', {count: post.comments.length})}</h3>
+                    <h3>{tBlog('commentsHeading', {count: comments.length})}</h3>
                   </div>
-                  {post.comments.map((comment, index) => {
-                    const isLast = index === post.comments.length - 1;
+                  {comments.map((comment, index) => {
+                    const isLast = index === comments.length - 1;
                     return (
                       <div
                         className={
@@ -154,9 +141,11 @@ export default function BlogPost({slug}: {slug: string}) {
                     </div>
                   </form>
                 </div>
+                </>
+                ) : null}
               </div>
             </div>
-            <BlogSidebar />
+            <BlogSidebar recent={recent} />
           </div>
         </div>
       </div>

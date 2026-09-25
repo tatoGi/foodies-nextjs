@@ -1,15 +1,14 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import type {BlogCard} from '@/lib/blog';
 
 type Category = {name: string; count: string};
 
-type RecentPost = {slug: string; title: string; date: string; recentThumb: string};
-
-export default function BlogSidebar() {
+export default function BlogSidebar({recent}: {recent: BlogCard[]}) {
   const t = useTranslations('blogPage');
   const categories = t.raw('categories') as Category[];
   const tags = t.raw('tags') as string[];
-  const posts = t.raw('posts') as RecentPost[];
+  const posts = recent.slice(0, 3);
 
   return (
     <div className="col-lg-4 col-12">
@@ -46,7 +45,7 @@ export default function BlogSidebar() {
             {posts.map((post) => (
               <div className="recent-items" key={post.slug}>
                 <div className="recent-thumb">
-                  <img src={post.recentThumb} alt={post.title} />
+                  <img src={post.thumb} alt={post.title} />
                 </div>
                 <div className="recent-content">
                   <h4>

@@ -1,20 +1,13 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import type {BlogCard} from '@/lib/blog';
 import BlogSidebar from './BlogSidebar';
 
-type Post = {
-  slug: string;
-  image: string;
-  date: string;
-  commentsLabel: string;
-  title: string;
-  excerpt: string;
-};
+const PAGE_SIZE = 10;
 
-export default function BlogList() {
+export default function BlogList({posts}: {posts: BlogCard[]}) {
   const tCommon = useTranslations('common');
   const tBlog = useTranslations('blogPage');
-  const posts = tBlog.raw('posts') as Post[];
 
   return (
     <section className="news-standard-section section-padding">
@@ -37,10 +30,12 @@ export default function BlogList() {
                           <i className="fa-solid fa-calendar-days" />
                           {post.date}
                         </li>
-                        <li>
-                          <i className="fa-solid fa-comments" />
-                          {post.commentsLabel}
-                        </li>
+                        {post.commentsLabel ? (
+                          <li>
+                            <i className="fa-solid fa-comments" />
+                            {post.commentsLabel}
+                          </li>
+                        ) : null}
                       </ul>
                       <h2>
                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
@@ -52,17 +47,18 @@ export default function BlogList() {
                     </div>
                   </div>
                 ))}
-                <div className="page-nav-wrap text-center">
-                  <ul>
-                    <li><a className="page-numbers" href="#">01</a></li>
-                    <li><a className="page-numbers" href="#">02</a></li>
-                    <li><a className="page-numbers" href="#">03</a></li>
-                    <li className="active"><a className="page-numbers" href="#">{tBlog('paginationNext')}</a></li>
-                  </ul>
-                </div>
+                {posts.length > PAGE_SIZE ? (
+                  <div className="page-nav-wrap text-center">
+                    <ul>
+                      <li><a className="page-numbers" href="#">01</a></li>
+                      <li><a className="page-numbers" href="#">02</a></li>
+                      <li className="active"><a className="page-numbers" href="#">{tBlog('paginationNext')}</a></li>
+                    </ul>
+                  </div>
+                ) : null}
               </div>
             </div>
-            <BlogSidebar />
+            <BlogSidebar recent={posts} />
           </div>
         </div>
       </div>

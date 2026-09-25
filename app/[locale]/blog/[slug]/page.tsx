@@ -1,49 +1,41 @@
+import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
-import Header from '@/components/home/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import Instagram from '@/components/inner/Instagram';
-import Cta from '@/components/inner/Cta';
-import InnerFooter from '@/components/inner/InnerFooter';
+import SitePageLayout from '@/components/cms/SitePageLayout';
 import BlogPost from '@/components/blog/BlogPost';
+import {getBlogArticle, getBlogCards, staticBlogArticle, staticBlogCards, type StaticBlogPost} from '@/lib/blog';
 
-const SLUGS = ['khinkali-history', 'spring-menu', 'visit-this-weekend'];
+type Params = {params: Promise<{locale: string; slug: string}>};
 
-export async function generateStaticParams() {
-  return SLUGS.map((slug) => ({slug}));
+// A CMS post first; today's static post with that slug when the CMS has none.
+async function loadArticle(locale: string, slug: string) {
+  const cms = await getBlogArticle(locale, slug);
+  if (cms) {
+    return cms;
+  }
+  const t = await getTranslations({locale, namespace: 'blogPage'});
+  return staticBlogArticle(t.raw('posts') as StaticBlogPost[], slug);
 }
 
-export default async function BlogDetailsPage({
-  params
-}: {
-  params: Promise<{locale: string; slug: string}>;
-}) {
+export async function generateMetadata({params}: Params): Promise<Metadata> {
+  const {locale, slug} = await params;
+  const post = await loadArticle(locale, slug);
+  return post ? {title: post.title, description: post.excerpt || undefined} : {};
+}
+
+export default async function BlogDetailsPage({params}: Params) {
   const {locale, slug} = await params;
   setRequestLocale(locale);
-
-  if (!SLUGS.includes(slug)) {
-    notFound();
-  }
-
-  const t = await getTranslations('blogPage');
-  const post = (t.raw('posts') as {slug: string; title: string}[]).find((p) => p.slug === slug);
-
+  const post = await loadArticle(locale, slug);
   if (!post) {
     notFound();
   }
+  const t = await getTranslations('blogPage');
+  const recent = (await getBlogCards(locale, 3)) ?? staticBlogCards(t.raw('posts') as StaticBlogPost[]);
 
   return (
-    <>
-      <Header />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <Breadcrumb title={post.title} currentLabel={post.title} />
-          <BlogPost slug={slug} />
-          <Instagram />
-          <Cta />
-          <InnerFooter />
-        </div>
-      </div>
-    </>
+    <SitePageLayout title={post.title}>
+      <BlogPost post={post} recent={recent} />
+    </SitePageLayout>
   );
 }

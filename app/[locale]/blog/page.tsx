@@ -1,28 +1,17 @@
 import {getTranslations, setRequestLocale} from 'next-intl/server';
-import Header from '@/components/home/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import Instagram from '@/components/inner/Instagram';
-import Cta from '@/components/inner/Cta';
-import InnerFooter from '@/components/inner/InnerFooter';
+import SitePageLayout from '@/components/cms/SitePageLayout';
 import BlogList from '@/components/blog/BlogList';
+import {getBlogCards, staticBlogCards, type StaticBlogPost} from '@/lib/blog';
 
 export default async function BlogPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
   const t = await getTranslations('blogPage');
+  const posts = (await getBlogCards(locale)) ?? staticBlogCards(t.raw('posts') as StaticBlogPost[]);
 
   return (
-    <>
-      <Header />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />
-          <BlogList />
-          <Instagram />
-          <Cta />
-          <InnerFooter />
-        </div>
-      </div>
-    </>
+    <SitePageLayout title={t('pageTitle')}>
+      <BlogList posts={posts} />
+    </SitePageLayout>
   );
 }

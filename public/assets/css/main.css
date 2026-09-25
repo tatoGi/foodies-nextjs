@@ -21107,6 +21107,41 @@ span {
   object-fit: cover;
   border-radius: 50%;
 }
+/* The site renders tags as <span> (no tag pages yet); give them the template's <a> tag style. */
+.news-details-area .blog-post-details .tag-share-wrap .tagcloud span {
+  display: inline-block;
+  padding: 12px 26px;
+  line-height: 1;
+  background: var(--white);
+  margin-right: 8px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-radius: 4px;
+}
+.main-sideber .single-sideber-widget .tagcloud span {
+  display: inline-block;
+  padding: 12px 18px;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 14px;
+  background: #F4F1EA;
+  font-family: "Signika", sans-serif;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  border-radius: 4px;
+  color: var(--header);
+}
+/* Sidebar "recent posts" thumbnails: CMS feature images are large; keep the template's 103x84 size. */
+.main-sideber .single-sideber-widget .recent-post-area .recent-items .recent-thumb {
+  flex-shrink: 0;
+}
+.main-sideber .single-sideber-widget .recent-post-area .recent-items .recent-thumb img {
+  width: 103px;
+  height: 84px;
+  object-fit: cover;
+}
 /* A CMS hero image of any shape must not stretch the slider. */
 @media (min-width: 992px) {
   .hero-1 .hero-image img {
