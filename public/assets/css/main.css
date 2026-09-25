@@ -21107,14 +21107,17 @@ span {
   object-fit: cover;
   border-radius: 50%;
 }
-/* Dish strip under inner pages: POS photos come in any size; keep the template's 210x220 tiles. */
+/* Dish strip under inner pages: POS photos come in any size; small 140x145 tiles keep the strip compact. */
+.instagram-section.dish-strip .marquee .marquee-group {
+  gap: 16px;
+}
 .instagram-section.dish-strip .instagram-image .hover-img {
-  width: 210px;
-  height: 220px;
+  width: 140px;
+  height: 145px;
   object-fit: cover;
 }
 .instagram-section.dish-strip .instagram-image .icon i {
-  font-size: 28px;
+  font-size: 20px;
   color: var(--white);
 }
 /* The site renders tags as <span> (no tag pages yet); give them the template's <a> tag style. */
