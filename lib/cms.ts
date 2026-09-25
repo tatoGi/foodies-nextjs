@@ -440,6 +440,42 @@ function textField(data: Record<string, unknown>, key: string): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+export type NavItem = {href: string; label: string; target: '_self' | '_blank'; children: NavItem[]};
+
+type NavResponseItem = {label?: string; url?: string; target?: string; children?: NavResponseItem[]};
+
+function navItems(rows: NavResponseItem[] | undefined): NavItem[] {
+  return (rows ?? [])
+    .map((row) => ({
+      href: safeHref((row.url ?? '').trim(), ''),
+      label: (row.label ?? '').trim(),
+      target: row.target === '_blank' ? ('_blank' as const) : ('_self' as const),
+      children: navItems(row.children)
+    }))
+    .filter((item) => item.href !== '' && item.label !== '');
+}
+
+/** The header menu managed in the CMS, or null when the CMS is unreachable or the menu is empty. */
+export async function getNavigation(locale: string): Promise<NavItem[] | null> {
+  const base = process.env.CMS_API_URL;
+  if (!base) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${base.replace(/\/$/, '')}/api/web/navigation?locale=${locale}`, {
+      next: {tags: ['navigation'], revalidate: 60}
+    });
+    if (!response.ok) {
+      return null;
+    }
+    const items = navItems(((await response.json()) as {headerMenuItems?: NavResponseItem[]}).headerMenuItems);
+    return items.length > 0 ? items : null;
+  } catch {
+    return null;
+  }
+}
+
 /** CMS links for href: only site paths, anchors, http(s), mailto and tel — never javascript: or data:. */
 function safeHref(value: string, fallback: string): string {
   return /^(\/(?!\/)|#|https?:\/\/|mailto:|tel:)/i.test(value) ? value : fallback;

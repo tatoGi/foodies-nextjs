@@ -4,7 +4,7 @@ import {NextResponse} from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-const FIXED_TAGS = new Set(['menu', 'status', 'settings', 'pages', 'posts']);
+const FIXED_TAGS = new Set(['menu', 'status', 'settings', 'pages', 'posts', 'navigation']);
 
 function authorized(header: string | null, secret: string): boolean {
   if (!header) {
