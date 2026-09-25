@@ -4,7 +4,7 @@ import {NextResponse} from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-const FIXED_TAGS = new Set(['menu', 'status', 'settings', 'pages']);
+const FIXED_TAGS = new Set(['menu', 'status', 'settings', 'pages', 'posts']);
 
 function authorized(header: string | null, secret: string): boolean {
   if (!header) {
@@ -24,7 +24,7 @@ function allowedTag(tag: string): boolean {
     return true;
   }
 
-  return (tag.startsWith('product:') || tag.startsWith('page:')) && tag.length > tag.indexOf(':') + 1 && tag.length <= 220 && !/\s/.test(tag);
+  return (tag.startsWith('product:') || tag.startsWith('page:') || tag.startsWith('post:')) && tag.length > tag.indexOf(':') + 1 && tag.length <= 220 && !/\s/.test(tag);
 }
 
 export async function POST(request: Request) {
