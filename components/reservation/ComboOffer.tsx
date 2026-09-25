@@ -1,5 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {image, text, type BlockData} from '@/lib/blockData';
+import LogoMark from '@/components/shared/LogoMark';
 
 export default function ComboOffer({data}: {data?: BlockData}) {
   const t = useTranslations('reservationPage.comboOffer');
@@ -56,7 +57,7 @@ export default function ComboOffer({data}: {data?: BlockData}) {
                 <img src="/assets/img/home-2/shape17.png" alt="" />
               </div>
               <div className="logo">
-                <img src="/assets/img/home-2/foodie-logo.png" alt="" />
+                <LogoMark size="md" />
               </div>
               <h2 className="title">{text(data, 'form_title', t('formTitle'))}</h2>
               <p className="text">{text(data, 'form_description', t('formDescription'))}</p>
