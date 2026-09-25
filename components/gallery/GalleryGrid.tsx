@@ -1,11 +1,14 @@
 import {useTranslations} from 'next-intl';
+import {images, type BlockData} from '@/lib/blockData';
 
-export default function GalleryGrid() {
+export default function GalleryGrid({data}: {data?: BlockData}) {
   const t = useTranslations('galleryPage');
+  // The layout has 14 slots; a slot without a CMS photo keeps today's photo.
+  const photos = images(data, 'images', []);
 
   const renderImage = (n: number, className = '') => (
     <div className={`gallery-iamge5${className ? ` ${className}` : ''}`}>
-      <img src={`/assets/img/home-4/g-${n}.jpg`} alt={t('imageAlt', {n})} />
+      <img src={photos[n - 1] ?? `/assets/img/home-4/g-${n}.jpg`} alt={t('imageAlt', {n})} />
     </div>
   );
 

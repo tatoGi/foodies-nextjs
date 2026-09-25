@@ -1,15 +1,19 @@
 import {useTranslations} from 'next-intl';
+import {rows, text, type BlockData} from '@/lib/blockData';
 
-export default function FaqAccordion() {
+export default function FaqAccordion({data}: {data?: BlockData}) {
   const t = useTranslations('faq');
-  const items = t.raw('items') as {question: string; answer: string}[];
+  const cmsItems = rows(data, 'items')
+    .map((row) => ({question: text(row, 'question', ''), answer: text(row, 'answer', '')}))
+    .filter((item) => item.question !== '');
+  const items = cmsItems.length > 0 ? cmsItems : (t.raw('items') as {question: string; answer: string}[]);
 
   return (
     <section className="faq-section fix section-padding">
       <div className="container">
         <div className="section-title text-center mb-0">
-          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{t('subTitle')}</span>
-          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{t('title')}</h2>
+          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{text(data, 'sub_title', t('subTitle'))}</span>
+          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{text(data, 'title', t('title'))}</h2>
           <div className="sec-line mt-3">
             <img src="/assets/img/home-1/sec-line.png" alt="img" />
           </div>

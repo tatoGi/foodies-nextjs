@@ -1,6 +1,7 @@
 import {useTranslations} from 'next-intl';
+import {image, rows, text, type BlockData} from '@/lib/blockData';
 
-export default function ContactLocations() {
+export default function ContactLocations({data}: {data?: BlockData}) {
   const t = useTranslations('contactPage');
   const locations = t.raw('locations') as {
     icon: string;
@@ -12,14 +13,25 @@ export default function ContactLocations() {
     callUsLabel: string;
     phone: string;
   }[];
+  const cmsLocations = rows(data, 'locations').map((row, i) => ({
+    icon: image(row, 'icon', locations[i]?.icon ?? '/assets/img/inner/contact-flag-1.png'),
+    title: text(row, 'title', ''),
+    findUsLabel: text(row, 'find_us_label', locations[0]?.findUsLabel ?? ''),
+    address: text(row, 'address', ''),
+    mailUsLabel: text(row, 'mail_us_label', locations[0]?.mailUsLabel ?? ''),
+    email: text(row, 'email', ''),
+    callUsLabel: text(row, 'call_us_label', locations[0]?.callUsLabel ?? ''),
+    phone: text(row, 'phone', '')
+  }));
+  const shown = cmsLocations.length > 0 ? cmsLocations : locations;
 
   return (
     <section className="contact-flag-section-in section-padding fix">
       <div className="container">
         <div className="row g-4">
-          {locations.map((location, index) => (
+          {shown.map((location, index) => (
             <div
-              key={location.title}
+              key={`${location.title}-${index}`}
               className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
               data-wow-delay={`${0.3 + index * 0.2}s`}
             >
