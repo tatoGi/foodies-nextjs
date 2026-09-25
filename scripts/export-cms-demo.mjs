@@ -255,6 +255,46 @@ const pages = {
   }
 };
 
+const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+
+/** '3 March, 2026' → '2026-03-03' (the en date of a static post). */
+function isoDate(value) {
+  const match = /^(\d{1,2})\s+([A-Za-z]+),?\s+(\d{4})$/.exec(value.trim());
+  const month = match ? MONTHS.indexOf(match[2].toLowerCase()) + 1 : 0;
+  if (!match || month === 0) {
+    throw new Error(`Unrecognised post date: ${value}`);
+  }
+  return `${match[3]}-${String(month).padStart(2, '0')}-${match[1].padStart(2, '0')}`;
+}
+
+const kaPosts = pick(messages.ka, 'blogPage.posts');
+const enPosts = pick(messages.en, 'blogPage.posts');
+const blogPosts = kaPosts.map((ka, i) => {
+  const en = enPosts[i];
+  const detailImage = assetUrl('blog', ka.detailImage);
+  const secondaryImage = assetUrl('blog', ka.secondaryImage);
+  const article = (p) => ({
+    category: p.category,
+    detail_image: detailImage,
+    paragraphs: p.body.map((text) => ({text})),
+    pull_quote: p.pullQuote,
+    secondary_image: secondaryImage,
+    closing_paragraph: p.closingParagraph,
+    tags: p.tags.map((text) => ({text}))
+  });
+
+  return {
+    slug: {ka: ka.slug, en: `${en.slug}-en`},
+    published_at: isoDate(en.date),
+    feature_image: assetUrl('blog', ka.image),
+    translations: {
+      ka: {title: ka.title, excerpt: ka.excerpt, category: ka.category, article: article(ka)},
+      en: {title: en.title, excerpt: en.excerpt, category: en.category, article: article(en)}
+    }
+  };
+});
+
 mkdirSync(join(seeders, 'data'), {recursive: true});
 writeFileSync(join(seeders, 'data', 'site-pages.json'), `${JSON.stringify(pages, null, 2)}\n`);
-console.log(`Exported ${Object.keys(pages).length} page(s) to foodies-cms/database/seeders/data/site-pages.json`);
+writeFileSync(join(seeders, 'data', 'blog-posts.json'), `${JSON.stringify(blogPosts, null, 2)}\n`);
+console.log(`Exported ${Object.keys(pages).length} page(s) and ${blogPosts.length} blog post(s) to foodies-cms/database/seeders/data/`);
