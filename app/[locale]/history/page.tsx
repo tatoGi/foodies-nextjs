@@ -1,41 +1,43 @@
 import type {Metadata} from 'next';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import CmsPageView, {cmsMetadata, resolveCmsPage} from '@/components/cms/CmsPageView';
-import Header from '@/components/home/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import Instagram from '@/components/inner/Instagram';
-import Cta from '@/components/inner/Cta';
-import InnerFooter from '@/components/inner/InnerFooter';
+import SitePageLayout, {renderBlocks} from '@/components/cms/SitePageLayout';
 import HistoryTop from '@/components/history/HistoryTop';
 import HistoryTimeline from '@/components/history/HistoryTimeline';
+import type {CmsPageBlock} from '@/lib/cms';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
   const {locale} = await params;
   return (await cmsMetadata(locale, 'history')) ?? {};
 }
 
+function section(block: CmsPageBlock) {
+  switch (block.type) {
+    case 'history_top':
+      return <HistoryTop data={block.data} />;
+    case 'history_timeline':
+      return <HistoryTimeline data={block.data} />;
+    default:
+      return null;
+  }
+}
+
 export default async function HistoryPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
   const cmsPage = await resolveCmsPage(locale, 'history');
+  if (cmsPage?.template === 'history') {
+    return <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
+  }
   if (cmsPage) {
     return <CmsPageView page={cmsPage} />;
   }
   const t = await getTranslations('history');
 
   return (
-    <>
-      <Header />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <Breadcrumb title={t('pageTitle')} currentLabel={t('pageTitle')} />
-          <HistoryTop />
-          <HistoryTimeline />
-          <Instagram />
-          <Cta />
-          <InnerFooter />
-        </div>
-      </div>
-    </>
+    <SitePageLayout title={t('pageTitle')}>
+      <HistoryTop />
+      <HistoryTimeline />
+    </SitePageLayout>
   );
 }
