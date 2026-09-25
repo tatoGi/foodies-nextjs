@@ -30,6 +30,11 @@ function asset(page, file) {
   return `demo/${page}/${name}`;
 }
 
+/** Same as asset() for a public URL such as '/assets/img/inner/contact-flag-1.png'. */
+function assetUrl(page, url) {
+  return asset(page, url.replace(/^\/assets\/img\//, ''));
+}
+
 function block(type, build) {
   return {type, data: {ka: build(messages.ka), en: build(messages.en)}};
 }
@@ -48,6 +53,10 @@ const img = {
   delivery: asset('about', 'home-1/delivery-image.png'),
   discountBg: asset('about', 'home-4/banner-bg.jpg')
 };
+
+const MAP_EMBED_URL =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.7619084840835!2d144.9618311901502!3d-37.81450084255415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4758afc1d%3A0x3119cc820fdfc62e!2sEnvato!5e0!3m2!1sen!2sbd!4v1641984054261!5m2!1sen!2sbd';
+const galleryImages = Array.from({length: 14}, (_, i) => asset('gallery', `home-4/g-${i + 1}.jpg`));
 
 const pages = {
   about: {
@@ -128,6 +137,119 @@ const pages = {
       block('about_news', (m) => ({
         sub_title: pick(m, 'about.news.subTitle'),
         title: pick(m, 'about.news.title')
+      }))
+    ]
+  },
+  contact: {
+    template: 'contact',
+    slugs: {ka: 'contact', en: 'contact-us'},
+    titles: {ka: pick(messages.ka, 'contactPage.pageTitle'), en: pick(messages.en, 'contactPage.pageTitle')},
+    blocks: [
+      block('contact_locations', (m) => ({
+        locations: pick(m, 'contactPage.locations').map((l) => ({
+          icon: assetUrl('contact', l.icon),
+          title: l.title,
+          find_us_label: l.findUsLabel,
+          address: l.address,
+          mail_us_label: l.mailUsLabel,
+          email: l.email,
+          call_us_label: l.callUsLabel,
+          phone: l.phone
+        }))
+      })),
+      block('contact_map', (m) => ({
+        map_embed_url: MAP_EMBED_URL,
+        sub_title: pick(m, 'contactPage.map.subTitle'),
+        title: pick(m, 'contactPage.map.title'),
+        description: pick(m, 'contactPage.map.description')
+      }))
+    ]
+  },
+  faq: {
+    template: 'faq',
+    slugs: {ka: 'faq', en: 'faqs'},
+    titles: {ka: pick(messages.ka, 'faq.pageTitle'), en: pick(messages.en, 'faq.pageTitle')},
+    blocks: [
+      block('faq_accordion', (m) => ({
+        sub_title: pick(m, 'faq.subTitle'),
+        title: pick(m, 'faq.title'),
+        items: pick(m, 'faq.items').map((item) => ({question: item.question, answer: item.answer}))
+      }))
+    ]
+  },
+  gallery: {
+    template: 'gallery',
+    slugs: {ka: 'gallery', en: 'our-gallery'},
+    titles: {ka: pick(messages.ka, 'galleryPage.pageTitle'), en: pick(messages.en, 'galleryPage.pageTitle')},
+    blocks: [block('gallery_grid', () => ({images: galleryImages}))]
+  },
+  history: {
+    template: 'history',
+    slugs: {ka: 'history', en: 'our-history'},
+    titles: {ka: pick(messages.ka, 'history.pageTitle'), en: pick(messages.en, 'history.pageTitle')},
+    blocks: [
+      block('history_top', (m) => ({
+        sub_title: pick(m, 'history.top.subTitle'),
+        title: pick(m, 'history.top.title'),
+        description: pick(m, 'history.top.description'),
+        image: asset('history', 'inner/history-client-01.png'),
+        signature_image: asset('history', 'inner/history-client-sing.png')
+      })),
+      block('history_timeline', (m) => ({
+        entries: pick(m, 'history.timeline.entries').map((e) => ({
+          year: e.year,
+          title: e.title,
+          text: e.text,
+          image: assetUrl('history', e.image)
+        }))
+      }))
+    ]
+  },
+  reservation: {
+    template: 'reservation',
+    slugs: {ka: 'reservation', en: 'book-a-table'},
+    titles: {ka: pick(messages.ka, 'reservationPage.pageTitle'), en: pick(messages.en, 'reservationPage.pageTitle')},
+    blocks: [
+      block('reservation_feature', (m) => ({
+        items: pick(m, 'reservationPage.feature.items').map((item) => ({
+          icon: assetUrl('reservation', item.icon),
+          title: item.title,
+          description: item.description
+        })),
+        button_text: pick(m, 'common.orderNow'),
+        button_link: '/contact'
+      })),
+      block('reservation_combo_offer', (m) => ({
+        sub_title: pick(m, 'reservationPage.comboOffer.subTitle'),
+        title: pick(m, 'reservationPage.comboOffer.title'),
+        description: pick(m, 'reservationPage.comboOffer.description'),
+        support_label: pick(m, 'reservationPage.comboOffer.supportLabel'),
+        support_phone: pick(m, 'reservationPage.comboOffer.supportPhone'),
+        background_image: asset('reservation', 'home-2/comboo-offer-bg.jpg'),
+        form_title: pick(m, 'reservationPage.comboOffer.formTitle'),
+        form_description: pick(m, 'reservationPage.comboOffer.formDescription')
+      })),
+      block('brand_strip', () => ({logos: [1, 2, 3, 4, 5, 6].map((n) => asset('reservation', `home-3/b-${n}.png`))}))
+    ]
+  },
+  menu: {
+    template: 'menu',
+    slugs: {ka: 'menu', en: 'food-menu'},
+    titles: {ka: pick(messages.ka, 'menuPage.pageTitle'), en: pick(messages.en, 'menuPage.pageTitle')},
+    block_types: ['menu_full', 'menu_special_banner', 'menu_best_selling', 'menu_best_food'],
+    blocks: [
+      block('menu_full', (m) => ({
+        sub_title: pick(m, 'menuPage.liveMenu.subTitle'),
+        title: pick(m, 'menuPage.liveMenu.title')
+      })),
+      block('menu_special_banner', (m) => ({
+        sub_text: pick(m, 'menuPage.banner.subText'),
+        title: pick(m, 'menuPage.banner.title'),
+        text: pick(m, 'menuPage.banner.text'),
+        image: asset('menu', 'home-2/pizza-image.png'),
+        background_image: asset('menu', 'home-2/offer-bg.jpg'),
+        button_text: pick(m, 'common.orderNow'),
+        button_link: '/contact'
       }))
     ]
   }
