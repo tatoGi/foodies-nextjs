@@ -26,6 +26,7 @@ export default async function HomePage({
   const {locale} = await params;
   setRequestLocale(locale);
   const menu = await getMenu(locale);
+  const bestDishes = await getMenu(locale, {featured: true});
   const home = await getCmsPage(locale, 'home');
   const slides = home && isCmsPage(home) ? heroSlidesFromPage(home) : [];
   const products = (menu ?? []).flatMap((category) =>
@@ -46,7 +47,7 @@ export default async function HomePage({
         <div id="smooth-content">
           <Hero slides={slides} />
           <ShopCategory products={products} />
-          <FoodMenu categories={menu ?? []} />
+          <FoodMenu categories={bestDishes} />
           <Contact />
           <News />
           <Footer />

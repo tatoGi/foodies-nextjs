@@ -177,11 +177,12 @@ function StaticFoodMenu() {
   );
 }
 
-export default function FoodMenu({categories = []}: {categories?: CmsCategory[]}) {
-  const live = categories.filter((category) => category.products.length > 0);
-  if (live.length > 0) {
-    return <LiveFoodMenu categories={live} />;
+// null = CMS unreachable (show the static menu); [] = nothing marked featured in the CMS (hide the section).
+export default function FoodMenu({categories}: {categories: CmsCategory[] | null}) {
+  if (categories === null) {
+    return <StaticFoodMenu />;
   }
+  const live = categories.filter((category) => category.products.length > 0);
 
-  return <StaticFoodMenu />;
+  return live.length > 0 ? <LiveFoodMenu categories={live} /> : null;
 }

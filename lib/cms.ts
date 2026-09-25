@@ -64,14 +64,15 @@ type MenuResponse = {
   }[];
 };
 
-export async function getMenu(locale: string): Promise<CmsCategory[] | null> {
+export async function getMenu(locale: string, {featured = false}: {featured?: boolean} = {}): Promise<CmsCategory[] | null> {
   const base = process.env.CMS_API_URL;
   if (!base) {
     return null;
   }
 
   try {
-    const response = await fetch(`${base.replace(/\/$/, '')}/api/web/menu?locale=${locale}`, {
+    const query = `locale=${locale}${featured ? '&featured=1' : ''}`;
+    const response = await fetch(`${base.replace(/\/$/, '')}/api/web/menu?${query}`, {
       next: {tags: ['menu'], revalidate: 60}
     });
     if (!response.ok) {
