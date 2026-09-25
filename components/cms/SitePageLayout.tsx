@@ -6,14 +6,22 @@ import Cta from '@/components/inner/Cta';
 import InnerFooter from '@/components/inner/InnerFooter';
 import type {CmsPageBlock} from '@/lib/cms';
 
-/** The chrome every designed inner page shares; sections go in between. */
-export default function SitePageLayout({title, children}: {title: string; children: ReactNode}) {
+/** The chrome every designed inner page shares; sections go in between. `bannerImage` = the page's own top banner. */
+export default function SitePageLayout({
+  title,
+  bannerImage,
+  children
+}: {
+  title: string;
+  bannerImage?: string | null;
+  children: ReactNode;
+}) {
   return (
     <>
       <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Breadcrumb title={title} currentLabel={title} />
+          <Breadcrumb title={title} currentLabel={title} image={bannerImage} />
           {children}
           <Instagram />
           <Cta />

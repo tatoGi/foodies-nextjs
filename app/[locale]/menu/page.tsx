@@ -34,7 +34,7 @@ export default async function MenuPage({params}: {params: Promise<{locale: strin
     );
 
     return (
-      <SitePageLayout title={cmsPage.title}>
+      <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>
         {renderBlocks(cmsPage.blocks, (block: CmsPageBlock) => {
           switch (block.type) {
             case 'menu_full':

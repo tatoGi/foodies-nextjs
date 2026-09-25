@@ -34,7 +34,7 @@ export default async function BlogDetailsPage({params}: Params) {
   const recent = (await getBlogCards(locale, 3)) ?? staticBlogCards(t.raw('posts') as StaticBlogPost[]);
 
   return (
-    <SitePageLayout title={post.title}>
+    <SitePageLayout title={post.title} bannerImage={post.detailImage}>
       <BlogPost post={post} recent={recent} />
     </SitePageLayout>
   );

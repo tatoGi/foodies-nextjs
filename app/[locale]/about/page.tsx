@@ -53,7 +53,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
       : null;
 
     return (
-      <SitePageLayout title={cmsPage.title}>
+      <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>
         {renderBlocks(cmsPage.blocks, (block) => section(block, menu, news))}
       </SitePageLayout>
     );

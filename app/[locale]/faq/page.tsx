@@ -19,7 +19,7 @@ export default async function FaqPage({params}: {params: Promise<{locale: string
   setRequestLocale(locale);
   const cmsPage = await resolveCmsPage(locale, 'faq');
   if (cmsPage?.template === 'faq') {
-    return <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
+    return <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
   }
   if (cmsPage) {
     return <CmsPageView page={cmsPage} />;

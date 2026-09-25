@@ -2,12 +2,20 @@ import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
 import {getSiteChrome} from '@/lib/cms';
 
-export default async function Breadcrumb({title, currentLabel}: {title: string; currentLabel: string}) {
+/** Page banner. `image` is the page's own banner from the CMS; without it the site-wide banner from CMS settings shows. */
+export default async function Breadcrumb({
+  title,
+  currentLabel,
+  image: pageImage
+}: {
+  title: string;
+  currentLabel: string;
+  image?: string | null;
+}) {
   const t = await getTranslations('breadcrumb');
   const chrome = await getSiteChrome();
-  const image = chrome.breadcrumbImage
-    ? `linear-gradient(rgba(28, 23, 20, 0.55), rgba(28, 23, 20, 0.55)), url("${chrome.breadcrumbImage}")`
-    : undefined;
+  const banner = pageImage || chrome.breadcrumbImage;
+  const image = banner ? `linear-gradient(rgba(28, 23, 20, 0.55), rgba(28, 23, 20, 0.55)), url("${banner}")` : undefined;
 
   return (
     <div

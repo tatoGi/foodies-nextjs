@@ -19,7 +19,7 @@ export default async function GalleryPage({params}: {params: Promise<{locale: st
   setRequestLocale(locale);
   const cmsPage = await resolveCmsPage(locale, 'gallery');
   if (cmsPage?.template === 'gallery') {
-    return <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
+    return <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
   }
   if (cmsPage) {
     return <CmsPageView page={cmsPage} />;

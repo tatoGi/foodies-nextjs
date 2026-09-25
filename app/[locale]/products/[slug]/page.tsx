@@ -79,7 +79,7 @@ export default async function ProductPage({
       <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Breadcrumb title={product.title} currentLabel={product.title} />
+          <Breadcrumb title={product.title} currentLabel={product.title} image={product.image} />
           <section className="section-padding">
             <div className="container">
               <div className="row g-4 align-items-center">

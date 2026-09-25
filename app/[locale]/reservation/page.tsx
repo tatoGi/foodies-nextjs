@@ -30,7 +30,7 @@ export default async function ReservationPage({params}: {params: Promise<{locale
   setRequestLocale(locale);
   const cmsPage = await resolveCmsPage(locale, 'reservation');
   if (cmsPage?.template === 'reservation') {
-    return <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
+    return <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
   }
   if (cmsPage) {
     return <CmsPageView page={cmsPage} />;

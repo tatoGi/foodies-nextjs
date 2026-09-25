@@ -27,7 +27,7 @@ export default async function HistoryPage({params}: {params: Promise<{locale: st
   setRequestLocale(locale);
   const cmsPage = await resolveCmsPage(locale, 'history');
   if (cmsPage?.template === 'history') {
-    return <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
+    return <SitePageLayout title={cmsPage.title} bannerImage={cmsPage.image}>{renderBlocks(cmsPage.blocks, section)}</SitePageLayout>;
   }
   if (cmsPage) {
     return <CmsPageView page={cmsPage} />;

@@ -232,6 +232,12 @@ const pages = {
       block('brand_strip', () => ({logos: [1, 2, 3, 4, 5, 6].map((n) => asset('reservation', `home-3/b-${n}.png`))}))
     ]
   },
+  blog: {
+    template: 'blog',
+    slugs: {ka: 'blog', en: 'our-blog'},
+    titles: {ka: pick(messages.ka, 'blogPage.pageTitle'), en: pick(messages.en, 'blogPage.pageTitle')},
+    blocks: []
+  },
   menu: {
     template: 'menu',
     slugs: {ka: 'menu', en: 'food-menu'},

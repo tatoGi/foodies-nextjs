@@ -96,7 +96,7 @@ export default function CmsPageView({page}: {page: CmsPage}) {
       <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Breadcrumb title={page.title} currentLabel={page.title} />
+          <Breadcrumb title={page.title} currentLabel={page.title} image={page.image} />
           {page.description ? (
             <section className="section-padding pb-0">
               <div className="container">
