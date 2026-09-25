@@ -21089,4 +21089,29 @@ span {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+/* Real POS photos are large rectangles; the template expects small round cut-outs. */
+.food-menu-items .thumb {
+  flex-shrink: 0;
+}
+.food-menu-items .thumb img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.shop-category-items .thumb img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/* A CMS hero image of any shape must not stretch the slider. */
+@media (min-width: 992px) {
+  .hero-1 .hero-image img {
+    max-height: 460px;
+    width: auto;
+    object-fit: contain;
+  }
 }/*# sourceMappingURL=main.css.map */

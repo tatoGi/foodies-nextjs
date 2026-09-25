@@ -88,7 +88,7 @@ export async function getMenu(locale: string): Promise<CmsCategory[] | null> {
         title: product.title ?? '',
         excerpt: product.excerpt ?? null,
         price: `${product.sale_price ?? product.price ?? ''} ₾`,
-        image: product.image ?? null,
+        image: cmsAsset(product.image),
         isAvailable: product.is_available !== false,
         slug: product.slug ?? '',
         ingredients: (product.ingredients ?? []).map((row) => ({
@@ -215,7 +215,7 @@ async function fetchProduct(locale: string, slug: string): Promise<CmsProductDet
       title: product.title ?? '',
       excerpt: product.excerpt ?? product.description ?? null,
       price: `${price} ₾`,
-      image: product.cover_image ?? product.feature_image ?? null,
+      image: cmsAsset(product.cover_image ?? product.feature_image),
       isAvailable: product.is_available !== false,
       slug: product.slug ?? slug,
       category: product.category ?? '',
@@ -317,7 +317,7 @@ export function heroSlidesFromPage(page: CmsPage | null): HeroSlide[] {
     .map((block) => ({
       eyebrow: textField(block.data, 'banner_top_title'),
       title: textField(block.data, 'banner_title'),
-      description: textField(block.data, 'banner_description'),
+      description: plainText(textField(block.data, 'banner_description')),
       image: cmsAsset(block.data.banner_image),
       button: textField(block.data, 'button_title') || textField(block.data, 'cta_primary_text'),
       href: textField(block.data, 'redirect_link') || textField(block.data, 'cta_primary_url') || '/menu'
@@ -380,7 +380,7 @@ export async function getCmsPage(locale: string, slug: string): Promise<CmsPageR
     return {
       slug: page.slug ?? slug,
       title: page.title ?? '',
-      description: page.description ?? '',
+      description: plainText(page.description),
       template: page.template ?? 'inner',
       image: cmsAsset(page.feature_image),
       blocks: (page.blocks ?? []).map((block) => ({
@@ -437,4 +437,13 @@ export async function cmsPageMetadata(locale: string, slug: string): Promise<Met
 function textField(data: Record<string, unknown>, key: string): string {
   const value = data[key];
   return typeof value === 'string' ? value.trim() : '';
+}
+
+// CMS rich-text fields arrive as HTML; places that render plain text need the words only.
+function plainText(html: string | null | undefined): string {
+  return (html ?? '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
