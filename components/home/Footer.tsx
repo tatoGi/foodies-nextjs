@@ -93,7 +93,7 @@ export default function Footer() {
                       </div>
                       <div className="content">
                         <span>{post.date}</span>
-                        <Link href="/news-details" className="recent-title">{post.title}</Link>
+                        <Link href="/blog" className="recent-title">{post.title}</Link>
                       </div>
                     </li>
                   ))}

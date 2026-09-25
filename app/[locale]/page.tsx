@@ -8,6 +8,7 @@ import Contact from '@/components/home/Contact';
 import News from '@/components/home/News';
 import Footer from '@/components/home/Footer';
 import {cmsPageMetadata, getCmsPage, getMenu, heroSlidesFromPage, isCmsPage} from '@/lib/cms';
+import {getBlogCards} from '@/lib/blog';
 
 export async function generateMetadata({
   params
@@ -27,6 +28,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const menu = await getMenu(locale);
   const bestDishes = await getMenu(locale, {featured: true});
+  const news = await getBlogCards(locale, 3);
   const home = await getCmsPage(locale, 'home');
   const slides = home && isCmsPage(home) ? heroSlidesFromPage(home) : [];
   const products = (menu ?? []).flatMap((category) =>
@@ -49,7 +51,7 @@ export default async function HomePage({
           <ShopCategory products={products} />
           <FoodMenu categories={bestDishes} />
           <Contact />
-          <News />
+          <News posts={news} />
           <Footer />
         </div>
       </div>
