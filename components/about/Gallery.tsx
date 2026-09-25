@@ -1,15 +1,19 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {images, text, type BlockData} from '@/lib/blockData';
 
-export default function Gallery() {
+const FALLBACK_IMAGES = [1, 2, 3].map((n) => `/assets/img/home-2/gallery-${n}.jpg`);
+
+export default function Gallery({data}: {data?: BlockData}) {
   const t = useTranslations('about.gallery');
+  const slides = images(data, 'images', FALLBACK_IMAGES);
 
   return (
     <div className="gallery-section fix">
       <div className="container">
         <div className="section-title text-center mb-0">
-          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{t('subTitle')}</span>
-          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{t('title')}</h2>
+          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{text(data, 'sub_title', t('subTitle'))}</span>
+          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{text(data, 'title', t('title'))}</h2>
           <div className="sec-line mt-3">
             <img src="/assets/img/home-1/sec-line.png" alt="" />
           </div>
@@ -24,10 +28,10 @@ export default function Gallery() {
         </div>
         <div className="swiper galler-slider">
           <div className="swiper-wrapper gallery-titming">
-            {[1, 2, 3].map((n) => (
-              <div className="swiper-slide" key={n}>
+            {slides.map((src) => (
+              <div className="swiper-slide" key={src}>
                 <div className="gallery-block-one">
-                  <img src={`/assets/img/home-2/gallery-${n}.jpg`} alt="" />
+                  <img src={src} alt="" />
                 </div>
               </div>
             ))}
@@ -36,8 +40,8 @@ export default function Gallery() {
       </div>
       <div className="container">
         <div className="gallery-btn">
-          <Link href="/gallery" className="theme-btn small-btn">
-            {t('viewGallery')} <i className="fa-light fa-arrow-up-right" />
+          <Link href={text(data, 'button_link', '/gallery')} className="theme-btn small-btn">
+            {text(data, 'button_text', t('viewGallery'))} <i className="fa-light fa-arrow-up-right" />
           </Link>
         </div>
       </div>

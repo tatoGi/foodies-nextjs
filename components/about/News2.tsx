@@ -1,7 +1,8 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
+import {text, type BlockData} from '@/lib/blockData';
 
-export default function News2() {
+export default function News2({data}: {data?: BlockData}) {
   const t = useTranslations('about.news');
   const posts = t.raw('posts') as {day: string; month: string; category: string; title: string; author: string; comments: string}[];
 
@@ -9,8 +10,8 @@ export default function News2() {
     <section className="news-section-two fix section-padding bg-white">
       <div className="container">
         <div className="section-title text-center">
-          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{t('subTitle')}</span>
-          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{t('title')}</h2>
+          <span className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">{text(data, 'sub_title', t('subTitle'))}</span>
+          <h2 className="tx-title sec_title tz-itm-title tz-itm-anim">{text(data, 'title', t('title'))}</h2>
           <div className="sec-line mt-3 mb-0">
             <img src="/assets/img/home-1/sec-line.png" alt="" />
           </div>
