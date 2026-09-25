@@ -27,6 +27,12 @@ export function textList(data: BlockData | undefined, key: string, field: string
   return list.length > 0 ? list : fallback;
 }
 
+/** Repeater rows as objects, e.g. items: [{question, answer}]. */
+export function rows(data: BlockData | undefined, key: string): BlockData[] {
+  const raw = data?.[key];
+  return Array.isArray(raw) ? raw.filter((row): row is BlockData => Boolean(row) && typeof row === 'object') : [];
+}
+
 export function lines(value: string): string[] {
   return value.split('\n').map((line) => line.trim()).filter(Boolean);
 }

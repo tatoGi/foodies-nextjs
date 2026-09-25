@@ -2,11 +2,7 @@ import type {Metadata} from 'next';
 import type {ReactNode} from 'react';
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import CmsPageView, {cmsMetadata, resolveCmsPage} from '@/components/cms/CmsPageView';
-import Header from '@/components/home/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import Instagram from '@/components/inner/Instagram';
-import Cta from '@/components/inner/Cta';
-import InnerFooter from '@/components/inner/InnerFooter';
+import SitePageLayout, {renderBlocks} from '@/components/cms/SitePageLayout';
 import WhyChooseUs from '@/components/about/WhyChooseUs';
 import DiscountFood from '@/components/about/DiscountFood';
 import FoodMenu3 from '@/components/about/FoodMenu3';
@@ -44,23 +40,6 @@ function section(block: CmsPageBlock, menu: CmsCategory[] | null): ReactNode {
   }
 }
 
-function Layout({title, children}: {title: string; children: ReactNode}) {
-  return (
-    <>
-      <Header />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <Breadcrumb title={title} currentLabel={title} />
-          {children}
-          <Instagram />
-          <Cta />
-          <InnerFooter />
-        </div>
-      </div>
-    </>
-  );
-}
-
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
@@ -72,11 +51,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
       : null;
 
     return (
-      <Layout title={cmsPage.title}>
-        {cmsPage.blocks.map((block, index) => (
-          <div key={`${block.type}-${index}`}>{section(block, menu)}</div>
-        ))}
-      </Layout>
+      <SitePageLayout title={cmsPage.title}>{renderBlocks(cmsPage.blocks, (block) => section(block, menu))}</SitePageLayout>
     );
   }
   if (cmsPage) {
@@ -86,7 +61,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
   const t = await getTranslations('about');
 
   return (
-    <Layout title={t('pageTitle')}>
+    <SitePageLayout title={t('pageTitle')}>
       <WhyChooseUs />
       <DiscountFood />
       <FoodMenu3 />
@@ -94,6 +69,6 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
       <BestDelivery />
       <DiscountBanner />
       <News2 />
-    </Layout>
+    </SitePageLayout>
   );
 }
