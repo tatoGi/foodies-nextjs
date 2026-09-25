@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, rows, text, type BlockData} from '@/lib/blockData';
+import {link, image, rows, text, type BlockData} from '@/lib/blockData';
 
 export default function Feature({data}: {data?: BlockData}) {
   const t = useTranslations('reservationPage.feature');
@@ -29,7 +29,7 @@ export default function Feature({data}: {data?: BlockData}) {
               <div className="content">
                 <h2 className="title">{item.title}</h2>
                 <p>{item.description}</p>
-                <Link href={text(data, 'button_link', '/contact')} className="theme-btn theme-bg-2 ">
+                <Link href={link(data, 'button_link', '/contact')} className="theme-btn theme-bg-2 ">
                   {text(data, 'button_text', tCommon('orderNow'))} <i className="fa-solid fa-basket-shopping" />
                 </Link>
               </div>

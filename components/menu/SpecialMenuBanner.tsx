@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, text, type BlockData} from '@/lib/blockData';
+import {link, image, text, type BlockData} from '@/lib/blockData';
 
 export default function SpecialMenuBanner({data}: {data?: BlockData}) {
   const t = useTranslations('menuPage.banner');
@@ -27,7 +27,7 @@ export default function SpecialMenuBanner({data}: {data?: BlockData}) {
           <div className="pizza-image">
             <img src={image(data, 'image', '/assets/img/home-2/pizza-image.png')} alt="" className="tilt_scale" />
           </div>
-          <Link href={text(data, 'button_link', '/contact')} className="theme-btn small-btn">
+          <Link href={link(data, 'button_link', '/contact')} className="theme-btn small-btn">
             {text(data, 'button_text', tCommon('orderNow'))} <i className="fa-solid fa-basket-shopping" />
           </Link>
           <div className="vec-shape float-bob-x">

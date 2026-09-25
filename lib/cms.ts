@@ -321,7 +321,7 @@ export function heroSlidesFromPage(page: CmsPage | null): HeroSlide[] {
       description: plainText(textField(block.data, 'banner_description')),
       image: cmsAsset(block.data.banner_image),
       button: textField(block.data, 'button_title') || textField(block.data, 'cta_primary_text'),
-      href: textField(block.data, 'redirect_link') || textField(block.data, 'cta_primary_url') || '/menu'
+      href: safeHref(textField(block.data, 'redirect_link') || textField(block.data, 'cta_primary_url'), '/menu')
     }))
     .filter((slide) => slide.title || slide.image);
 }
@@ -438,6 +438,11 @@ export async function cmsPageMetadata(locale: string, slug: string): Promise<Met
 function textField(data: Record<string, unknown>, key: string): string {
   const value = data[key];
   return typeof value === 'string' ? value.trim() : '';
+}
+
+/** CMS links for href: only site paths, anchors, http(s), mailto and tel — never javascript: or data:. */
+function safeHref(value: string, fallback: string): string {
+  return /^(\/(?!\/)|#|https?:\/\/|mailto:|tel:)/i.test(value) ? value : fallback;
 }
 
 // CMS rich-text fields arrive as HTML; places that render plain text need the words only.

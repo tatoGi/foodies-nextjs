@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, text, textList, type BlockData} from '@/lib/blockData';
+import {link, image, text, textList, type BlockData} from '@/lib/blockData';
 
 export default function WhyChooseUs({data}: {data?: BlockData}) {
   const t = useTranslations('about.whyChooseUs');
@@ -56,10 +56,10 @@ export default function WhyChooseUs({data}: {data?: BlockData}) {
                   </ul>
                 </div>
                 <div className="choose-button wow fadeInUp" data-wow-delay=".7s">
-                  <Link href={text(data, 'primary_button_link', '/contact')} className="theme-btn theme-bg-2">
+                  <Link href={link(data, 'primary_button_link', '/contact')} className="theme-btn theme-bg-2">
                     {text(data, 'primary_button_text', t('orderNow'))} <i className="fa-solid fa-basket-shopping" />
                   </Link>
-                  <Link href={text(data, 'secondary_button_link', '/contact')} className="theme-btn small-btn">
+                  <Link href={link(data, 'secondary_button_link', '/contact')} className="theme-btn small-btn">
                     {text(data, 'secondary_button_text', t('reserveTable'))} <i className="fa-regular fa-arrow-up-right" />
                   </Link>
                 </div>

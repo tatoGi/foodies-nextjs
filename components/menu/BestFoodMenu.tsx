@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, text, type BlockData} from '@/lib/blockData';
+import {link, image, text, type BlockData} from '@/lib/blockData';
 
 type SideItem = {image: string; name: string; price: string; available?: boolean};
 
@@ -14,7 +14,7 @@ export default function BestFoodMenu({items, data}: {items?: SideItem[] | null; 
   const leftItems = live ? live.filter((_, index) => index % 2 === 0) : fallbackLeft;
   const rightItems = live ? live.filter((_, index) => index % 2 === 1) : fallbackRight;
   const buttonText = text(data, 'button_text', tCommon('orderNow'));
-  const buttonLink = text(data, 'button_link', '/contact');
+  const buttonLink = link(data, 'button_link', '/contact');
 
   const renderSideList = (items: SideItem[]) => (
     <ul className="best-food-menu-list-two">

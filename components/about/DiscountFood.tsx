@@ -1,12 +1,12 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, lines, text, type BlockData} from '@/lib/blockData';
+import {link, image, lines, text, type BlockData} from '@/lib/blockData';
 
 export default function DiscountFood({data}: {data?: BlockData}) {
   const t = useTranslations('discountFood');
   const tCommon = useTranslations('common');
   const buttonText = text(data, 'button_text', tCommon('orderNow'));
-  const buttonLink = text(data, 'button_link', '/menu');
+  const buttonLink = link(data, 'button_link', '/menu');
   const banner3Title = lines(
     text(data, 'banner3_title', [t('banner3Title'), t('banner3TitleLine2'), t('banner3TitleLine3')].join('\n'))
   );

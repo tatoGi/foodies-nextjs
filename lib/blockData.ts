@@ -8,6 +8,18 @@ export function text(data: BlockData | undefined, key: string, fallback: string)
   return typeof value === 'string' && value.trim() !== '' ? value.trim() : fallback;
 }
 
+/** A CMS link for href: only site paths, anchors, http(s), mailto and tel — never javascript: or data:. */
+export function link(data: BlockData | undefined, key: string, fallback: string): string {
+  const value = text(data, key, fallback);
+  return /^(\/(?!\/)|#|https?:\/\/|mailto:|tel:)/i.test(value) ? value : fallback;
+}
+
+/** A CMS URL for an embedded frame: https only. */
+export function embedUrl(data: BlockData | undefined, key: string, fallback: string): string {
+  const value = text(data, key, fallback);
+  return /^https:\/\//i.test(value) ? value : fallback;
+}
+
 export function image(data: BlockData | undefined, key: string, fallback: string): string {
   return cmsAsset(data?.[key]) ?? fallback;
 }

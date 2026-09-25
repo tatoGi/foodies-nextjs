@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {image, text, type BlockData} from '@/lib/blockData';
+import {link, image, text, type BlockData} from '@/lib/blockData';
 
 export default function DiscountBanner({data}: {data?: BlockData}) {
   const t = useTranslations('about.discountBanner');
@@ -35,7 +35,7 @@ export default function DiscountBanner({data}: {data?: BlockData}) {
                 <img src="/assets/img/home-4/red-shape.png" alt="" />
                 <span>{text(data, 'discount_text', t('discountOffer'))}</span>
               </div>
-              <Link href={text(data, 'button_link', '/menu')} className="theme-btn small-btn">
+              <Link href={link(data, 'button_link', '/menu')} className="theme-btn small-btn">
                 {text(data, 'button_text', t('browseOffers'))} <i className="fa-regular fa-arrow-up-right" />
               </Link>
             </div>
