@@ -6,11 +6,17 @@ import {getSiteChrome} from '@/lib/cms';
 export default async function Breadcrumb({
   title,
   currentLabel,
-  image: pageImage
+  image: pageImage,
+  parent,
+  compact = false
 }: {
   title: string;
   currentLabel: string;
   image?: string | null;
+  /** Extra crumb between home and the current page. */
+  parent?: {href: string; label: string};
+  /** Low banner for pages that show their own big image below. */
+  compact?: boolean;
 }) {
   const t = await getTranslations('breadcrumb');
   const chrome = await getSiteChrome();
@@ -19,7 +25,7 @@ export default async function Breadcrumb({
 
   return (
     <div
-      className="breadcrumb-wrapper hero-ptb image-distortion p-relative z-index-1"
+      className={`breadcrumb-wrapper hero-ptb image-distortion p-relative z-index-1${compact ? ' breadcrumb-compact' : ''}`}
       style={{
         backgroundColor: chrome.breadcrumbColor,
         backgroundImage: image,
@@ -48,6 +54,16 @@ export default async function Breadcrumb({
             <li>
               <i className="fa-regular fa-chevrons-right" />
             </li>
+            {parent ? (
+              <>
+                <li>
+                  <Link href={parent.href}>{parent.label}</Link>
+                </li>
+                <li>
+                  <i className="fa-regular fa-chevrons-right" />
+                </li>
+              </>
+            ) : null}
             <li>{currentLabel}</li>
           </ul>
         </div>

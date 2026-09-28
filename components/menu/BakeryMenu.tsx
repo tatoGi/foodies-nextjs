@@ -26,7 +26,7 @@ export default function BakeryMenu({categories, data}: {categories: CmsCategory[
           </div>
         </div>
         {categories.map((category) => (
-          <div key={category.slug} className="mb-5">
+          <div key={category.slug} id={`cat-${category.slug}`} className="mb-5">
             <h3 className="mb-4">{category.name}</h3>
             {category.description ? <p className="mb-4">{category.description}</p> : null}
             <div className="row g-4">
