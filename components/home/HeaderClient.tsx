@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import {useTranslations} from 'next-intl';
 import {Link, usePathname} from '@/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
+import UserMenu from './UserMenu';
 import LogoMark from '@/components/shared/LogoMark';
 import type {NavItem} from '@/lib/cms';
 
@@ -94,9 +95,7 @@ export default function HeaderClient({items}: {items?: NavItem[] | null}) {
                 </nav>
               </div>
               <div className="shop-icon-right">
-                <Link href="/login" className="shop-icon">
-                  <i className="fa-regular fa-user" />
-                </Link>
+                <UserMenu />
               </div>
               <form action="#">
                 <input type="text" placeholder={t('searchPlaceholder')} />
@@ -179,9 +178,7 @@ export default function HeaderClient({items}: {items?: NavItem[] | null}) {
                   <button type="submit"><i className="fa-regular fa-magnifying-glass" /></button>
                 </form>
                 <div className="shop-icon-right">
-                  <Link href="/login" className="shop-icon">
-                    <i className="fa-regular fa-user" />
-                  </Link>
+                  <UserMenu />
                   <div className="order-info">
                     <div className="icon">
                       <img src="/assets/img/order.png" alt="" />

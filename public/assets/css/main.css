@@ -21505,3 +21505,17 @@ span {
 .address-item__actions button { padding: 8px 14px; border-radius: 999px; background: var(--body); font-size: 14px; }
 .address-item__actions button:hover { background: rgba(0, 131, 62, 0.12); color: var(--theme2); }
 .address-item__actions button:last-child:hover { background: rgba(237, 28, 39, 0.1); color: var(--theme3); }
+
+/* Header account menu */
+.user-menu { position: relative; }
+.user-menu__button { border: 0; background: var(--theme) !important; color: var(--header) !important; font-weight: 800; font-size: 18px; cursor: pointer; }
+.user-menu__panel { position: absolute; right: 0; top: calc(100% + 12px); z-index: 1200; min-width: 240px; padding: 8px; border-radius: 18px; background: #fff; box-shadow: 0 20px 50px rgba(30, 29, 35, 0.2); text-align: left; }
+.user-menu__head { display: grid; padding: 10px 12px 12px; margin-bottom: 4px; border-bottom: 1px dashed rgba(30, 29, 35, 0.15); }
+.user-menu__head strong { color: var(--header); }
+.user-menu__head small { color: var(--text); overflow: hidden; text-overflow: ellipsis; }
+.user-menu__panel a, .user-menu__panel button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 0; border-radius: 10px; background: none; color: var(--header); font-weight: 600; font-size: 15px; }
+.user-menu__panel a:hover, .user-menu__panel button:hover { background: var(--body); color: var(--theme2); }
+.user-menu__panel i { width: 18px; text-align: center; color: var(--text); }
+.user-menu__panel button:last-child { margin-top: 4px; color: var(--theme3); }
+.user-menu__panel button:last-child i { color: var(--theme3); }
+.header-section .header-middle-sec { overflow: visible; z-index: 30; }
