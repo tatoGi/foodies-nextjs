@@ -14,19 +14,28 @@ export default async function AccountSettingsPage({params}: {params: Promise<{lo
   }
 
   return (
-    <div className="d-grid gap-4">
-      <div className="account-card account-card--wide">
-        <h2>{t('profile')}</h2>
+    <div className="acc-stack">
+      <section className="acc-panel acc-section">
+        <header>
+          <h3>{t('profile')}</h3>
+          <p>{t('profileHint')}</p>
+        </header>
         <ProfileForm user={user} />
-      </div>
-      <div className="account-card account-card--wide">
-        <h2>{t('password')}</h2>
+      </section>
+      <section className="acc-panel acc-section">
+        <header>
+          <h3>{t('password')}</h3>
+          <p>{t('passwordHint')}</p>
+        </header>
         <PasswordForm hasPassword={user.has_password} />
-      </div>
-      <div className="account-card account-card--wide">
-        <h2>{t('delete')}</h2>
+      </section>
+      <section className="acc-panel acc-section acc-section--danger">
+        <header>
+          <h3>{t('delete')}</h3>
+          <p>{t('deleteWarning')}</p>
+        </header>
         <DeleteAccount hasPassword={user.has_password} />
-      </div>
+      </section>
     </div>
   );
 }

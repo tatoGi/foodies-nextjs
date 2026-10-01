@@ -12,7 +12,8 @@ export const metadata: Metadata = {robots: {index: false}};
 export default async function AccountLayout({children, params}: {children: ReactNode; params: Promise<{locale: string}>}) {
   const {locale} = await params;
   setRequestLocale(locale);
-  if (!(await getCurrentUser())) {
+  const user = await getCurrentUser();
+  if (!user) {
     redirect(`/${locale}/login?next=/${locale}/account`);
   }
   const t = await getTranslations('account');
@@ -20,7 +21,7 @@ export default async function AccountLayout({children, params}: {children: React
   return (
     <AccountShell title={t('title')}>
       <div className="account-layout">
-        <AccountNav />
+        <AccountNav name={user.name} email={user.email} />
         <div>{children}</div>
       </div>
     </AccountShell>
