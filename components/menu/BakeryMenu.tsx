@@ -1,4 +1,5 @@
 import {useTranslations} from 'next-intl';
+import FavoriteButton from '@/components/account/FavoriteButton';
 import {Link} from '@/i18n/navigation';
 import type {CmsCategory} from '@/lib/cms';
 import {text, type BlockData} from '@/lib/blockData';
@@ -66,6 +67,7 @@ export default function BakeryMenu({categories, data}: {categories: CmsCategory[
                             {tCommon('orderNow')}
                           </Link>
                         ) : null}
+                        {product.slug ? <FavoriteButton productId={product.id} className="favorite-btn--small ms-2 align-middle" /> : null}
                       </div>
                     </div>
                   </div>

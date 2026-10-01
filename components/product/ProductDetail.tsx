@@ -1,4 +1,5 @@
 import {getTranslations} from 'next-intl/server';
+import FavoriteButton from '@/components/account/FavoriteButton';
 import {Link} from '@/i18n/navigation';
 import type {CmsProductDetail} from '@/lib/cms';
 
@@ -67,6 +68,7 @@ export default async function ProductDetail({
               <i className="fa-solid fa-phone me-2" />
               {t('orderByPhone')}
             </a>
+            <FavoriteButton productId={product.id} />
             <Link href="/menu" className="product-info__back">
               <i className="fa-regular fa-arrow-left me-2" />
               {t('back')}

@@ -11,6 +11,7 @@ export type CmsAddon = {
 };
 
 export type CmsProduct = {
+  id: number;
   title: string;
   excerpt: string | null;
   price: string;
@@ -51,6 +52,7 @@ type MenuResponse = {
     name?: string;
     description?: string | null;
     products?: {
+      id?: number;
       title?: string;
       excerpt?: string | null;
       price?: string;
@@ -86,6 +88,7 @@ export async function getMenu(locale: string, {featured = false}: {featured?: bo
       name: category.name ?? '',
       description: category.description ?? null,
       products: (category.products ?? []).map((product) => ({
+        id: product.id ?? 0,
         title: product.title ?? '',
         excerpt: product.excerpt ?? null,
         price: `${product.sale_price ?? product.price ?? ''} ₾`,
@@ -167,6 +170,7 @@ export async function getProduct(locale: string, slug: string): Promise<CmsProdu
 
 type ProductResponse = {
   product?: {
+    id?: number;
     title?: string;
     excerpt?: string | null;
     description?: string | null;
@@ -213,6 +217,7 @@ async function fetchProduct(locale: string, slug: string): Promise<CmsProductDet
     const price = typeof product.price === 'number' ? product.price.toFixed(2) : (product.price ?? '');
 
     return {
+      id: product.id ?? 0,
       title: product.title ?? '',
       excerpt: product.excerpt ?? product.description ?? null,
       price: `${price} ₾`,
