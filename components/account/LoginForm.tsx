@@ -6,6 +6,7 @@ import {Link, useRouter} from '@/i18n/navigation';
 import {accountApi} from '@/lib/client/account-api';
 import GoogleButton from './GoogleButton';
 import {rememberPendingEmail} from './pendingEmail';
+import PasswordInput from './PasswordInput';
 import {useErrorText} from './useErrorText';
 
 export default function LoginForm({next}: {next: string}) {
@@ -46,7 +47,7 @@ export default function LoginForm({next}: {next: string}) {
         </div>
         <div className="account-field">
           <label htmlFor="login-password">{t('fields.password')}</label>
-          <input id="login-password" name="password" type="password" autoComplete="current-password" required />
+          <PasswordInput id="login-password" name="password" autoComplete="current-password" required />
         </div>
         {error ? <p className="account-error" role="alert">{error}</p> : null}
         <button type="submit" className="account-btn" disabled={busy}>{t('login.submit')}</button>

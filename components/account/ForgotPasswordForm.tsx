@@ -3,6 +3,7 @@
 import {useState, type FormEvent} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {accountApi} from '@/lib/client/account-api';
+import PasswordInput from './PasswordInput';
 import {useErrorText} from './useErrorText';
 
 export default function ForgotPasswordForm({next}: {next: string}) {
@@ -65,7 +66,7 @@ export default function ForgotPasswordForm({next}: {next: string}) {
           </div>
           <div className="account-field">
             <label htmlFor="forgot-password">{t('fields.newPassword')}</label>
-            <input id="forgot-password" name="password" type="password" autoComplete="new-password" minLength={8} required />
+            <PasswordInput id="forgot-password" name="password" autoComplete="new-password" minLength={8} required />
             <small>{t('fields.passwordHint')}</small>
           </div>
           {error ? <p className="account-error" role="alert">{error}</p> : null}

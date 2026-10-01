@@ -6,6 +6,7 @@ import {Link, useRouter} from '@/i18n/navigation';
 import {accountApi} from '@/lib/client/account-api';
 import GoogleButton from './GoogleButton';
 import {rememberPendingEmail} from './pendingEmail';
+import PasswordInput from './PasswordInput';
 import {useErrorText} from './useErrorText';
 
 const PHONE = /^(?:\+?995)?\s*5(?:[\s-]*\d){8}$/;
@@ -67,7 +68,7 @@ export default function RegisterForm({next}: {next: string}) {
         </div>
         <div className="account-field">
           <label htmlFor="reg-password">{t('fields.password')}</label>
-          <input id="reg-password" name="password" type="password" autoComplete="new-password" minLength={8} required />
+          <PasswordInput id="reg-password" name="password" autoComplete="new-password" minLength={8} required />
           <small>{t('fields.passwordHint')}</small>
           {errors.password ? <p className="account-error">{errors.password}</p> : null}
         </div>
