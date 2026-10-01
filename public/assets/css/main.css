@@ -21431,3 +21431,5 @@ span {
 .account-password input { padding-right: 48px; }
 .account-password button { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: none; color: #6b5b4d; cursor: pointer; }
 .account-password button:hover { color: var(--header); background: #F4F1EA; }
+.account-layout .account-card { max-width: none; margin: 0; }
+.account-layout > div > * + * { margin-top: 24px; }
