@@ -94,7 +94,7 @@ export default function HeaderClient({items}: {items?: NavItem[] | null}) {
                 </nav>
               </div>
               <div className="shop-icon-right">
-                <Link href="/contact" className="shop-icon">
+                <Link href="/login" className="shop-icon">
                   <i className="fa-regular fa-user" />
                 </Link>
               </div>
@@ -179,7 +179,7 @@ export default function HeaderClient({items}: {items?: NavItem[] | null}) {
                   <button type="submit"><i className="fa-regular fa-magnifying-glass" /></button>
                 </form>
                 <div className="shop-icon-right">
-                  <Link href="/contact" className="shop-icon">
+                  <Link href="/login" className="shop-icon">
                     <i className="fa-regular fa-user" />
                   </Link>
                   <div className="order-info">
