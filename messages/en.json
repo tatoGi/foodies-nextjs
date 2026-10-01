@@ -517,5 +517,36 @@
       ]
     }
     ]
+  },
+  "account": {
+  "title": "My account",
+  "login": {"title": "Sign in", "submit": "Sign in", "noAccount": "No account yet?", "register": "Create one", "forgot": "Forgot your password?", "or": "or"},
+  "register": {"title": "Create account", "submit": "Create account", "haveAccount": "Already have an account?", "login": "Sign in", "codeSent": "We sent a code to your e-mail."},
+  "verify": {"title": "Confirm your e-mail", "intro": "Enter the 6-digit code we sent to your e-mail.", "submit": "Confirm", "resend": "Send the code again", "resendIn": "Send again in {seconds}s", "resent": "A new code is on its way."},
+  "forgot": {"title": "Reset password", "intro": "Enter your e-mail and we will send you a code.", "sendCode": "Send code", "codeIntro": "Enter the code and a new password.", "submit": "Change password"},
+  "fields": {"name": "Name", "email": "E-mail", "phone": "Phone", "phoneHint": "5XX XXX XXX", "password": "Password", "passwordHint": "At least 8 characters", "newPassword": "New password", "currentPassword": "Current password", "code": "Code"},
+  "nav": {"overview": "Overview", "favorites": "Favorites", "addresses": "Addresses", "settings": "Settings", "logout": "Sign out"},
+  "overview": {"greeting": "Hello, {name}!", "orders": "Orders", "ordersSoon": "Your order history will appear here after your first order.", "contact": "Contact details"},
+  "settings": {"profile": "Profile", "save": "Save", "saved": "Saved.", "emailLocked": "The e-mail cannot be changed yet.", "password": "Password", "setPassword": "Set a password", "changePassword": "Change password", "passwordChanged": "Password changed. Other devices were signed out.", "delete": "Delete account", "deleteWarning": "Your account, addresses and favorites will be deleted for good.", "deleteConfirm": "Yes, delete my account"},
+  "addresses": {"title": "Addresses", "empty": "No saved addresses yet.", "add": "Add address", "edit": "Edit", "delete": "Delete", "save": "Save", "cancel": "Cancel", "default": "Default", "makeDefault": "Make default", "label": "Label (e.g. Home)", "line": "Street and number", "entrance": "Entrance", "floor": "Floor", "apartment": "Apartment", "notes": "Note for the courier", "mapHint": "Mark the exact spot on the map: tap or drag the pin.", "locate": "My location", "pinRequired": "Mark the spot on the map."},
+  "favorites": {"title": "Favorites", "empty": "No favorites yet — tap the heart on a dish.", "add": "Add to favorites", "remove": "Remove from favorites", "browse": "Browse the menu"},
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Could not reach the server.",
+    "cms_unavailable": "The service is temporarily unavailable. Try again shortly.",
+    "invalid_credentials": "Wrong e-mail or password.",
+    "invalid_code": "The code is wrong or has expired.",
+    "invalid_password": "Wrong password.",
+    "email_not_verified": "Confirm your e-mail first — we sent you a new code.",
+    "too_many_requests": "Too many attempts. Try again in a few minutes.",
+    "validation_failed": "Please check the fields.",
+    "unauthenticated": "Your session expired. Please sign in again.",
+    "invalid_google_token": "Google sign-in failed.",
+    "google_disabled": "Google sign-in is turned off for now.",
+    "address_limit": "You can save up to 10 addresses.",
+    "passwordShort": "The password needs at least 8 characters.",
+    "phoneFormat": "Phone format: 5XX XXX XXX.",
+    "required": "This field is required."
   }
+}
 }
