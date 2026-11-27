@@ -1,0 +1,145 @@
+/* Belt strip: dark rail with a moving track of plates. */
+.belt {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  overflow: hidden;
+  padding: 18px 0 14px;
+  background: linear-gradient(var(--header), #2b2a31);
+  border-block: 4px solid var(--theme);
+  /* fade plates in/out at the edges */
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Moving belt texture: thin slats sliding with the plates. */
+.belt::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, #444 0 2px, transparent 2px 24px);
+  animation: slats 1.2s linear infinite;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: belt linear infinite;
+}
+
+.belt:hover .track,
+.belt:focus-within .track {
+  animation-play-state: paused;
+}
+
+.lane {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0 14px;
+  list-style: none;
+}
+
+.item {
+  flex: none;
+}
+
+.plate {
+  display: flex;
+  width: 120px;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--white);
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+.plate:hover,
+.plate:focus-visible {
+  transform: translateY(-6px);
+  color: var(--theme);
+}
+
+/* White plate rim around the dish photo. */
+.dish {
+  display: grid;
+  width: 92px;
+  height: 92px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 0 0 4px var(--theme), 0 8px 16px rgba(0, 0, 0, 0.45);
+}
+
+.dish img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  overflow: hidden;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.price {
+  color: var(--theme);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@keyframes belt {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slats {
+  to {
+    background-position: -24px 0;
+  }
+}
+
+/* Reduced motion: no movement, plates scroll by hand. */
+@media (prefers-reduced-motion: reduce) {
+  .belt {
+    overflow-x: auto;
+  }
+
+  .track,
+  .belt::before {
+    animation: none;
+  }
+
+  .lane[aria-hidden] {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .plate {
+    width: 96px;
+  }
+
+  .dish {
+    width: 72px;
+    height: 72px;
+  }
+
+  .dish img {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* Keep the slider dots above the belt instead of on top of it. */
+.withBelt :global(.swiper-dot) {
+  bottom: 230px;
+}

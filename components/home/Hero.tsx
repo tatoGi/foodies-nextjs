@@ -1,15 +1,23 @@
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import type {HeroSlide} from '@/lib/cms';
+import type {CmsProduct, HeroSlide} from '@/lib/cms';
+import DishBelt from './DishBelt';
+import beltStyles from './DishBelt.module.css';
 
 const SLIDE_IMAGES = ['hero-image-3.png', 'hero-image.png', 'hero-image-2.png'];
 
-function LiveHero({slides}: {slides: HeroSlide[]}) {
+// Extra section class that lifts the slider dots above the belt when one is shown.
+function beltClass(plates: CmsProduct[]) {
+  return plates.length > 0 ? ` ${beltStyles.withBelt}` : '';
+}
+
+// Hero driven by CMS slides, with the dish belt along the bottom.
+function LiveHero({slides, plates}: {slides: HeroSlide[]; plates: CmsProduct[]}) {
   const tCommon = useTranslations('common');
 
   return (
     <section
-      className="hero-section fix hero-1 bg-cover"
+      className={`hero-section fix hero-1 bg-cover${beltClass(plates)}`}
       style={{backgroundImage: "url('/assets/img/home-1/hero-bg.jpg')"}}
     >
       <div className="swiper hero-slider">
@@ -46,18 +54,20 @@ function LiveHero({slides}: {slides: HeroSlide[]}) {
       <div className="swiper-dot">
         <div className="dot" />
       </div>
+      <DishBelt plates={plates} />
     </section>
   );
 }
 
-function StaticHero() {
+// Fallback hero from translation strings (CMS offline / no slides), same belt.
+function StaticHero({plates}: {plates: CmsProduct[]}) {
   const t = useTranslations('hero');
   const tCommon = useTranslations('common');
   const slides = t.raw('slides') as {title: string; titleAccent: string}[];
 
   return (
     <section
-      className="hero-section fix hero-1 bg-cover"
+      className={`hero-section fix hero-1 bg-cover${beltClass(plates)}`}
       style={{backgroundImage: "url('/assets/img/home-1/hero-bg.jpg')"}}
     >
       <div className="shape-1 float-bob-y">
@@ -111,14 +121,16 @@ function StaticHero() {
       <div className="swiper-dot">
         <div className="dot" />
       </div>
+      <DishBelt plates={plates} />
     </section>
   );
 }
 
-export default function Hero({slides}: {slides?: HeroSlide[] | null}) {
+// Home hero: CMS slides when available, otherwise the static fallback; `plates` feed the dish belt.
+export default function Hero({slides, plates = []}: {slides?: HeroSlide[] | null; plates?: CmsProduct[]}) {
   if (slides && slides.length > 0) {
-    return <LiveHero slides={slides} />;
+    return <LiveHero slides={slides} plates={plates} />;
   }
 
-  return <StaticHero />;
+  return <StaticHero plates={plates} />;
 }
