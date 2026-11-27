@@ -1,7 +1,7 @@
 'use client';
 
 import {useCallback, useEffect, useRef, useState} from 'react';
-import type {KeyboardEvent, MouseEvent, PointerEvent} from 'react';
+import type {CSSProperties, KeyboardEvent, MouseEvent, PointerEvent} from 'react';
 import {useLocale} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 import type {CmsProduct} from '@/lib/cms';
@@ -15,6 +15,10 @@ const STRAIGHT = 380;
 const RADIUS = 150;
 const LOOP = 2 * STRAIGHT + 2 * Math.PI * RADIUS;
 const FRONT = STRAIGHT / 2; // distance along the loop of the front-centre spot
+const SQUASH = 0.5; // how flat the loop looks (viewed from above at an angle)
+
+// Plate ring colours by price tier, cheapest first.
+const TIER_COLORS = ['#D96B1A', '#00833E', '#2B6CB0', '#E0A800', '#ED1C27'];
 
 // Motion tuning.
 const CRUISE = 55; // px/s when nobody touches the belt
@@ -46,6 +50,7 @@ export default function DishBelt({plates}: {plates: CmsProduct[]}) {
   const drag = useRef({id: -1, x: 0, t: 0, moved: 0});
   const focusFront = useRef(false);
   const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(false);
   const pausedRef = useRef(paused);
@@ -85,7 +90,10 @@ export default function DishBelt({plates}: {plates: CmsProduct[]}) {
       const el = plateRefs.current[i];
       if (!el) continue;
       const {x, y} = stadiumPoint(offset + i * gap, STRAIGHT, RADIUS);
-      el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      // Fake perspective: flatten the loop, grow plates toward the front, stack front over back.
+      const depth = (y + RADIUS) / (2 * RADIUS);
+      el.style.transform = `translate(${x}px, ${y * SQUASH}px) translate(-50%, -60%) scale(${0.78 + 0.3 * depth})`;
+      el.style.zIndex = String(Math.round(depth * 100));
     }
     const front = frontIndex(offset);
     setActive((prev) => (prev === front ? prev : front));
@@ -182,8 +190,16 @@ export default function DishBelt({plates}: {plates: CmsProduct[]}) {
     step(e.key === 'ArrowRight' ? -1 : 1);
   };
 
+  // Ring colour per plate from its price tier (distinct prices, cheapest first).
+  const tiers = [...new Set(plates.map((p) => parseFloat(p.price) || 0))].sort((a, b) => a - b);
+  const ringColor = (product: CmsProduct) => {
+    const tier = tiers.indexOf(parseFloat(product.price) || 0);
+    return TIER_COLORS[Math.round((tier / Math.max(tiers.length - 1, 1)) * (TIER_COLORS.length - 1))];
+  };
+
   if (count === 0) return null;
   const current = plates[active];
+  const chipDish = plates[hovered ?? active];
 
   return (
     <div className={styles.belt} role="region" aria-roledescription="carousel" aria-label={labels.belt}>
@@ -199,6 +215,12 @@ export default function DishBelt({plates}: {plates: CmsProduct[]}) {
       >
         <div className={styles.loop}>
           <div className={styles.island} />
+        </div>
+        <span className={styles.chip} aria-hidden="true">
+          <i className={styles.dot} style={{background: ringColor(chipDish)}} />
+          {chipDish.title} <b>{chipDish.price}</b>
+        </span>
+        <div className={styles.plates}>
           {plates.map((product, i) => (
             <Link
               key={`${product.id}-${i}`}
@@ -206,20 +228,22 @@ export default function DishBelt({plates}: {plates: CmsProduct[]}) {
                 plateRefs.current[i] = el;
               }}
               href={`/products/${product.slug}`}
-              className={`${styles.plate}${i === active ? ` ${styles.active}` : ''}`}
+              className={`${styles.plate}${i === (hovered ?? active) ? ` ${styles.lifted}` : ''}`}
+              style={{'--ring': ringColor(product)} as CSSProperties}
               tabIndex={i === active ? 0 : -1}
               aria-label={`${product.title}, ${product.price}`}
               draggable={false}
               onClick={onPlateClick}
+              onPointerEnter={() => setHovered(i)}
+              onPointerLeave={() => setHovered(null)}
             >
-              <img src={product.image ?? FALLBACK_IMAGE} alt="" draggable={false} />
+              {/* plate body lifts on hover; the food photo sits inside the rim */}
+              <span className={styles.lift}>
+                <img src={product.image ?? FALLBACK_IMAGE} alt="" draggable={false} />
+              </span>
             </Link>
           ))}
         </div>
-        <span className={styles.chip} aria-hidden="true">
-          <i className={styles.dot} />
-          {current.title} <b>{current.price}</b>
-        </span>
       </div>
 
       <div className={styles.controls}>

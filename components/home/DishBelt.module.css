@@ -10,12 +10,11 @@
   user-select: none;
 }
 
-/* 3D viewport; drags here scrub the belt (vertical swipes still scroll the page). */
+/* Drag area; drags here scrub the belt (vertical swipes still scroll the page). */
 .stage {
   position: relative;
-  width: 760px;
+  width: 860px;
   height: 330px;
-  perspective: 1100px;
   touch-action: pan-y;
   cursor: grab;
 }
@@ -25,8 +24,9 @@
 }
 
 /*
- * The loop itself: a dark stadium band, tilted back. Its size matches the
- * geometry in DishBelt.tsx (straight 380, radius 150, band 120 wide).
+ * The loop: a dark stadium band seen from above at an angle (flattened with
+ * scaleY = SQUASH in DishBelt.tsx). Size matches its geometry: straight 380,
+ * radius 150, band 120 wide.
  */
 .loop {
   position: absolute;
@@ -37,15 +37,14 @@
   margin: -210px 0 0 -400px;
   border-radius: 210px;
   background:
-    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.05) 0 2deg, transparent 2deg 9deg),
-    #26252b;
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.06) 0 1.5deg, transparent 1.5deg 9deg),
+    #2a292f;
   box-shadow:
-    0 0 0 3px #3a3940,
-    0 0 0 9px var(--theme),
-    0 30px 0 -4px #111,
-    0 60px 80px rgba(0, 0, 0, 0.55);
-  transform: rotateX(56deg);
-  transform-style: preserve-3d;
+    0 0 0 4px #4a4950,
+    0 0 0 10px var(--theme),
+    0 34px 0 2px #161519,
+    0 70px 90px rgba(0, 0, 0, 0.55);
+  transform: scaleY(0.5);
 }
 
 /* Raised centre island inside the band. */
@@ -53,55 +52,90 @@
   position: absolute;
   inset: 120px;
   border-radius: 90px;
-  background: linear-gradient(#f4f1ea, #d9d4c8);
-  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.15), 0 0 0 4px #3a3940;
+  background: linear-gradient(#ffffff, #d6d2c8);
+  box-shadow: 0 0 0 5px #4a4950, inset 0 -14px 0 rgba(0, 0, 0, 0.12);
 }
 
-/* A plate: positioned each frame by JS (translate), centred on its loop point. */
-.plate {
+/* Plates layer: origin at the loop centre; each plate is placed by JS. */
+.plates {
   position: absolute;
   top: 50%;
   left: 50%;
-  display: grid;
-  width: 104px;
-  height: 104px;
-  place-items: center;
+}
+
+/* A plate: an upright, slightly flattened disc standing on its loop point. */
+.plate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 108px;
+  height: 86px;
   border-radius: 50%;
-  background: var(--white);
-  box-shadow: 0 0 0 4px var(--theme2), 0 10px 14px rgba(0, 0, 0, 0.45);
   outline: none;
   /* the theme animates every <a>; transforms must follow the JS exactly */
-  transition: box-shadow 0.3s ease;
+  transition: none;
   will-change: transform;
 }
 
-.plate img {
-  width: 86px;
-  height: 86px;
+/* Soft contact shadow on the belt, under the plate. */
+.plate::before {
+  content: '';
+  position: absolute;
+  inset: 14% 4% -4%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  filter: blur(6px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Ceramic plate: coloured tier ring, white rim, food photo inside. */
+.lift {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fff 78%, #e9e6df 88%, #fff 96%);
+  box-shadow:
+    0 0 0 3px var(--ring),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.lift img {
+  position: absolute;
+  inset: 13%;
+  width: 74%;
+  height: 74%;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
   pointer-events: none;
-  transition: transform 0.3s ease;
 }
 
-/* Front plate: ring in the theme colour and the dish lifted off the plate. */
-.active {
-  box-shadow: 0 0 0 5px var(--theme), 0 18px 22px rgba(0, 0, 0, 0.5);
+/* Hovered (or front, when nothing is hovered) plate rises off the belt. */
+.lifted .lift {
+  transform: translateY(-8%) scale(1.1);
+  box-shadow:
+    0 0 0 4px var(--ring),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.12);
 }
 
-.active img {
-  transform: translateZ(18px) scale(1.12);
+.lifted::before {
+  opacity: 0.6;
+  transform: scale(0.9);
 }
 
-.plate:focus-visible {
-  box-shadow: 0 0 0 5px var(--theme), 0 0 0 9px var(--white);
+.plate:focus-visible .lift {
+  box-shadow: 0 0 0 4px var(--ring), 0 0 0 8px var(--white);
 }
 
 /* Name/price chip floating over the island. */
 .chip {
   position: absolute;
-  top: 46%;
+  top: 50%;
   left: 50%;
+  z-index: 200; /* above every plate (plates use z-index 0-100) */
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -115,7 +149,7 @@
   font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   pointer-events: none;
 }
 
@@ -128,7 +162,6 @@
   height: 7px;
   flex: none;
   border-radius: 50%;
-  background: var(--theme2);
 }
 
 /* Prev / pause / next. */
@@ -181,12 +214,12 @@
 
 @media (max-width: 575px) {
   .belt {
-    zoom: 0.46;
+    zoom: 0.42;
   }
 
   .controls,
   .caption {
-    zoom: 1.8;
+    zoom: 1.9;
   }
 }
 
