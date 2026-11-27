@@ -3,7 +3,6 @@ import {setRequestLocale} from 'next-intl/server';
 import Header from '@/components/home/Header';
 import Hero from '@/components/home/Hero';
 import ShopCategory from '@/components/home/ShopCategory';
-import FoodMenu from '@/components/home/FoodMenu';
 import Contact from '@/components/home/Contact';
 import News from '@/components/home/News';
 import Footer from '@/components/home/Footer';
@@ -50,7 +49,6 @@ export default async function HomePage({
         <div id="smooth-content">
           <Hero slides={slides} plates={heroBeltPlates(bestDishes, menu)} />
           <ShopCategory products={products} />
-          <FoodMenu categories={bestDishes} />
           <Contact />
           <News posts={news} />
           <Footer />

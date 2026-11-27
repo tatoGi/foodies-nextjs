@@ -65,31 +65,6 @@
       {"title": "Crispy Classic Onion"}
     ]
   },
-  "foodMenu": {
-    "subTitle": "Best Food Menu",
-    "title": "Our Best Foods Menus",
-    "tabs": {
-      "burger": "Beef Burger",
-      "pizza": "Chicken Pizza",
-      "fresh": "Fresh Pasta",
-      "sushi": "Hot Sushi",
-      "juice": "Drink & Juice"
-    },
-    "itemDescription": "Burger, coke, fries, chicken nuggets",
-    "price": "$29",
-    "items": [
-      {"title": "Cheesy Beef Nachos"},
-      {"title": "Grilled Chicken Sub"},
-      {"title": "Cheesy Garlic Cream"},
-      {"title": "Spicy Beef Burrito"},
-      {"title": "Happy Lunch Combo"},
-      {"title": "Spicy Chicken Nuggets"},
-      {"title": "Deluxe Club Sandwich"},
-      {"title": "Crunchy Fish Burger"},
-      {"title": "Classic Chicken Tacos"},
-      {"title": "Crispy Onion Rings"}
-    ]
-  },
   "bestDelivery": {
     "subTitle": "Best Delivery",
     "title": "Choose what you want, select a pick up time",
