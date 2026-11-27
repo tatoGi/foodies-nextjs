@@ -9,7 +9,7 @@ import News from '@/components/home/News';
 import Footer from '@/components/home/Footer';
 import {cmsPageMetadata, getCmsPage, getMenu, heroSlidesFromPage, isCmsPage} from '@/lib/cms';
 import {getBlogCards} from '@/lib/blog';
-import {beltPlates} from '@/lib/dish-belt';
+import {heroBeltPlates} from '@/lib/dish-belt';
 
 export async function generateMetadata({
   params
@@ -48,7 +48,7 @@ export default async function HomePage({
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Hero slides={slides} plates={beltPlates([...(bestDishes ?? []), ...(menu ?? [])])} />
+          <Hero slides={slides} plates={heroBeltPlates(bestDishes, menu)} />
           <ShopCategory products={products} />
           <FoodMenu categories={bestDishes} />
           <Contact />

@@ -19,6 +19,15 @@ export function beltPlates(menu: CmsCategory[] | null, minLength = 8, maxUnique 
   return plates;
 }
 
+/**
+ * Plates for the home hero belt: only the CMS "Featured" products (repeated to
+ * fill the loop); the whole menu only when nothing is featured.
+ */
+export function heroBeltPlates(featured: CmsCategory[] | null, menu: CmsCategory[] | null): CmsProduct[] {
+  const plates = beltPlates(featured);
+  return plates.length > 0 ? plates : beltPlates(menu);
+}
+
 /** Wraps `value` into [0, length). */
 function wrap(value: number, length: number): number {
   return ((value % length) + length) % length;

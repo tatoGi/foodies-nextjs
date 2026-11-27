@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {beltPlates, loopDistance, stadiumPoint} from './dish-belt';
+import {beltPlates, heroBeltPlates, loopDistance, stadiumPoint} from './dish-belt';
 import type {CmsCategory, CmsProduct} from './cms';
 
 // Builds a minimal product for the belt tests.
@@ -31,6 +31,18 @@ describe('beltPlates', () => {
   it('repeats a short list until it reaches the minimum length', () => {
     const plates = beltPlates([cat([product(1), product(2), product(3)])], 7);
     expect(plates.map((p) => p.id)).toEqual([1, 2, 3, 1, 2, 3, 1, 2, 3]);
+  });
+});
+
+describe('heroBeltPlates', () => {
+  it('uses only featured products when there are any', () => {
+    const plates = heroBeltPlates([cat([product(5)])], [cat([product(1), product(5)])]);
+    expect(new Set(plates.map((p) => p.id))).toEqual(new Set([5]));
+  });
+
+  it('falls back to the whole menu when nothing is featured', () => {
+    const plates = heroBeltPlates([cat([])], [cat([product(1), product(2)])]);
+    expect(new Set(plates.map((p) => p.id))).toEqual(new Set([1, 2]));
   });
 });
 
