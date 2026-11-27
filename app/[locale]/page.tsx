@@ -48,7 +48,7 @@ export default async function HomePage({
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Hero slides={slides} plates={beltPlates(bestDishes)} />
+          <Hero slides={slides} plates={beltPlates([...(bestDishes ?? []), ...(menu ?? [])])} />
           <ShopCategory products={products} />
           <FoodMenu categories={bestDishes} />
           <Contact />

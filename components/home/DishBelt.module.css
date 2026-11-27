@@ -1,145 +1,196 @@
-/* Belt strip: dark rail with a moving track of plates. */
+/* Wrapper under the hero text: belt, controls and caption, centred. */
 .belt {
   position: relative;
   z-index: 2;
-  margin-top: 30px;
-  overflow: hidden;
-  padding: 18px 0 14px;
-  background: linear-gradient(var(--header), #2b2a31);
-  border-block: 4px solid var(--theme);
-  /* fade plates in/out at the edges */
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-}
-
-/* Moving belt texture: thin slats sliding with the plates. */
-.belt::before {
-  content: '';
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 6px;
-  background: repeating-linear-gradient(90deg, #444 0 2px, transparent 2px 24px);
-  animation: slats 1.2s linear infinite;
-}
-
-.track {
   display: flex;
-  width: max-content;
-  animation: belt linear infinite;
-}
-
-.belt:hover .track,
-.belt:focus-within .track {
-  animation-play-state: paused;
-}
-
-.lane {
-  display: flex;
-  gap: 28px;
-  margin: 0;
-  padding: 0 14px;
-  list-style: none;
-}
-
-.item {
-  flex: none;
-}
-
-.plate {
-  display: flex;
-  width: 120px;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  margin-top: 10px;
   color: var(--white);
-  text-align: center;
-  transition: transform 0.25s ease;
+  user-select: none;
 }
 
-.plate:hover,
-.plate:focus-visible {
-  transform: translateY(-6px);
-  color: var(--theme);
+/* 3D viewport; drags here scrub the belt (vertical swipes still scroll the page). */
+.stage {
+  position: relative;
+  width: 760px;
+  height: 330px;
+  perspective: 1100px;
+  touch-action: pan-y;
+  cursor: grab;
 }
 
-/* White plate rim around the dish photo. */
-.dish {
+.stage:active {
+  cursor: grabbing;
+}
+
+/*
+ * The loop itself: a dark stadium band, tilted back. Its size matches the
+ * geometry in DishBelt.tsx (straight 380, radius 150, band 120 wide).
+ */
+.loop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 420px;
+  margin: -210px 0 0 -400px;
+  border-radius: 210px;
+  background:
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.05) 0 2deg, transparent 2deg 9deg),
+    #26252b;
+  box-shadow:
+    0 0 0 3px #3a3940,
+    0 0 0 9px var(--theme),
+    0 30px 0 -4px #111,
+    0 60px 80px rgba(0, 0, 0, 0.55);
+  transform: rotateX(56deg);
+  transform-style: preserve-3d;
+}
+
+/* Raised centre island inside the band. */
+.island {
+  position: absolute;
+  inset: 120px;
+  border-radius: 90px;
+  background: linear-gradient(#f4f1ea, #d9d4c8);
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.15), 0 0 0 4px #3a3940;
+}
+
+/* A plate: positioned each frame by JS (translate), centred on its loop point. */
+.plate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: grid;
-  width: 92px;
-  height: 92px;
+  width: 104px;
+  height: 104px;
   place-items: center;
   border-radius: 50%;
   background: var(--white);
-  box-shadow: 0 0 0 4px var(--theme), 0 8px 16px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 0 4px var(--theme2), 0 10px 14px rgba(0, 0, 0, 0.45);
+  outline: none;
+  /* the theme animates every <a>; transforms must follow the JS exactly */
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
 }
 
-.dish img {
-  width: 76px;
-  height: 76px;
+.plate img {
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
   object-fit: cover;
+  pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
-.name {
+/* Front plate: ring in the theme colour and the dish lifted off the plate. */
+.active {
+  box-shadow: 0 0 0 5px var(--theme), 0 18px 22px rgba(0, 0, 0, 0.5);
+}
+
+.active img {
+  transform: translateZ(18px) scale(1.12);
+}
+
+.plate:focus-visible {
+  box-shadow: 0 0 0 5px var(--theme), 0 0 0 9px var(--white);
+}
+
+/* Name/price chip floating over the island. */
+.chip {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 300px;
   overflow: hidden;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.2;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--header);
+  font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
-.price {
-  color: var(--theme);
+.chip b {
+  color: var(--theme3);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--theme2);
+}
+
+/* Prev / pause / next. */
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.controls button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--white);
   font-size: 13px;
-  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
 }
 
-@keyframes belt {
-  to {
-    transform: translateX(-50%);
-  }
+.controls button:hover,
+.controls button:focus-visible {
+  background: var(--theme);
+  color: var(--header);
 }
 
-@keyframes slats {
-  to {
-    background-position: -24px 0;
-  }
+/* Front dish: name · price, then its short description. */
+.caption {
+  max-width: 520px;
+  margin: 10px 0 0;
+  color: var(--white);
+  text-align: center;
 }
 
-/* Reduced motion: no movement, plates scroll by hand. */
-@media (prefers-reduced-motion: reduce) {
+.caption span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+}
+
+/* Smaller screens: shrink the whole belt proportionally. */
+@media (max-width: 991px) {
   .belt {
-    overflow-x: auto;
-  }
-
-  .track,
-  .belt::before {
-    animation: none;
-  }
-
-  .lane[aria-hidden] {
-    display: none;
+    zoom: 0.75;
   }
 }
 
 @media (max-width: 575px) {
-  .plate {
-    width: 96px;
+  .belt {
+    zoom: 0.46;
   }
 
-  .dish {
-    width: 72px;
-    height: 72px;
-  }
-
-  .dish img {
-    width: 58px;
-    height: 58px;
+  .controls,
+  .caption {
+    zoom: 1.8;
   }
 }
 
 /* Keep the slider dots above the belt instead of on top of it. */
 .withBelt :global(.swiper-dot) {
-  bottom: 230px;
+  bottom: 480px;
 }
